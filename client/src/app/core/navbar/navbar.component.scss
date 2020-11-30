@@ -1,0 +1,24 @@
+// .logo-icon {
+//     background-image:  url("/assets/logo_v2.svg");
+//     display: block;
+//     width: 144px;
+//     height: 59px;
+//     background-size: 144px 59px;
+//     background-repeat: no-repeat;
+// }
+
+.logo-name {
+    background-image:  url("/assets/logo_name_v3.svg");
+    padding: 12px 6px;
+    display: block;
+    width: 135px;
+    height: 48px;
+    background-size: 125px 33px;
+    background-origin: content-box;
+    background-repeat: no-repeat;
+}
+
+
+.imp-search-bar {
+    flex-basis: 90%;
+}
