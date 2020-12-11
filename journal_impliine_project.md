@@ -23,4 +23,7 @@ TODOs
 
     - I flexed growed the search bar found the right spacement also
     - Put the searchbar square
-    - Removed the collaposolable thing
+
+## Session 2020-12-01 21:10:48
+    -  Did some specs in onenote
+    -  Downloaded new version of XD and added useful assets in the future to layout ideas and have a trace
