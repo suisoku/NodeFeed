@@ -1,12 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&family=Source+Sans+Pro&display=swap');
 
-$background-color: #dae0e6;
+$desktop: 700px;
+$imp-background-color: #dae0e6;
+$family-sans-serif: 'Noto Sans', Arial, Helvetica, sans-serif;
+$family-secondary: 'Source Sans Pro', Arial, Helvetica, sans-serif;
+
+/* CSS Bulma variable overriding */
 
 html {
   height: 100%;
+  font-size: 14px !important;
 }
 
+
+
 body {
-  background-color: $background-color;
+  background-color: $imp-background-color;
   height: 100%;
 }
+
+@import "node_modules/bulma/bulma.sass";
