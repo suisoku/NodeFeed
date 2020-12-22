@@ -27,3 +27,10 @@ TODOs
 ## Session 2020-12-01 21:10:48
     -  Did some specs in onenote
     -  Downloaded new version of XD and added useful assets in the future to layout ideas and have a trace
+
+## Session 2020-12-21 21:10:10
+    - I fixed the core layout in the homepage
+
+## Session 2020-12-22 11:19:38
+    - Made sidebar collapsable and sticky
+    - 

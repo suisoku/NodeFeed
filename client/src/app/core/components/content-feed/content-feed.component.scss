@@ -8,10 +8,6 @@
     white-space: nowrap;
 }
 
-.imp-level-media {
- // border-top: 0.05rem solid $grey-lighter;
-}
-
 .imp-content-fade-text{
     line-height: 1.5; // 1.2 times the font size (size of the line box)
     max-height: calc(1.5*1rem*12); // max height of 12 lines 
@@ -19,7 +15,9 @@
     mask-image: linear-gradient(180deg,#000 60%,transparent); //applies fade out effect
 }
 
-.imp-content-box-shadow {
+.imp-content-box {
     box-shadow: 1px 2px 5px -2px rgba(40,40,40,0.4);
     border-radius: 0.5rem;  //to round the shaddow 
+    min-width: 480px;
+    max-width: 650px;
 }
