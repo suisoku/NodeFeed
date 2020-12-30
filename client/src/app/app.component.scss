@@ -2,10 +2,30 @@
     height: 100%;
 }
 
+.imp-layout-container{
+    padding: 20px 20px;
+
+    @media (min-width: 705px) and (max-width: 860px)
+    {
+        align-items: start !important;
+    }
+}
+
 .imp-container {
     max-width: 980px;
     min-width: 480px;
     width: 100%;
+}
+
+.imp-banner {
+    //height:250px;
+    //box-shadow: 1px 2px 5px -2px rgba(40,40,40,0.4);
+    border-radius: 0.5rem;
+    height: 165px;
+    @media (min-width: 705px) and (max-width: 860px)
+    { 
+        min-width: 805px; //stop shrinking 
+    }
 }
 
 .imp-sidenav {
@@ -14,7 +34,25 @@
     position: sticky;
     display: none;
 
-    @media (min-width: 680px) {
+    @media (min-width: 705px) {
         display: block;
     }
+}
+
+.imp-profile {
+
+   border-radius: 50%;
+   overflow: hidden;
+   height: 116px;
+   width: 116px;
+   margin-right: 2rem;
+   box-shadow: 0px 16px 30px -15px rgba(0,0,0,0.5);
+
+   .imp-profile-image {
+       object-fit: cover;
+    }
+}
+
+.imp-button-following {
+    float: right;
 }
