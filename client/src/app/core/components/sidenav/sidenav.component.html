@@ -1,3 +1,49 @@
-<div class="imp-test">
-    side menu
+<div class="p-3 nf-side-nav-actions">
+    <h3 class="is-size-5 is-family-secondary">Actions</h3>
+    <div class="field mt-4">
+        <label class="label">Create a post</label>
+        <div class="control">
+            <div class="buttons">
+                <button class="button is-primary is-fullwidth">Feature</button>
+                <button class="button is-info is-fullwidth">Idea</button>
+                <button class="button is-warning is-fullwidth">Bug</button>
+            </div>
+        </div>
+    </div>
+    <div class="field mt-4">
+        <label class="label">Filter</label>
+        <div class="control">
+            <div class="select is-fullwidth">
+                <select>
+                    <option>Idea</option>
+                    <option>Feature request</option>
+                    <option>Bug</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="field mt-4 mb-2">
+        <label class="label">Sort</label>
+        <div class="control">
+            <div class="select is-fullwidth">
+                <select>
+                    <option>New</option>
+                    <option>Top</option>
+                    <option>Trending</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="mt-4 p-3 nf-side-nav-actions">
+    <h3 class="is-size-5 is-family-secondary">Related NodeFeeds</h3>
+    <div class="mt-4 ml-3">
+        <div *ngFor="let e of [1,2,3,4]" class="is-flex is-align-items-center mt-2">
+            <figure class="nf-related-page is-flex-shrink-0">
+                <img class="nf-profile-image" src="assets/pro-pic.png">
+            </figure>
+            <p>JBL Flip 5</p>
+        </div>
+    </div>
 </div>
