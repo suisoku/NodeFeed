@@ -1,3 +1,3 @@
-# Impliine
+# Nodefeed
 
-Feedboard
+A platform to connect communities around their favourite products
