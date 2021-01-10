@@ -1,27 +1,7 @@
 <main class="nf-root-div">
   <app-navbar></app-navbar>
   <div class="nf-layout-container is-flex is-flex-direction-column is-align-items-center">
-    <header class="nf-container nf-banner has-background-white is-flex is-justify-content-space-between is-align-items-center">
-      <div class="ml-5 is-flex is-flex-grow-1">
-        <figure class="nf-profile is-flex-shrink-0">
-          <img class="nf-profile-image" src="assets/pro-pic.png">
-        </figure>
-        <div class="is-flex-grow-1">
-          <div class="is-flex is-flex-wrap-wrap is-justify-content-space-between">
-            <div class="is-flex-shrink-0 pr-2">
-              <h3 class="title is-4 mb-1">Samsung Health</h3>
-              <span class="has-text-grey">@SamsungHealth</span>
-            </div>
-            <button class="is-family-secondary button is-link is-rounded is-medium mr-5 is-outlined">Follow</button>
-          </div>
-          <p class="nf-description-banner mt-4">Long description, about culture and the product and what it does</p>
-          <div class="nf-description-banner mt-3">
-            <span class="pr-2"><strong>62.7k</strong> followers</span>
-            <span><strong>34.1k</strong> nodefeeds</span>
-          </div>
-        </div>
-      </div>
-    </header>
+    <app-page-header class="nf-container"></app-page-header>
     <section class="nf-container nf-layout is-flex is-justify-content-space-between">
       <div class="is-flex-grow-1">
         <app-content-feed *ngFor="let e of [1,2,3,4,5]"></app-content-feed>
@@ -29,10 +9,4 @@
       <app-sidenav class="ml-5 mt-5 nf-sidenav"></app-sidenav>
     </section>
   </div>
-
-
-
-  <!-- 
-    make 3 side blocks of 300px on average
-     -->
 </main>
