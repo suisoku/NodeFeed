@@ -6,15 +6,15 @@
     <div class="is-flex-grow-1">
       <div class="is-flex is-flex-wrap-wrap is-justify-content-space-between">
         <div class="is-flex-shrink-0 pr-2">
-          <h3 class="title is-4 mb-1">Samsung Health</h3>
-          <span class="has-text-grey">@SamsungHealth</span>
+          <h3 class="title is-4 mb-1">{{nodefeed.title}}</h3>
+          <span class="has-text-grey">{{nodefeed.name}}</span>
         </div>
         <button class="is-family-secondary button is-link is-rounded is-medium mr-5 is-outlined">Follow</button>
       </div>
-      <p class="nf-description-banner mt-4">Long description, about culture and the product and what it does</p>
+      <p class="nf-description-banner mt-4">{{nodefeed.description}}</p>
       <div class="nf-description-banner mt-3">
-        <span class="pr-2"><strong>62.7k</strong> followers</span>
-        <span><strong>34.1k</strong> nodefeeds</span>
+        <span class="pr-2"><strong>{{ nodefeed.followersCounter | shortNumber }}</strong> followers</span>
+        <span><strong>{{nodefeed.postsCounter | shortNumber}}</strong> nodefeeds</span>
       </div>
     </div>
   </div>

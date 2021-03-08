@@ -25,6 +25,7 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.32",
     "@fortawesome/free-solid-svg-icons": "^5.15.1",
     "bulma": "^0.9.1",
+    "firebase": "^8.2.2",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "tslint-angular": "^3.0.3",

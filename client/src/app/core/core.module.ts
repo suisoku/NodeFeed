@@ -5,9 +5,16 @@ import { ContentFeedComponent } from './components/content-feed/content-feed.com
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { PageHeaderComponent } from './components/page-header/page-header.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
+import { ShortNumberPipe } from './pipes/short-number.pipe';
 
 @NgModule({
-  declarations: [NavbarComponent, SidenavComponent, ContentFeedComponent, PageHeaderComponent],
+  declarations: [
+    NavbarComponent,
+    SidenavComponent,
+    ContentFeedComponent,
+    PageHeaderComponent,
+    ShortNumberPipe
+  ],
   imports: [
     CommonModule,
     SharedModule
@@ -20,4 +27,3 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
   ]
 })
 export class CoreModule { }
-  

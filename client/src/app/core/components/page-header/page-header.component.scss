@@ -12,7 +12,6 @@
 }
 
 .nf-profile {
-
     border-radius: 50%;
     overflow: hidden;
     height: 116px;
@@ -28,10 +27,10 @@
          height: 64px;
          width: 64px;
      }
- }
+}
  
  .nf-description-banner {
      @media (max-width: 480px) {
         display: none;
      }
- }
+}
