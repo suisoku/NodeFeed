@@ -13,14 +13,13 @@ export class AppComponent implements OnInit {
   title = 'client';
   items: Observable<any[]>;
 
-  nodefeed$ = this.NodeFeedService.getNodeFeed('@instagram');
+  nodefeed$ = this.nodeFeedService.getNodeFeed('@instagram');
 
-  constructor(private NodeFeedService: NodefeedService) {
-    
+  constructor(private nodeFeedService: NodefeedService) {
   }
 
   ngOnInit(): void {
-    this.NodeFeedService.createNodeFeed({
+    this.nodeFeedService.createNodeFeed({
       name: '@instagram',
       title: 'Instagram',
       description: 'New age platform allowing young creators to share their feed',
