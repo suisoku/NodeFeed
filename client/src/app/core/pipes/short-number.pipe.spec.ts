@@ -1,11 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
-import { TestBed, waitForAsync } from '@angular/core/testing';
 import { ShortNumberPipe } from './short-number.pipe';
 
 describe('Pipe: ShortNumbere', () => {
   it('create an instance', () => {
-    let pipe = new ShortNumberPipe();
+    const pipe = new ShortNumberPipe();
     expect(pipe).toBeTruthy();
   });
 });

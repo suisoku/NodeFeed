@@ -8,7 +8,7 @@ import { PostsService } from '../../services/posts.service';
 })
 export class ContentFeedComponent implements OnInit {
 
-  constructor(private PostsService: PostsService) { }
+  constructor(private postsService: PostsService) { }
 
   ngOnInit(): void {
   }

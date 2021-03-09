@@ -6,7 +6,9 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class ShortNumberPipe implements PipeTransform {
 
   transform(number: number, args?: any): any {
-    if (isNaN(number) || number === null || number === 0) {return null; } // will only work value is a number
+    if (isNaN(number) || number === null || number === 0) {
+      return null;
+    } // will only work value is a number
     let abs = Math.abs(number);
     const rounder = Math.pow(10, 1);
     const isNegative = number < 0; // will also work for Negetive numbers
@@ -20,6 +22,7 @@ export class ShortNumberPipe implements PipeTransform {
         {key: 'K', value: 1000}
     ];
 
+    // eslint-disable-next-line @typescript-eslint/prefer-for-of
     for (let i = 0; i < powers.length; i++) {
         let reduced = abs / powers[i].value;
         reduced = Math.round(reduced * rounder) / rounder;

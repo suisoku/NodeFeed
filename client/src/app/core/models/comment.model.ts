@@ -1,2 +1,3 @@
-export interface Comment.model {
+export interface CommentModel {
+    content: string;
 }

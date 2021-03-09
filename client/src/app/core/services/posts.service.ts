@@ -15,9 +15,13 @@ export class PostsService {
   }
 
   public getCollection() {
-    this.postsRef.get().subscribe(
-      (querySnapshot) => { querySnapshot.forEach((doc) => { console.log(doc.id, ' => ', doc.data()); }); },
-      (error) => console.log('error fetching data')
-    );
+    this.postsRef.get().subscribe({
+      next: (querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          console.log(doc.id, ' => ', doc.data());
+        });
+      },
+      error: () => console.log('error fetching data')
+    });
   }
 }

@@ -1,2 +1,3 @@
-export interface User.model {
+export interface UserModel {
+    name: string;
 }
