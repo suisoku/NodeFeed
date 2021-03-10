@@ -1,0 +1,17 @@
+{
+    "trailingComma": "none",
+    "overrides": [
+        {
+            "files": "*.component.html",
+            "options": {
+                "parser": "angular"
+            }
+        },
+        {
+            "files": "*.html",
+            "options": {
+                "parser": "html"
+            }
+        }
+    ]
+}

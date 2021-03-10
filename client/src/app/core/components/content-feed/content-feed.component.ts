@@ -6,12 +6,8 @@ import { PostsService } from '../../services/posts.service';
   templateUrl: './content-feed.component.html',
   styleUrls: ['./content-feed.component.scss']
 })
-export class ContentFeedComponent implements OnInit {
+export class ContentFeedComponent {
 
-  constructor(private postsService: PostsService) { }
-
-  ngOnInit(): void {
-  }
-
-
+  constructor(private postsService: PostsService) {}
+  
 }
