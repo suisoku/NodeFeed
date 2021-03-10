@@ -1,6 +1,8 @@
-import { DebugNode, Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import { Injectable } from '@angular/core';
+import {
+  AngularFirestore,
+  AngularFirestoreCollection
+} from '@angular/fire/firestore';
 import { Post } from '../models/post.model';
 
 @Injectable({
@@ -14,7 +16,7 @@ export class PostsService {
     this.postsRef = db.collection('posts');
   }
 
-  public getCollection() {
+  public getCollection(): void {
     this.postsRef.get().subscribe({
       next: (querySnapshot) => {
         querySnapshot.forEach((doc) => {

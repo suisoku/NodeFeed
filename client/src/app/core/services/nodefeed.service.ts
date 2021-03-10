@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import {
+  AngularFirestore,
+  AngularFirestoreCollection
+} from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Nodefeed } from '../models/nodefeed.model';
-import { Post } from '../models/post.model';
-import { map, catchError } from 'rxjs/operators';
-import { promise } from 'protractor';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NodefeedService {
-
   nodefeeds: Nodefeed[];
   nodefeedsRef: AngularFirestoreCollection<Nodefeed>;
 
@@ -19,11 +19,13 @@ export class NodefeedService {
   }
 
   getNodeFeed(name: string): Observable<unknown> {
-    return this.nodefeedsRef.doc(name).get().pipe(map((doc) => doc.data()));
+    return this.nodefeedsRef
+      .doc(name)
+      .get()
+      .pipe(map((doc) => doc.data()));
   }
 
   createNodeFeed(nodefeedToCreate: Nodefeed): Promise<void> {
     return this.nodefeedsRef.doc(nodefeedToCreate.name).set(nodefeedToCreate);
   }
-
 }

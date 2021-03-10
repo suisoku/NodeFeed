@@ -1,17 +1,17 @@
 .nf-side-nav-actions {
-    border-radius: 0.5rem;
-    width: 300px;
-    background-color: white;
+  border-radius: 0.5rem;
+  width: 300px;
+  background-color: white;
 }
 
 .nf-related-page {
-    border-radius: 50%;
-    overflow: hidden;
-    height: 26px;
-    width: 26px;
-    margin-right: 1rem;
+  border-radius: 50%;
+  overflow: hidden;
+  height: 26px;
+  width: 26px;
+  margin-right: 1rem;
 
-    .nf-profile-image {
-        object-fit: cover;
-     }
+  .nf-profile-image {
+    object-fit: cover;
+  }
 }

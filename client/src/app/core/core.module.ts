@@ -15,10 +15,7 @@ import { ShortNumberPipe } from './pipes/short-number.pipe';
     PageHeaderComponent,
     ShortNumberPipe
   ],
-  imports: [
-    CommonModule,
-    SharedModule
-  ],
+  imports: [CommonModule, SharedModule],
   exports: [
     NavbarComponent,
     SidenavComponent,
@@ -26,4 +23,4 @@ import { ShortNumberPipe } from './pipes/short-number.pipe';
     PageHeaderComponent
   ]
 })
-export class CoreModule { }
+export class CoreModule {}

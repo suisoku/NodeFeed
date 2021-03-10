@@ -1,19 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&family=Source+Sans+Pro&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans&family=Source+Sans+Pro&display=swap");
 
 $desktop: 700px;
 $widescreen: 1030px;
 $imp-background-color: #dae0e6;
-$family-sans-serif: 'Noto Sans', Arial, Helvetica, sans-serif;
-$family-secondary: 'Source Sans Pro', Arial, Helvetica, sans-serif;
+$family-sans-serif: "Noto Sans", Arial, Helvetica, sans-serif;
+$family-secondary: "Source Sans Pro", Arial, Helvetica, sans-serif;
 
 /* CSS Bulma variable overriding */
 
 html {
   font-size: 14px !important;
 }
-
-
 
 body {
   background-color: $imp-background-color;

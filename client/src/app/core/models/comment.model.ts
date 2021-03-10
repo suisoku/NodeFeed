@@ -1,3 +1,3 @@
 export interface CommentModel {
-    content: string;
+  content: string;
 }

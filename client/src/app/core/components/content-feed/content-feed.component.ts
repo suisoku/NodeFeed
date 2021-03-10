@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { PostsService } from '../../services/posts.service';
 
 @Component({
@@ -7,7 +7,5 @@ import { PostsService } from '../../services/posts.service';
   styleUrls: ['./content-feed.component.scss']
 })
 export class ContentFeedComponent {
-
   constructor(private postsService: PostsService) {}
-  
 }

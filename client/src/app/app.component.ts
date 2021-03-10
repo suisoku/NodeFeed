@@ -6,7 +6,7 @@ import { NodefeedService } from './core/services/nodefeed.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
   title = 'client';
@@ -24,7 +24,7 @@ export class AppComponent implements OnInit {
         description:
           'New age platform allowing young creators to share their feed',
         followersCounter: 62734,
-        postsCounter: 34167,
+        postsCounter: 34167
       })
       .then(() => console.log('Nodefeed successfully created'))
       .catch((error) => console.log('error creating NodeFeed : ', error));
@@ -41,7 +41,7 @@ export class AppComponent implements OnInit {
       description:
         'New age platform allowing young creators to share their feed',
       followersCounter: 652734,
-      postsCounter: 14167,
+      postsCounter: 14167
     } as Nodefeed;
   }
 }
