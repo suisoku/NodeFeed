@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { ContentFeedComponent } from './content-feed.component';
 
 describe('ContentFeedComponent', () => {

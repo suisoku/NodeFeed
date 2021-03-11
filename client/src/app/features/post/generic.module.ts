@@ -8,4 +8,6 @@ import { GenericRoutingModule } from './generic-routing.module';
   exports: [GenericComponent],
   imports: [CommonModule, GenericRoutingModule]
 })
-export class GenericModule {}
+export class GenericModule {
+  //lol
+}
