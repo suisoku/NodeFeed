@@ -1,0 +1,2 @@
+#Modules are ignored due to multi-line object issue
+*.module.ts

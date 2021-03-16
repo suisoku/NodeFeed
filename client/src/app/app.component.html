@@ -1,20 +1,13 @@
 <main class="nf-root-div">
   <app-navbar></app-navbar>
-  <div
-    class="nf-layout-container is-flex is-flex-direction-column is-align-items-center"
-  >
+  <div class="nf-layout-container is-flex is-flex-direction-column is-align-items-center">
     <ul>
       <li class="text" *ngFor="let item of items | async">{{item.name}}</li>
     </ul>
-    <app-page-header
-      class="nf-container"
-      [nodefeed]="nodefeed$ | async"
-    ></app-page-header>
-    <section
-      class="nf-container nf-layout is-flex is-justify-content-space-between"
-    >
+    <app-page-header class="nf-container" [nodefeed]="nodefeed$ | async"></app-page-header>
+    <section class="nf-container nf-layout is-flex is-justify-content-space-between">
       <div class="is-flex-grow-1">
-        <app-content-feed *ngFor="let e of [1,2,3,4,5]"></app-content-feed>
+        <app-post-bare *ngFor="let e of [1,2,3,4,5]"></app-post-bare>
       </div>
       <app-sidenav class="ml-5 mt-5 nf-sidenav"></app-sidenav>
     </section>

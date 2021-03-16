@@ -7,6 +7,7 @@ import { CoreModule } from './core/core.module';
 import { environment } from './../environments/environment';
 import { AngularFireAnalyticsModule } from '@angular/fire/analytics';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { PostModule } from './features/post/post.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -14,6 +15,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
     BrowserModule,
     AppRoutingModule,
     CoreModule,
+    PostModule,
     AngularFireAnalyticsModule,
     AngularFirestoreModule,
     AngularFireModule.initializeApp(environment.firebase)

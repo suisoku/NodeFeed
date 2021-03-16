@@ -1,6 +1,4 @@
-<header
-  class="nf-container nf-banner has-background-white is-flex is-justify-content-space-between is-align-items-center"
->
+<header class="nf-container nf-banner has-background-white is-flex is-justify-content-space-between is-align-items-center">
   <div class="ml-5 is-flex is-flex-grow-1">
     <figure class="nf-profile is-flex-shrink-0">
       <img class="nf-profile-image" src="assets/pro-pic.png" />
@@ -11,22 +9,12 @@
           <h3 class="title is-4 mb-1">{{nodefeed.title}}</h3>
           <span class="has-text-grey">{{nodefeed.name}}</span>
         </div>
-        <button
-          class="is-family-secondary button is-link is-rounded is-medium mr-5 is-outlined"
-        >
-          Follow
-        </button>
+        <button class="is-family-secondary button is-link is-rounded is-medium mr-5 is-outlined">Follow</button>
       </div>
       <p class="nf-description-banner mt-4">{{nodefeed.description}}</p>
       <div class="nf-description-banner mt-3">
-        <span class="pr-2"
-          ><strong>{{ nodefeed.followersCounter | shortNumber }}</strong>
-          followers</span
-        >
-        <span
-          ><strong>{{nodefeed.postsCounter | shortNumber}}</strong>
-          nodefeeds</span
-        >
+        <span class="pr-2"><strong>{{ nodefeed.followersCounter | shortNumber }}</strong>followers</span>
+        <span><strong>{{nodefeed.postsCounter | shortNumber}}</strong> nodefeeds</span>
       </div>
     </div>
   </div>

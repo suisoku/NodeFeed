@@ -1,14 +1,6 @@
+@import 'variables';
+
 /* You can add global styles to this file, and also import other style files */
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans&family=Source+Sans+Pro&display=swap");
-
-$desktop: 700px;
-$widescreen: 1030px;
-$imp-background-color: #dae0e6;
-$family-sans-serif: "Noto Sans", arial, helvetica, sans-serif;
-$family-secondary: "Source Sans Pro", arial, helvetica, sans-serif;
-
-/* CSS Bulma variable overriding */
-
 html {
   font-size: 14px !important;
 }

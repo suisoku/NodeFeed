@@ -1,5 +1,6 @@
 {
     "trailingComma": "none",
+    "printWidth": 140,
     "overrides": [
         {
             "files": "*.component.html",

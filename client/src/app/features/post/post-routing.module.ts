@@ -1,11 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { GenericComponent } from './components/generic/generic.component';
 
-const routes: Routes = [{ path: '', component: GenericComponent }];
+const routes: Routes = [];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class GenericRoutingModule {}
+export class PostRoutingModule {}
