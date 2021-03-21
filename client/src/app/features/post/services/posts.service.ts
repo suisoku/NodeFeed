@@ -1,26 +1,30 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
-import { Post } from '../models/post.model';
+import { AngularFirestore, AngularFirestoreCollection, QuerySnapshot } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { BarePostModel } from '../models/bare-post.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostsService {
-  posts: Post[];
-  postsRef: AngularFirestoreCollection<Post>;
+  posts: BarePostModel[] = [];
+  postsRef: AngularFirestoreCollection<BarePostModel>;
 
   constructor(private db: AngularFirestore) {
     this.postsRef = db.collection('posts');
   }
 
-  public getCollection(): void {
-    this.postsRef.get().subscribe({
-      next: (querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          console.log(doc.id, ' => ', doc.data());
-        });
-      },
-      error: () => console.log('error fetching data')
-    });
+  public getBarePosts(): Observable<BarePostModel[]> {
+    return this.postsRef
+      .get()
+      .pipe(map((querySnapshot: QuerySnapshot<BarePostModel>) => querySnapshot.docs.map((docSnapshot) => docSnapshot.data())));
+  }
+
+  public createBarePost(barePost: BarePostModel): void {
+    this.postsRef
+      .add(barePost)
+      .then(() => console.log('bare post created successfully'))
+      .catch(() => console.log('error creating bare post'));
   }
 }

@@ -1,5 +1,5 @@
 <header class="nf-container nf-banner has-background-white is-flex is-justify-content-space-between is-align-items-center">
-  <div class="ml-5 is-flex is-flex-grow-1">
+  <div *ngIf="nodefeed; else headerFacade" class="ml-5 is-flex is-flex-grow-1">
     <figure class="nf-profile is-flex-shrink-0">
       <img class="nf-profile-image" src="assets/pro-pic.png" />
     </figure>
@@ -13,9 +13,14 @@
       </div>
       <p class="nf-description-banner mt-4">{{nodefeed.description}}</p>
       <div class="nf-description-banner mt-3">
-        <span class="pr-2"><strong>{{ nodefeed.followersCounter | shortNumber }}</strong>followers</span>
+        <span class="pr-2"><strong>{{ nodefeed.followersCounter | shortNumber }}</strong> followers</span>
         <span><strong>{{nodefeed.postsCounter | shortNumber}}</strong> nodefeeds</span>
       </div>
     </div>
   </div>
+  <ng-template #headerFacade >
+    <div class="ml-5 is-flex">
+      <div class="nf-facade">Error loading header.</div>
+    </div>
+  </ng-template>
 </header>

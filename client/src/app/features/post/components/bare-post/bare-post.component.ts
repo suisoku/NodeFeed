@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { BarePostModel } from '../../models/bare-post.model';
 import { PostsService } from '../../services/posts.service';
 
 @Component({
@@ -7,6 +8,7 @@ import { PostsService } from '../../services/posts.service';
   styleUrls: ['./bare-post.component.scss']
 })
 export class BarePostComponent {
+  @Input() barePost!: BarePostModel;
   constructor(private postsService: PostsService) {}
 }
 // IdeaPost

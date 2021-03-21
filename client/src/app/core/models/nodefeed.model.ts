@@ -1,4 +1,4 @@
-export interface Nodefeed {
+export interface NodefeedModel {
   title: string;
   name: string;
   description: string;

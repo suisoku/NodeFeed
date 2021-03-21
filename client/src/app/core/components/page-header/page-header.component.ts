@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { NodefeedModel } from '../../models/nodefeed.model';
 
 @Component({
   selector: 'app-page-header',
@@ -6,5 +7,5 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./page-header.component.scss']
 })
 export class PageHeaderComponent {
-  @Input() nodefeed;
+  @Input() nodefeed!: NodefeedModel | null;
 }
