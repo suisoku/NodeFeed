@@ -1,14 +1,3 @@
 <main class="nf-root-div">
-  <app-navbar></app-navbar>
-  <div class="nf-layout-container is-flex is-flex-direction-column is-align-items-center">
-    <ng-container *ngIf="nodefeed$ | async as nodefeedResult">
-      <app-page-header class="nf-container" [nodefeed]="nodefeedResult"></app-page-header>
-    </ng-container>
-    <section class="nf-container nf-layout is-flex is-justify-content-space-between">
-      <div class="is-flex-grow-1">
-        <app-post-bare *ngFor="let post of bareposts$ | async" [barePost] = "post"></app-post-bare>
-      </div>
-      <app-sidenav class="ml-5 mt-5 nf-sidenav"></app-sidenav>
-    </section>
-  </div>
+  <router-outlet></router-outlet>
 </main>

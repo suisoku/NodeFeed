@@ -1,0 +1,24 @@
+.nf-layout-container {
+  padding: 20px 10px;
+
+  @media (min-width: 705px) and (max-width: 860px) {
+    align-items: start !important;
+  }
+}
+
+.nf-container {
+  max-width: 980px;
+  min-width: 380px;
+  width: 100%;
+}
+
+.nf-sidenav {
+  top: 57px;
+  align-self: flex-start;
+  position: sticky;
+  display: none;
+
+  @media (min-width: 705px) {
+    display: block;
+  }
+}
