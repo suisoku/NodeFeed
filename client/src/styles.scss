@@ -1,12 +1,11 @@
-@import 'variables';
+@import "style-global/styles";
 
 /* You can add global styles to this file, and also import other style files */
 html {
-  font-size: 14px !important;
+  height: 100%;
+  background-color: $nf-background-color;
 }
 
 body {
-  background-color: $imp-background-color;
+  height: 100%;
 }
-
-@import "node_modules/bulma/bulma.sass";

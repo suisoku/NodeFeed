@@ -3,6 +3,14 @@
 /* CSS Bulma variable overriding */
 $desktop: 700px;
 $widescreen: 1030px;
-$imp-background-color: #dae0e6;
+$label-weight: 300;
 $family-sans-serif: "Noto Sans", arial, helvetica, sans-serif;
 $family-secondary: "Source Sans Pro", arial, helvetica, sans-serif;
+
+/* project variables */
+$nf-background-color: #f0f2f5;
+$nf-standard-font-size: 14px;
+
+/* override variables then they will be used by sass */
+
+@import "node_modules/bulma/bulma.sass";

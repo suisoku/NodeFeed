@@ -5,7 +5,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sign-up.component.scss']
 })
 export class SignUpComponent implements OnInit {
+  hideInputPassword = true;
+
   constructor() {}
 
+  shit() {
+    console.log(true);
+  }
   ngOnInit(): void {}
 }

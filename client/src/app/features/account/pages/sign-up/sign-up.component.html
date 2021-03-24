@@ -1,1 +1,37 @@
-<p>sign-up works!</p>
+<section class="p-3 mb-3 nf-h-flexer nf-h-fullheight  nf-background">
+  <div class="nf-container">
+    <div class="content is-medium nf-description pr-4 pb-5">
+      <a href="/" class="nf-logo"></a>
+      <p class="">Join communities around the products that you like.</p>
+      <p>A plaltform to <strong>share</strong> ideas, feature requests or bugs of your favorite products.</p>
+    </div>
+    <form class="box p-5 nf-form-container is-family-secondary">
+      <div class="field pb-4">
+        <label class="label">Email</label>
+        <div class="control">
+          <input class="input is-medium" type="text" />
+        </div>
+      </div>
+      <div class="field">
+        <label class="label">Password</label>
+        <div class="control has-icons-right">
+          <input class="input is-medium" [type]="hideInputPassword? 'password' : 'text'" />
+          <span class="icon is-small is-right nf-input-password">
+            <i (click)="hideInputPassword = !hideInputPassword" [class]="hideInputPassword? 'fas fa-eye-slash' : 'fas fa-eye' "></i>
+          </span>
+        </div>
+      </div>
+      <div class="control pt-5">
+        <button class="button is-primary is-medium is-fullwidth">Sign up</button>
+      </div>
+      <div class="nf-separator"></div>
+      <div class="control">
+        <button class="button is-medium is-fullwidth nf-google-button">
+          <i class="nf-google-icon mr-3"></i>
+          <span>Sign with Google</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</section>
+<samp></samp>
