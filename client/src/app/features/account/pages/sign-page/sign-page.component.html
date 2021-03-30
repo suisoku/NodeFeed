@@ -1,0 +1,18 @@
+<section class="p-3 mb-3 nf-h-flexer nf-h-fullheight nf-background">
+  <div class="nf-container">
+    <div class="content is-medium nf-description pr-4 pb-5">
+      <a href="/" class="nf-logo"></a>
+      <p class="">Join communities around the products that you like.</p>
+      <p>A plaltform to <strong>share</strong> ideas, feature requests or bugs of your favorite products.</p>
+      <p class="has-text-centered">
+        <button (click)="signDisplayMode = !signDisplayMode" class="button is-primary is-medium">{{signDisplayMode? 'Join us' : 'Sign in' }}</button>
+      </p>
+    </div>
+    <ng-template [ngIf]="signDisplayMode" [ngIfElse]="signFollowUp">
+      <app-sign-in #signin></app-sign-in>
+    </ng-template>
+    <ng-template #signFollowUp>
+      <app-sign-follow-up #signup></app-sign-follow-up>
+    </ng-template>
+  </div>
+</section>

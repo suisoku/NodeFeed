@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   { path: '', loadChildren: () => import('./core/core.module').then(m => m.CoreModule) },
-  { path: 'signup', loadChildren: () => import('./features/account/account.module').then(m => m.AccountModule) },
+  { path: 'signin', loadChildren: () => import('./features/account/account.module').then(m => m.AccountModule) },
 ];
 
 @NgModule({

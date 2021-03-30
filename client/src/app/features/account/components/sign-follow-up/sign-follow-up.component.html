@@ -1,0 +1,81 @@
+<div class="box p-4 nf-form-container is-family-secondary">
+  <div class="field pb-4">
+    <label class="label">Email</label>
+    <div class="control">
+      <input class="input is-medium" type="text" />
+    </div>
+  </div>
+  <div class="field">
+    <label class="label">Password</label>
+    <div class="control has-icons-right">
+      <input class="input is-medium" [type]="hideInputPassword? 'password' : 'text'" />
+      <span class="icon is-small is-right nf-input-password">
+        <i (click)="hideInputPassword = !hideInputPassword" [class]="hideInputPassword? 'fas fa-eye-slash' : 'fas fa-eye' "></i>
+      </span>
+      <p class="help is-danger">This password is invalid</p>
+    </div>
+  </div>
+  <div class="nf-separator"></div>
+  <div class="field pb-3">
+    <label class="label">Name</label>
+    <div class="control has-icons-right">
+      <input class="input is-medium" />
+    </div>
+  </div>
+  <div class="field pb-3">
+    <label class="label">Birthday</label>
+    <div class="field-body">
+      <div class="field mr-2">
+        <div class="control is-expanded">
+          <div class="select is-fullwidth is-medium">
+            <select>
+              <option disabled selected>Month</option>
+              <option>September</option>
+              <option>April</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="field mr-2">
+        <div class="control is-expanded">
+          <div class="select is-fullwidth is-medium">
+            <select>
+              <option disabled selected>Day</option>
+              <option>1</option>
+              <option>2</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="field">
+        <div class="control is-expanded">
+          <div class="select is-fullwidth is-medium">
+            <select>
+              <option disabled selected>Year</option>
+              <option>1996</option>
+              <option>2004</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="field">
+    <label class="label">Gender</label>
+    <div class="select is-medium is-fullwidth">
+      <select>
+        <option value="" disabled selected></option>
+        <option>Male</option>
+        <option>Female</option>
+        <option>Other</option>
+        <option>Rather not say</option>
+      </select>
+    </div>
+  </div>
+  <div class="control pt-5">
+    <button class="button is-link is-rounded is-medium is-fullwidth">Join NodeFeed</button>
+  </div>
+  <div class="pt-3 has-text-centered">
+    <span>Already on Nodefeed? <a href="/">Sign in</a></span>
+  </div>
+</div>
