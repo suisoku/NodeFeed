@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { CredentialsModel } from '../../models/credentials.model';
 
 @Component({
   selector: 'app-sign-in',
@@ -6,6 +7,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./sign-in.component.scss']
 })
 export class SignInComponent {
+  @Input() persistedCredentials!: CredentialsModel;
+  @Output() createAccount = new EventEmitter<void>();
   hideInputPassword = true;
 
   constructor() {

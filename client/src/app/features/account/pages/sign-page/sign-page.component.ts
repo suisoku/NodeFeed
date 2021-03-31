@@ -1,24 +1,18 @@
-import { AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 import { Component } from '@angular/core';
-
+import { CredentialsModel } from '../../models/credentials.model';
 @Component({
   templateUrl: './sign-page.component.html',
   styleUrls: ['./sign-page.component.scss']
 })
-export class SignPageComponent implements AfterViewInit {
-  @ViewChild('signin', { read: ElementRef }) signinInput!: ElementRef<HTMLInputElement>;
-  //@ViewChild('signup', { read: ElementRef }) signupInput!: ElementRef<HTMLInputElement>;
+export class SignPageComponent {
   signDisplayMode = true;
+  collapsedSignBox = false;
+  persistedCredentials: CredentialsModel = { email: '', password: '' };
 
-  ngAfterViewInit(): void {
-    console.log(this.calculateStartScale(this.signinInput.nativeElement));
-  }
-
-  calculateStartScale(startElement: HTMLInputElement): { x: number; y: number } {
-    const start = startElement.getBoundingClientRect();
-    return {
-      x: 1,
-      y: start.height * 0.3
-    };
+  switchSignComponent(): void {
+    if (this.collapsedSignBox) {
+      this.signDisplayMode = !this.signDisplayMode;
+      this.collapsedSignBox = false;
+    }
   }
 }

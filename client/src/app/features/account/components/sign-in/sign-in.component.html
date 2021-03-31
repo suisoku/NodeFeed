@@ -1,4 +1,4 @@
-<div class="box p-5 nf-form-container is-family-secondary">
+<div class="box p-4 nf-form-container is-family-secondary">
     <div class="field pb-4">
       <label class="label">Email</label>
       <div class="control">
@@ -19,7 +19,7 @@
       <button class="button is-primary is-rounded is-medium is-fullwidth">Sign in</button>
     </div>
     <div class="nf-separator"></div>
-    <button class="button is-medium is-fullwidth is-link mb-4">
+    <button (click)="createAccount.emit()" class="button is-medium is-fullwidth is-link mb-4">
       <span>Create an account</span>
     </button>
     <button class="button is-medium is-fullwidth nf-google-button">
