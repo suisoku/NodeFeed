@@ -5,7 +5,7 @@
   </ng-container>
   <section class="nf-container nf-layout is-flex is-justify-content-space-between">
     <div class="is-flex-grow-1">
-      <app-post-bare *ngFor="let post of bareposts$ | async" [barePost] = "post"></app-post-bare>
+      <app-post-bare *ngFor="let post of bareposts$ | async" [barePost]="post"></app-post-bare>
     </div>
     <app-sidenav class="ml-5 mt-5 nf-sidenav"></app-sidenav>
   </section>

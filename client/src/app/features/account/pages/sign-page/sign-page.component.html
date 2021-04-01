@@ -10,7 +10,11 @@
         <app-sign-in #signin (createAccount)="collapseSignBox($event)" [persistedCredentials]="persistedCredentials"></app-sign-in>
       </ng-template>
       <ng-template #signFollowUp>
-        <app-sign-follow-up #signup (signinAccount)="collapseSignBox($event)" [persistedCredentials]="persistedCredentials"></app-sign-follow-up>
+        <app-sign-follow-up
+          #signup
+          (signinAccount)="collapseSignBox($event)"
+          [persistedCredentials]="persistedCredentials"
+        ></app-sign-follow-up>
       </ng-template>
     </div>
   </div>
