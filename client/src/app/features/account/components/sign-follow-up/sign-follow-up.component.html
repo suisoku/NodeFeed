@@ -1,14 +1,14 @@
-<div class="box p-4 nf-form-container is-family-secondary">
+<div [formGroup]="signForm" class="box p-4 nf-form-container is-family-secondary">
   <div class="field pb-4">
     <label class="label">Email</label>
     <div class="control">
-      <input class="input is-medium" type="text" />
+      <input class="input is-medium" type="text" formControlName="email" />
     </div>
   </div>
   <div class="field">
     <label class="label">Password</label>
     <div class="control has-icons-right">
-      <input class="input is-medium" [type]="hideInputPassword? 'password' : 'text'" />
+      <input class="input is-medium" [type]="hideInputPassword? 'password' : 'text'" formControlName="password" />
       <span class="icon is-small is-right nf-input-password">
         <i (click)="hideInputPassword = !hideInputPassword" [class]="hideInputPassword? 'fas fa-eye-slash' : 'fas fa-eye' "></i>
       </span>
@@ -19,7 +19,7 @@
   <div class="field pb-3">
     <label class="label">Name</label>
     <div class="control has-icons-right">
-      <input class="input is-medium" />
+      <input class="input is-medium" formControlName="name" />
     </div>
   </div>
   <div class="field pb-3">
@@ -28,7 +28,7 @@
       <div class="field mr-2">
         <div class="control is-expanded">
           <div class="select is-fullwidth is-medium">
-            <select>
+            <select formControlName="birthMonth">
               <option disabled selected>Month</option>
               <option>September</option>
               <option>April</option>
@@ -39,7 +39,7 @@
       <div class="field mr-2">
         <div class="control is-expanded">
           <div class="select is-fullwidth is-medium">
-            <select>
+            <select formControlName="birthDay">
               <option disabled selected>Day</option>
               <option>1</option>
               <option>2</option>
@@ -50,7 +50,7 @@
       <div class="field">
         <div class="control is-expanded">
           <div class="select is-fullwidth is-medium">
-            <select>
+            <select formControlName="birthYear">
               <option disabled selected>Year</option>
               <option>1996</option>
               <option>2004</option>
@@ -63,7 +63,7 @@
   <div class="field">
     <label class="label">Gender</label>
     <div class="select is-medium is-fullwidth">
-      <select>
+      <select formControlName="gender">
         <option value="" disabled selected></option>
         <option>Male</option>
         <option>Female</option>
@@ -76,6 +76,6 @@
     <button class="button is-link is-rounded is-medium is-fullwidth">Join NodeFeed</button>
   </div>
   <div class="pt-3 has-text-centered">
-    <span>Already on Nodefeed? <a (click)="signinAccount.emit()">Sign in</a></span>
+    <span>Already on Nodefeed? <a (click)="emitSignIn()">Sign in</a></span>
   </div>
 </div>

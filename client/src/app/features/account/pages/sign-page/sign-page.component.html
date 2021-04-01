@@ -7,10 +7,10 @@
     </div>
     <div class="nf-sign-box" [ngClass]="{'is-collapsed': collapsedSignBox}" (transitionend)="switchSignComponent()">
       <ng-template [ngIf]="signDisplayMode" [ngIfElse]="signFollowUp">
-        <app-sign-in #signin (createAccount)="collapsedSignBox = true"></app-sign-in>
+        <app-sign-in #signin (createAccount)="collapseSignBox($event)" [persistedCredentials]="persistedCredentials"></app-sign-in>
       </ng-template>
       <ng-template #signFollowUp>
-        <app-sign-follow-up #signup (signinAccount)="collapsedSignBox = true"></app-sign-follow-up>
+        <app-sign-follow-up #signup (signinAccount)="collapseSignBox($event)" [persistedCredentials]="persistedCredentials"></app-sign-follow-up>
       </ng-template>
     </div>
   </div>

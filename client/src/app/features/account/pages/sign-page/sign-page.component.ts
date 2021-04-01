@@ -15,4 +15,9 @@ export class SignPageComponent {
       this.collapsedSignBox = false;
     }
   }
+
+  collapseSignBox(dataCredentials: CredentialsModel): void {
+    this.persistedCredentials = dataCredentials;
+    this.collapsedSignBox = true;
+  }
 }
