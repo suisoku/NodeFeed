@@ -22,9 +22,6 @@ export class PostsService {
   }
 
   public createBarePost(barePost: BarePostModel): void {
-    this.postsRef
-      .add(barePost)
-      .then(() => console.log('bare post created successfully'))
-      .catch(() => console.log('error creating bare post'));
+    void this.postsRef.add(barePost);
   }
 }

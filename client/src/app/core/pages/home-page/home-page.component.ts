@@ -17,16 +17,13 @@ export class HomePageComponent implements OnInit {
   constructor(private nodeFeedService: NodefeedService, private postsService: PostsService) {}
 
   ngOnInit(): void {
-    this.nodeFeedService
-      .createNodeFeed({
-        name: '@instagram',
-        title: 'Instagram',
-        description: 'New age platform allowing young creators to share their feed',
-        followersCounter: 62734,
-        postsCounter: 34167
-      })
-      .then(() => console.log('Nodefeed successfully created'))
-      .catch((error) => console.log('error creating NodeFeed : ', error));
+    void this.nodeFeedService.createNodeFeed({
+      name: '@instagram',
+      title: 'Instagram',
+      description: 'New age platform allowing young creators to share their feed',
+      followersCounter: 62734,
+      postsCounter: 34167
+    });
 
     this.postsService.createBarePost({
       author: 'Noureddine Ziani',
