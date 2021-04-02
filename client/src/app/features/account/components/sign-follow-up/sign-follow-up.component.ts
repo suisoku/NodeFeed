@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { CredentialsModel } from '../../models/credentials.model';
+import { CredentialsSettingsModel } from '../../models/credential-settings.model';
 import { SignInDetailsModel } from '../../models/sign-in-details.model';
 
 @Component({
@@ -9,12 +9,12 @@ import { SignInDetailsModel } from '../../models/sign-in-details.model';
   styleUrls: ['./sign-follow-up.component.scss']
 })
 export class SignFollowUpComponent implements OnInit {
-  @Input() persistedCredentials!: CredentialsModel;
+  @Input() persistedCredentials!: CredentialsSettingsModel;
 
-  @Output() signinAccount = new EventEmitter<CredentialsModel>();
+  @Output() signinAccount = new EventEmitter<CredentialsSettingsModel>();
 
   signForm!: FormGroup;
-  hideInputPassword = true;
+  hideInputPassword!: boolean;
   signInDetails: SignInDetailsModel = {
     name: '',
     birthday: '',
@@ -26,6 +26,7 @@ export class SignFollowUpComponent implements OnInit {
   constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
+    this.hideInputPassword = this.persistedCredentials.hiddenPassword;
     this.signForm = this.formBuilder.group({
       email: [this.persistedCredentials.email],
       password: [this.persistedCredentials.password],
@@ -38,6 +39,10 @@ export class SignFollowUpComponent implements OnInit {
   }
 
   emitSignIn(): void {
-    this.signinAccount.emit(this.signForm.value as CredentialsModel);
+    this.signinAccount.emit({
+      email: (this.signForm.get('email')?.value as string) ?? '',
+      password: (this.signForm.get('password')?.value as string) ?? '',
+      hiddenPassword: this.hideInputPassword
+    });
   }
 }

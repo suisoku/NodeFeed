@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CredentialsModel } from '../../models/credentials.model';
+import { CredentialsSettingsModel } from '../../models/credential-settings.model';
 @Component({
   templateUrl: './sign-page.component.html',
   styleUrls: ['./sign-page.component.scss']
@@ -7,7 +7,8 @@ import { CredentialsModel } from '../../models/credentials.model';
 export class SignPageComponent {
   signDisplayMode = true;
   collapsedSignBox = false;
-  persistedCredentials: CredentialsModel = { email: '', password: '' };
+  persistedCredentials: CredentialsSettingsModel = { email: '', password: '', hiddenPassword: true };
+  hiddenPassword = true;
 
   switchSignComponent(): void {
     if (this.collapsedSignBox) {
@@ -16,7 +17,7 @@ export class SignPageComponent {
     }
   }
 
-  collapseSignBox(dataCredentials: CredentialsModel): void {
+  collapseSignBox(dataCredentials: CredentialsSettingsModel): void {
     this.persistedCredentials = dataCredentials;
     this.collapsedSignBox = true;
   }

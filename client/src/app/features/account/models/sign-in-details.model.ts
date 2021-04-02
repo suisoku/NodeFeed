@@ -1,6 +1,6 @@
-export interface SignInDetailsModel {
-  email: string;
-  password: string;
+import { CredentialsModel } from './credentials.model';
+
+export interface SignInDetailsModel extends CredentialsModel {
   name: string;
   birthday: string;
   gender: string;
