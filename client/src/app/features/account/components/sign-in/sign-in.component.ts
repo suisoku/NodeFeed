@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { CredentialsSettingsModel } from '../../models/credential-settings.model';
 import { CredentialsModel } from '../../models/credentials.model';
+import { AuthenticationService } from '../../services/authentication.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -16,7 +17,7 @@ export class SignInComponent implements OnInit {
   credentialsForm!: FormGroup;
   hideInputPassword!: boolean;
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder, private auth: AuthenticationService) {}
 
   ngOnInit(): void {
     this.hideInputPassword = this.persistedCredentials.hiddenPassword;
@@ -28,5 +29,14 @@ export class SignInComponent implements OnInit {
 
   emitCreateAccount(): void {
     this.createAccount.emit({ ...(this.credentialsForm.value as CredentialsModel), hiddenPassword: this.hideInputPassword });
+  }
+
+  signIn(): void {
+    console.log("ici");
+    const credentials: CredentialsModel = {
+      email: this.credentialsForm.get('email')?.value as string,
+      password: this.credentialsForm.get('password')?.value as string
+    };
+    this.auth.signIn(credentials);
   }
 }

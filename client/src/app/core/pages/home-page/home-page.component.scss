@@ -1,3 +1,5 @@
+@import "variables";
+
 .nf-layout-container {
   padding: 20px 10px;
 
@@ -21,4 +23,20 @@
   @media (min-width: 705px) {
     display: block;
   }
+}
+
+.nf-content-box {
+  min-width: 380px;
+  max-width: 650px;
+}
+
+.beta {
+  background-color: $primary;
+  color: white;
+  font-weight: normal;
+  padding-left: 0.9rem;
+  padding-right: 0.9rem;
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
+  border-radius: 0.35rem;
 }
