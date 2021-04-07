@@ -14,7 +14,11 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
     PageHeaderComponent,
     HomePageComponent 
   ],
-  imports: [CoreRoutingModule, SharedModule, PostModule],
+  imports: [
+    CoreRoutingModule,
+    SharedModule,
+    PostModule,
+  ],
   exports: [
     NavbarComponent,
     SidenavComponent,

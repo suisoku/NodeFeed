@@ -1,4 +1,7 @@
-# Impliine project journal
+This log is an accountability journal allowing you to track what have you done in a given day
+Log how much pomodoros have you done and wich tasks you did
+
+# NodeFeed project journal
 
 TODOs 
     - search bar OK
@@ -33,4 +36,8 @@ TODOs
 
 ## Session 2020-12-22 11:19:38
     - Made sidebar collapsable and sticky
-    - 
+
+## Session 2021-04-07 
+    - Pomodoros : 2 (12h - 13h)
+    - Material learning + Making collapsible Beta in NodeFeed
+      - This is last time we do something like this , time is running , I need functionalities not cool css !
