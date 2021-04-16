@@ -2,6 +2,8 @@ import { CredentialsModel } from './credentials.model';
 
 export interface SignInDetailsModel extends CredentialsModel {
   name: string;
-  birthday: string;
+  birthDay: string;
+  birthMonth: string;
+  birthYear: string;
   gender: string;
 }

@@ -1,20 +1,5 @@
 <div [formGroup]="signForm" class="box p-4 nf-form-container is-family-secondary">
-  <div class="field pb-4">
-    <label class="label">Email</label>
-    <div class="control">
-      <input class="input is-medium" type="text" formControlName="email" />
-    </div>
-  </div>
-  <div class="field">
-    <label class="label">Password</label>
-    <div class="control has-icons-right">
-      <input class="input is-medium" [type]="hideInputPassword? 'password' : 'text'" formControlName="password" />
-      <span class="icon is-small is-right nf-input-password">
-        <i (click)="hideInputPassword = !hideInputPassword" [class]="hideInputPassword? 'fas fa-eye-slash' : 'fas fa-eye' "></i>
-      </span>
-      <p class="help is-danger">This password is invalid</p>
-    </div>
-  </div>
+  <app-basic-sign-form [parentForm]="signForm"></app-basic-sign-form>
   <div class="nf-separator"></div>
   <div class="field pb-3">
     <label class="label">Name</label>

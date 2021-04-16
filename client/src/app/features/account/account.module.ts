@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { AccountRoutingModule } from './account-routing.module';
+import { BasicSignFormComponent } from './components/basic-sign-form/basic-sign-form.component';
 import { SignFollowUpComponent } from './components/sign-follow-up/sign-follow-up.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { SignPageComponent } from './pages/sign-page/sign-page.component';
@@ -8,7 +9,8 @@ import { SignPageComponent } from './pages/sign-page/sign-page.component';
   declarations: [
     SignFollowUpComponent, 
     SignPageComponent,
-    SignInComponent
+    SignInComponent,
+    BasicSignFormComponent
   ],
   imports: [
     SharedModule,

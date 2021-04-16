@@ -1,20 +1,5 @@
-<div [formGroup]="credentialsForm" class="box p-4 nf-form-container is-family-secondary">
-  <div class="field pb-4">
-    <label class="label">Email</label>
-    <div class="control">
-      <input formControlName="email" class="input is-medium" type="text" />
-    </div>
-  </div>
-  <div class="field">
-    <label class="label">Password</label>
-    <div class="control has-icons-right">
-      <input formControlName="password" class="input is-medium" [type]="hideInputPassword? 'password' : 'text'" />
-      <span class="icon is-small is-right nf-input-password">
-        <i (click)="hideInputPassword = !hideInputPassword" [class]="hideInputPassword? 'fas fa-eye-slash' : 'fas fa-eye' "></i>
-      </span>
-      <p class="help is-danger">This password is invalid</p>
-    </div>
-  </div>
+<form [formGroup]="credentialsForm" class="box p-4 nf-form-container is-family-secondary">
+  <app-basic-sign-form [parentForm]="credentialsForm"></app-basic-sign-form>
   <div class="control pt-5">
     <button (click)="signIn()" class="button is-primary is-rounded is-medium is-fullwidth">Sign in</button>
   </div>
@@ -26,4 +11,7 @@
     <i class="nf-google-icon mr-3"></i>
     <span>Sign in with Google</span>
   </button>
-</div>
+  <div class="pt-3 has-text-centered">
+    <span><a>Forgot password ?</a></span>
+  </div>
+</form>

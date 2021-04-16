@@ -11,3 +11,7 @@ body {
 }
 //body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; } added by material angular
 // mat-typography class was also added to body but I removed it
+
+input:invalid {
+  @extend .is-danger;
+}

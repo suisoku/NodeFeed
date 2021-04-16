@@ -39,7 +39,13 @@
             "style": "camelCase"
           }
         ],
-        "no-console": "error"
+        "@typescript-eslint/unbound-method": [
+          "error",
+          {
+            "ignoreStatic": true // weird rule and fires errors when using validators
+          }
+        ],
+        "no-console": "warn"
       }
     },
     {

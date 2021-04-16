@@ -1,0 +1,18 @@
+<ng-container *ngIf="parentForm" [formGroup]="parentForm">
+  <div class="field pb-4">
+    <label class="label">Email</label>
+    <div class="control">
+      <input formControlName="email" class="input is-medium" type="email"/>
+      <p *ngIf="isInvalidEmail()" class="help is-danger">Please type a valid email</p>
+    </div>
+  </div>
+  <div class="field">
+    <label class="label">Password</label>
+    <div class="control has-icons-right">
+      <input formControlName="password" class="input is-medium" [type]="hidePassword? 'password' : 'text'" />
+      <span class="icon is-small is-right nf-input-password">
+        <i (click)="hidePassword = !hidePassword" [class]="hidePassword? 'fas fa-eye-slash' : 'fas fa-eye' "></i>
+      </span>
+    </div>
+  </div>
+</ng-container>

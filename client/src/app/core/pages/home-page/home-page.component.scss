@@ -31,12 +31,13 @@
 }
 
 .beta {
-  margin-left: 0.6rem;
+  margin-left: 0.5rem;
   background-color: $primary;
   color: white;
   font-weight: normal;
-  padding: 0.07rem 0.5rem 0.1rem 0.5rem;
+  padding: 0.1rem 0.5rem 0.1rem 0.5rem;
   border-radius: 0.35rem;
+  font-size: 19px;
 }
 
 // Overriding Expansion-Panel component styles
