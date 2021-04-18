@@ -10,29 +10,18 @@ import { SignInDetailsModel } from '../models/sign-in-details.model';
   providedIn: 'root'
 })
 export class AuthenticationService {
-  userData: firebase.default.User | null = null;
-
   constructor(private afAuth: AngularFireAuth, public afStore: AngularFirestore) {
-    this.afAuth.authState.subscribe((user) => {
-      if (user) {
-        this.userData = user;
-        localStorage.setItem('user', JSON.stringify(this.userData)); //typescript variable to access web cache
-        JSON.parse(localStorage.getItem('user') ?? '');
-      } else {
-        localStorage.setItem('user', '');
-        JSON.parse(localStorage.getItem('user') ?? '');
-      }
-    });
+    this._setUserCache();
   }
 
-  async registerUser(credentials: SignInDetailsModel): Promise<void> {
+  async registerUser(signInformation: SignInDetailsModel): Promise<void> {
     return this.afAuth
-      .createUserWithEmailAndPassword(credentials.email, credentials.password)
+      .createUserWithEmailAndPassword(signInformation.email, signInformation.password)
       .then((userCredential) => {
-        const registeredUser: firestore.defualt.User | null = userCredential.user;
-        void userCredential.user?.updateProfile({ displayName: credentials.name });
-        void userCredential.user?.sendEmailVerification();
-        void this._setUserData(userCredential.user);
+        if (!userCredential.user) {
+          return Promise.reject(new Error("Can't create a profile from a null user object"));
+        }
+        return this._setUserData(userCredential.user, signInformation);
       })
       .catch((error) => {
         console.log('er', error);
@@ -43,18 +32,9 @@ export class AuthenticationService {
     return this.afAuth.signInWithEmailAndPassword(credentials.email, credentials.password).then(() => ({ gender: 'lol' } as UserModel));
   }
 
-  async forgotPassword(passwordResetEmail: any): Promise<void> {
-    return this.afAuth
-      .sendPasswordResetEmail(passwordResetEmail)
-      .then(() => {
-        console.log('mail sent');
-      })
-      .catch((error) => {
-        console.log('er', error);
-      });
-  }
-
-  private _setUserData(user: firebase.default.User) {
+  private _setUserData(user: firebase.default.User, signInformation: SignInDetailsModel): Promise<void> {
+    void user.updateProfile({ displayName: signInformation.name });
+    void user.sendEmailVerification();
     const userRef: AngularFirestoreDocument<firebase.default.User> = this.afStore.doc(`users/${user.uid}`);
     const userData: firebase.default.User = {
       ...user
@@ -62,6 +42,18 @@ export class AuthenticationService {
 
     return userRef.set(userData, {
       merge: true
+    });
+  }
+
+  private _setUserCache(): void {
+    this.afAuth.authState.subscribe((user) => {
+      if (user) {
+        localStorage.setItem('user', JSON.stringify(user)); //typescript variable to access web cache
+        JSON.parse(localStorage.getItem('user') ?? '');
+      } else {
+        localStorage.setItem('user', '');
+        JSON.parse(localStorage.getItem('user') ?? '');
+      }
     });
   }
 }
