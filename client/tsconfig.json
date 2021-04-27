@@ -16,11 +16,7 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "es2020",
-    "lib": ["es2018", "dom"],
-    "paths": {
-      "@app/*": ["src/app/*"],
-      "firebase-app": ["src/firebase-app.ts"]
-    }
+    "lib": ["es2018", "dom"]
   },
   "angularCompilerOptions": {
     "strictInjectionParameters": true,
