@@ -33,7 +33,7 @@ export class SignInComponent implements OnInit {
   emitCreateAccount(): void {
     this.createAccount.emit(this.credentialsForm.value as CredentialsSettingsModel);
   }
-
+ 
   signIn(): void {
     const credentials: CredentialsModel = {
       email: this.credentialsForm.get('email')?.value as string,
@@ -42,7 +42,7 @@ export class SignInComponent implements OnInit {
     this.auth
       .signIn(credentials)
       .then(() => {
-        void this._router.navigateByUrl('..');
+        void this._router.navigateByUrl('/');
       })
       .catch((error: Error) => {
         console.log(error.message);
