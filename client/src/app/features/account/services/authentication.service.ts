@@ -1,59 +1,53 @@
 /* eslint-disable no-console */
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
 import { UserModel } from 'src/app/core/models/user.model';
 import { CredentialsModel } from '../models/credentials.model';
 import { SignInDetailsModel } from '../models/sign-in-details.model';
-
+import firebase from 'firebase/app';
+import { map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
-  constructor(private afAuth: AngularFireAuth, public afStore: AngularFirestore) {
-    this._setUserCache();
+  currentUser$: Observable<firebase.User | null>;
+  isLoggedIn$: Observable<boolean>;
+
+  constructor(private readonly afAuth: AngularFireAuth, private readonly afStore: AngularFirestore) {
+    this.currentUser$ = this.afAuth.user;
+    this.isLoggedIn$ = this.currentUser$.pipe(map((user: firebase.User | null): boolean => !!user));
   }
 
   async registerUser(signInformation: SignInDetailsModel): Promise<void> {
-    return this.afAuth
-      .createUserWithEmailAndPassword(signInformation.email, signInformation.password)
-      .then((userCredential) => {
-        if (!userCredential.user) {
-          return Promise.reject(new Error("Can't create a profile from a null user object"));
-        }
-        return this._setUserData(userCredential.user, signInformation);
-      })
-      .catch((error) => {
-        console.log('er', error);
-      });
+    return this.afAuth.createUserWithEmailAndPassword(signInformation.email, signInformation.password).then((userCredential) => {
+      if (!userCredential.user) {
+        return Promise.reject(new Error("Can't create a profile from a null user object"));
+      }
+      return this._setUserData(userCredential.user, signInformation);
+    });
   }
 
   async signIn(credentials: CredentialsModel): Promise<UserModel> {
     return this.afAuth.signInWithEmailAndPassword(credentials.email, credentials.password).then(() => ({ gender: 'lol' } as UserModel));
   }
 
-  private _setUserData(user: firebase.default.User, signInformation: SignInDetailsModel): Promise<void> {
+  async signOut(): Promise<void> {
+    return this.afAuth.signOut();
+  }
+
+  private _setUserData(user: firebase.User, signInformation: SignInDetailsModel): Promise<void> {
     void user.updateProfile({ displayName: signInformation.name });
     void user.sendEmailVerification();
-    const userRef: AngularFirestoreDocument<firebase.default.User> = this.afStore.doc(`users/${user.uid}`);
-    const userData: firebase.default.User = {
-      ...user
+    console.log('its me mario', user.uid);
+    const userRef = this.afStore.doc(`users/${user.uid}`);
+    const userData = {
+      ...signInformation
     };
 
     return userRef.set(userData, {
       merge: true
-    });
-  }
-
-  private _setUserCache(): void {
-    this.afAuth.authState.subscribe((user) => {
-      if (user) {
-        localStorage.setItem('user', JSON.stringify(user)); //typescript variable to access web cache
-        JSON.parse(localStorage.getItem('user') ?? '');
-      } else {
-        localStorage.setItem('user', '');
-        JSON.parse(localStorage.getItem('user') ?? '');
-      }
     });
   }
 }

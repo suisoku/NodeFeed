@@ -10,7 +10,5 @@ $family-secondary: "Source Sans Pro", arial, helvetica, sans-serif;
 /* project variables */
 $nf-background-color: #dae0e6;
 $nf-standard-font-size: 14px;
-
-/* override variables then they will be used by sass */
-
-@import "node_modules/bulma/bulma.sass";
+$nf-g-standard-max-width: 600px;
+$nf-g-standard-min-width: 300px;

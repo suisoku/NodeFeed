@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { CredentialsSettingsModel } from '../../models/credential-settings.model';
 import { SignInDetailsModel } from '../../models/sign-in-details.model';
 import { AuthenticationService } from '../../services/authentication.service';
@@ -16,7 +17,7 @@ export class SignFollowUpComponent implements OnInit {
 
   signForm!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private auth: AuthenticationService) {}
+  constructor(private formBuilder: FormBuilder, private auth: AuthenticationService, private router: Router) {}
 
   ngOnInit(): void {
     this.signForm = this.formBuilder.group({
@@ -40,6 +41,11 @@ export class SignFollowUpComponent implements OnInit {
   }
 
   createAccount(): void {
-    void this.auth.registerUser(this.signForm.value as SignInDetailsModel);
+    this.auth
+      .registerUser(this.signForm.value as SignInDetailsModel)
+      .then(() => this.router.navigate(['/']))
+      .catch(
+        (error) => console.log(error) //handle the error states
+      );
   }
 }

@@ -7,7 +7,6 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  height: 850px;
 
   .nf-description {
     max-width: 550px;
@@ -26,13 +25,13 @@
   .nf-sign-box {
     // animation-name: width;
     // animation-duration: 7s;
-    height: 800px;
+    height: 620px;
     padding: 7px;
     overflow: hidden;
     transition: height 800ms ease-in-out;
 
     &.is-collapsed {
-      height: 255px;
+      height: 210px;
       transition: height 600ms ease-ni-out;
     }
   }

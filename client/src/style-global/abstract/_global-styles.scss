@@ -1,6 +1,7 @@
 @import "variables";
 @import "helpers";
 
+/* global classes appliable everywhere in the project */
 .nf-g-card {
   background-color: white;
   border-radius: 8px !important;
@@ -10,3 +11,6 @@
 .nf-g-font-size {
   font-size: $nf-standard-font-size !important;
 }
+
+/* Import only once at the end, to override bulma variables */
+@import "node_modules/bulma/bulma.sass";

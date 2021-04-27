@@ -1,3 +1,7 @@
+@import "variables";
+
+/* list of useful helper classes */
+
 .nf-h-flexer {
   display: flex;
   flex-wrap: wrap;
@@ -7,4 +11,9 @@
 
 .nf-h-fullheight {
   height: 100%;
+}
+
+.nf-h-standard-container {
+  max-width: $nf-g-standard-max-width;
+  min-width: $nf-g-standard-min-width;
 }

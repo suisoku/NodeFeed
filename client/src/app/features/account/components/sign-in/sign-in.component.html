@@ -1,13 +1,13 @@
 <form [formGroup]="credentialsForm" class="box p-4 nf-form-container is-family-secondary">
   <app-basic-sign-form [parentForm]="credentialsForm"></app-basic-sign-form>
   <div class="control pt-5">
-    <button (click)="signIn()" class="button is-primary is-rounded is-medium is-fullwidth">Sign in</button>
+    <button (click)="signIn()" class="button is-primary is-rounded is-fullwidth">Sign in</button>
   </div>
   <div class="nf-separator"></div>
-  <button (click)="emitCreateAccount()" class="button is-medium is-fullwidth is-link mb-4">
+  <button (click)="emitCreateAccount()" class="button is-fullwidth is-link mb-4">
     <span>Create an account</span>
   </button>
-  <button class="button is-medium is-fullwidth nf-google-button">
+  <button class="button is-fullwidth nf-google-button">
     <i class="nf-google-icon mr-3"></i>
     <span>Sign in with Google</span>
   </button>
