@@ -6,6 +6,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [ShortNumberPipe],
@@ -17,7 +18,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     MatExpansionModule,
     MatMenuModule,
     MatIconModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatSnackBarModule
   ],
   exports: [
     ShortNumberPipe,
@@ -28,7 +30,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     MatExpansionModule,
     MatMenuModule,
     MatIconModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatSnackBarModule
   ]
 })
 export class SharedModule {}

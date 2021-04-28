@@ -21,6 +21,10 @@ export class AuthenticationService {
     this.isLoggedIn$ = this.currentUser$.pipe(map((user: firebase.User | null): boolean => !!user));
   }
 
+  tokenChanged$(callback: (user: FirebaseUser | null) => void): void {
+    void this.afAuth.onIdTokenChanged(callback);
+  }
+
   async registerUser(signInformation: SignInDetailsModel): Promise<void> {
     return this.afAuth.createUserWithEmailAndPassword(signInformation.email, signInformation.password).then((userCredential) => {
       if (!userCredential.user) {
@@ -38,10 +42,13 @@ export class AuthenticationService {
     return this.afAuth.signOut();
   }
 
+  async sendEmailVerification(user: FirebaseUser): Promise<void> {
+    return user.sendEmailVerification();
+  }
+
   private _setUserData(user: firebase.User, signInformation: SignInDetailsModel): Promise<void> {
     void user.updateProfile({ displayName: signInformation.name });
     void user.sendEmailVerification();
-    console.log('its me mario', user.uid);
     const userRef = this.afStore.doc(`users/${user.uid}`);
     const userData = {
       ...signInformation

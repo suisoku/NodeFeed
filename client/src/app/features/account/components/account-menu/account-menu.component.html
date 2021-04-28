@@ -9,12 +9,12 @@
       <figure class="nf-profile">
         <img class="nf-profile-image" src="assets/pro-pic.png" />
       </figure>
-      <span>{{'displayName'}}</span>
+      <span>{{user.displayName}}</span>
       <mat-icon class="nf-menu-icon ml-3">{{ menuIconState? 'expand_more': 'menu' }}</mat-icon>
     </button>
     <mat-menu #userMenu="matMenu" (closed)="menuIconState = false">
       <button mat-menu-item>
-        <mat-icon>account_circle</mat-icon>
+        <mat-icon>account_box</mat-icon>
         <span>Profile</span>
       </button>
       <button mat-menu-item disabled>
