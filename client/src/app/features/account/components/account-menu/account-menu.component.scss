@@ -1,0 +1,42 @@
+@import "global-styles";
+
+.account-box {
+  .nf-account-button {
+    border: 1px solid $primary;
+    color: $primary;
+    padding: 0.4rem 0.6rem;
+
+    &:hover {
+      color: $primary;
+      background-color: $white-ter;
+    }
+
+    &:focus {
+      box-shadow: none;
+    }
+  }
+
+  .nf-profile {
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 0.5rem;
+
+    .nf-profile-image {
+      object-fit: cover;
+      display: block;
+    }
+  }
+
+  .nf-menu-icon {
+    transform: scale(0.7);
+  }
+}
+
+.nf-menu-divider {
+  background-color: $grey-lighter;
+  margin: 0.3rem 1rem;
+}
+
+.nf-account-filler {
+  width: 200px;
+}

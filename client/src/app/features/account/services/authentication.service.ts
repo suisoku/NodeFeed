@@ -8,11 +8,12 @@ import { CredentialsModel } from '../models/credentials.model';
 import { SignInDetailsModel } from '../models/sign-in-details.model';
 import firebase from 'firebase/app';
 import { map } from 'rxjs/operators';
+import { FirebaseUser } from 'src/firebase-app';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
-  currentUser$: Observable<firebase.User | null>;
+  currentUser$: Observable<FirebaseUser | null>;
   isLoggedIn$: Observable<boolean>;
 
   constructor(private readonly afAuth: AngularFireAuth, private readonly afStore: AngularFirestore) {

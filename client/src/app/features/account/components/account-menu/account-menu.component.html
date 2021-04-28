@@ -1,0 +1,39 @@
+<div class="account-box" *ngIf="!isLoadingUser; else loading">
+  <div *ngIf="user; else noUser">
+    <button
+      [matMenuTriggerFor]="userMenu"
+      (click)="menuIconState = !menuIconState"
+      class="button is-fullwidth nf-account-button"
+      aria-label="User menu"
+    >
+      <figure class="nf-profile">
+        <img class="nf-profile-image" src="assets/pro-pic.png" />
+      </figure>
+      <span>{{'displayName'}}</span>
+      <mat-icon class="nf-menu-icon ml-3">{{ menuIconState? 'expand_more': 'menu' }}</mat-icon>
+    </button>
+    <mat-menu #userMenu="matMenu" (closed)="menuIconState = false">
+      <button mat-menu-item>
+        <mat-icon>account_circle</mat-icon>
+        <span>Profile</span>
+      </button>
+      <button mat-menu-item disabled>
+        <mat-icon>manage_accounts</mat-icon>
+        <span>Manage settings</span>
+      </button>
+      <hr class="nf-menu-divider" />
+      <button mat-menu-item (click)="disconnect()">
+        <mat-icon>logout</mat-icon>
+        <span>Log out</span>
+      </button>
+    </mat-menu>
+  </div>
+  <ng-template #noUser>
+    <ng-content></ng-content>
+  </ng-template>
+</div>
+<ng-template #loading>
+  <div class="nf-account-filler">
+    <mat-progress-bar mode="buffer"></mat-progress-bar>
+  </div>
+</ng-template>

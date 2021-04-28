@@ -10,30 +10,5 @@
 }
 
 .nf-search-bar {
-  flex-basis: 90%;
-}
-
-.account-box {
-  display: flex;
-  align-items: center;
-  border: 1px solid #0a66c2;
-  color: #0a66c2;
-
-  // &:hover {
-  //   border: 1px solid #0a66c2;
-  //   color: #0a66c2;
-  //   //background-color: #ecf4fe;
-  //   border-width: 2px;
-  // }
-
-  .nf-profile {
-    //border-radius: 50%;
-    //overflow: hidden;
-    margin-right: 1rem;
-
-    .nf-profile-image {
-      object-fit: cover;
-      display: block;
-    }
-  }
+  flex-basis: 100%;
 }

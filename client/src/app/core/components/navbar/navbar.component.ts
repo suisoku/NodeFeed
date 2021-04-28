@@ -9,9 +9,4 @@ import { AuthenticationService } from 'src/app/features/account/services/authent
 })
 export class NavbarComponent {
   displayBurger = false;
-  isLoggedIn$: Observable<boolean>;
-
-  constructor(private auth: AuthenticationService) {
-    this.isLoggedIn$ = this.auth.isLoggedIn$;
-  }
 }
