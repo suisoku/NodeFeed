@@ -7,6 +7,7 @@ import { SignFollowUpComponent } from './components/sign-follow-up/sign-follow-u
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { SignPageComponent } from './pages/sign-page/sign-page.component';
 import { VerifyEmailPageComponent } from './pages/verify-email-page/verify-email-page.component';
+import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
 @NgModule({
   declarations: [
     SignFollowUpComponent, 
@@ -14,7 +15,8 @@ import { VerifyEmailPageComponent } from './pages/verify-email-page/verify-email
     SignInComponent,
     BasicSignFormComponent,
     VerifyEmailPageComponent,
-    AccountMenuComponent
+    AccountMenuComponent,
+    ProfilePageComponent
   ],
   exports: [
     AccountMenuComponent
