@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { auditTime, filter, take, tap } from 'rxjs/operators';
@@ -14,11 +15,10 @@ export class VerifyEmailPageComponent {
   verifiedEmail = false;
   user: FirebaseUser | null = null;
 
-  constructor(private router: Router, private auth: AuthenticationService) {
+  constructor(private router: Router, private auth: AuthenticationService, private snackBar: MatSnackBar) {
     this.auth.currentUser$.pipe(take(1)).subscribe({
       next: (user) => {
         if (user) {
-          console.log('seeeeee', user);
           this.emailToVerify = user.email ?? '';
           this.verifiedEmail = user.emailVerified;
           this.user = user;
@@ -26,8 +26,15 @@ export class VerifyEmailPageComponent {
       }
     });
     this.refreshUserUntilEmailVerified().subscribe(() => {
-      console.log('yaaaay');
+      this.displaySuccessMessage();
       void this.router.navigateByUrl('/');
+    });
+  }
+
+  displaySuccessMessage(): void {
+    this.snackBar.open('Your email was verified', '', {
+      duration: 3500,
+      panelClass: ['nf-success-snackbar']
     });
   }
 

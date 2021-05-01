@@ -1,6 +1,9 @@
 @import "variables";
 @import "helpers";
 
+/* Import only once at the end, to override bulma variables */
+@import "node_modules/bulma/bulma.sass";
+
 /* global classes appliable everywhere in the project */
 .nf-g-card {
   background-color: white;
@@ -12,5 +15,11 @@
   font-size: $nf-standard-font-size !important;
 }
 
-/* Import only once at the end, to override bulma variables */
-@import "node_modules/bulma/bulma.sass";
+.nf-success-snackbar {
+  background-color: $success;
+}
+
+.nf-tooltip {
+  font-size: 0.8rem;
+  background-color: $link;
+}
