@@ -21,6 +21,8 @@ export class AuthenticationService {
     this.isLoggedIn$ = this.currentUser$.pipe(map((user: firebase.User | null): boolean => !!user));
   }
 
+  updateCurrentUser = this.afAuth.updateCurrentUser;
+
   tokenChanged$(callback: (user: FirebaseUser | null) => void): void {
     void this.afAuth.onIdTokenChanged(callback);
   }

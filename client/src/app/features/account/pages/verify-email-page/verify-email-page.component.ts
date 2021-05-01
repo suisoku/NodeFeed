@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { auditTime, filter, take, tap } from 'rxjs/operators';
 import { FirebaseUser } from 'src/firebase-app';
 import { AuthenticationService } from '../../services/authentication.service';
 
@@ -11,34 +14,42 @@ export class VerifyEmailPageComponent {
   verifiedEmail = false;
   user: FirebaseUser | null = null;
 
-  constructor(private auth: AuthenticationService) {
-    this.auth.currentUser$.subscribe({
+  constructor(private router: Router, private auth: AuthenticationService) {
+    this.auth.currentUser$.pipe(take(1)).subscribe({
       next: (user) => {
         if (user) {
-          console.log("see", user);
+          console.log('seeeeee', user);
           this.emailToVerify = user.email ?? '';
           this.verifiedEmail = user.emailVerified;
           this.user = user;
-
-          setInterval(() => {
-            void this.user?.reload();
-          }, 2000);
         }
       }
     });
-
-    this.auth.tokenChanged$((user) => {
-      if (user) {
-        console.log("is email verified", user.emailVerified);
-        this.verifiedEmail = user.emailVerified;
-        //I want to show a toaster message and then redirect the user to homepage
-      }
-    })
+    this.refreshUserUntilEmailVerified().subscribe(() => {
+      console.log('yaaaay');
+      void this.router.navigateByUrl('/');
+    });
   }
 
   resendEmailVerification(): void {
     if (this.user) {
       void this.auth.sendEmailVerification(this.user);
     }
+  }
+
+  logOut(): void {
+    void this.auth.signOut().then(() => this.router.navigateByUrl('/sign'));
+  }
+
+  private refreshUserUntilEmailVerified(interval = 1000): Observable<FirebaseUser | null> {
+    return this.auth.currentUser$.pipe(
+      auditTime(interval),
+      tap((user) => {
+        void user?.reload();
+        void this.auth.updateCurrentUser(user);
+      }),
+      filter((user) => !!user?.emailVerified),
+      take(1)
+    );
   }
 }

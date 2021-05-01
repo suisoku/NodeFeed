@@ -1,36 +1,31 @@
 import { NgModule } from '@angular/core';
-import { AngularFireAuthGuard, AuthPipe, redirectLoggedInTo } from '@angular/fire/auth-guard';
+import { AngularFireAuthGuard, AuthPipe } from '@angular/fire/auth-guard';
 import { RouterModule, Routes } from '@angular/router';
 import { pipe } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
+import { FirebaseUser } from 'src/firebase-app';
 import { SignPageComponent } from './pages/sign-page/sign-page.component';
 import { VerifyEmailPageComponent } from './pages/verify-email-page/verify-email-page.component';
 
-// loggedIn && !emailVerfied =>  true
-const emailNotVerified: AuthPipe = map((user) => !!user && !user.emailVerified);
-const emailVerifiedRedirect = () =>
-  pipe(
-    emailNotVerified,
-    map((emailNotVerified) => emailNotVerified || ['/'])
-  );
+// Signin Domain : unverified -> 'verify-email' . superlogged -> '/' . unlogged -> pass
+const guardSignIn: () => AuthPipe = () =>
+  pipe(map((user: FirebaseUser | null) => (!!user && ((user.emailVerified && '/') || 'sign/signup/verify-email')) || true));
 
-const redirectLoggedIn = () => redirectLoggedInTo(['/']);
-//I need a pipe if you are logged and email not verified
-
+// guardVerifyEmail: 'unlogged" -> sign-in , 'unverified' -> pass , 'superlogged' -> homepage
+const guardVerifyEmail: () => AuthPipe = () =>
+  pipe(map((user: FirebaseUser | null) => (!!user && ((user.emailVerified && '/') || true)) || 'sign/signin'));
 
 //Control access at module level (and not at root level) to facilitate refactoring
 const routes: Routes = [
   { path: '', redirectTo: 'signin', pathMatch: 'full' },
-  { path: 'signin', component: SignPageComponent, canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectLoggedIn } },
-  { path: 'signup', component: SignPageComponent, canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectLoggedIn } },
+  { path: 'signin', component: SignPageComponent, canActivate: [AngularFireAuthGuard], data: { authGuardPipe: guardSignIn } },
+  { path: 'signup', component: SignPageComponent, canActivate: [AngularFireAuthGuard], data: { authGuardPipe: guardSignIn } },
   {
     path: 'signup/verify-email',
     component: VerifyEmailPageComponent,
     canActivate: [AngularFireAuthGuard],
-    data: { authGuardPipe: emailVerifiedRedirect }
-  },
-  { path: 'profile', component: ProfilePageComponent }
+    data: { authGuardPipe: guardVerifyEmail }
+  }
 ];
 
 @NgModule({
