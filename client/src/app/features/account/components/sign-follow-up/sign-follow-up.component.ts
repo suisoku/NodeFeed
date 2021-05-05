@@ -16,7 +16,6 @@ export class SignFollowUpComponent implements OnInit {
   @Output() signinAccount = new EventEmitter<CredentialsSettingsModel>();
 
   signForm!: FormGroup;
-
   constructor(private formBuilder: FormBuilder, private auth: AuthenticationService, private router: Router) {}
 
   ngOnInit(): void {
@@ -24,11 +23,7 @@ export class SignFollowUpComponent implements OnInit {
       email: [this.persistedCredentials.email, [Validators.required, Validators.email]],
       password: [this.persistedCredentials.password, [Validators.required]],
       hiddenPassword: [this.persistedCredentials.hiddenPassword],
-      name: [''],
-      birthDay: [''],
-      birthMonth: [''],
-      birthYear: [''],
-      gender: ['']
+      name: ['', Validators.email]
     });
   }
 
@@ -48,4 +43,6 @@ export class SignFollowUpComponent implements OnInit {
         (error) => console.log(error) //handle the error states
       );
   }
+
+  handleDOB(): void {}
 }

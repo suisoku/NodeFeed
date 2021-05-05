@@ -1,0 +1,36 @@
+<div [formGroup]="dobForm">
+  <div class="field pb-2">
+    <div class="field-body">
+      <div class="field mr-2">
+        <label class="label">Month</label>
+        <div class="control">
+          <input class="input" formControlName="birthMonth" type="text"/>
+        </div>
+      </div>
+      <div class="field mr-2">
+        <label class="label">Day</label>
+        <div class="control">
+          <input class="input" formControlName="birthDay" />
+        </div>
+      </div>
+      <div class="field">
+        <label class="label">Year</label>
+        <div class="control">
+          <input class="input" formControlName="birthYear" placeholder="YYYY" />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="field">
+    <label class="label">Gender</label>
+    <div class="select is-fullwidth">
+      <select formControlName="gender">
+        <option value="" disabled selected></option>
+        <option>Male</option>
+        <option>Female</option>
+        <option>Other</option>
+        <option>Rather not say</option>
+      </select>
+    </div>
+  </div>
+</div>

@@ -1,6 +1,10 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
+/**
+ * Pure componnent that only holds a template and some minor features,
+ * basic-sign form controls are hold in parent component
+ */
 @Component({
   selector: 'app-basic-sign-form',
   templateUrl: './basic-sign-form.component.html',

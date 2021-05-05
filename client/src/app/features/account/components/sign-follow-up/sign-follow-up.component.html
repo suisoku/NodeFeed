@@ -7,56 +7,7 @@
       <input class="input" formControlName="name" />
     </div>
   </div>
-  <div class="field pb-2">
-    <label class="label">Birthday</label>
-    <div class="field-body">
-      <div class="field mr-2">
-        <div class="control is-expanded">
-          <div class="select is-fullwidth">
-            <select formControlName="birthMonth">
-              <option disabled selected>Month</option>
-              <option>September</option>
-              <option>April</option>
-            </select>
-          </div>
-        </div>
-      </div>
-      <div class="field mr-2">
-        <div class="control is-expanded">
-          <div class="select is-fullwidth">
-            <select formControlName="birthDay">
-              <option disabled selected>Day</option>
-              <option>1</option>
-              <option>2</option>
-            </select>
-          </div>
-        </div>
-      </div>
-      <div class="field">
-        <div class="control is-expanded">
-          <div class="select is-fullwidth">
-            <select formControlName="birthYear">
-              <option disabled selected>Year</option>
-              <option>1996</option>
-              <option>2004</option>
-            </select>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="field">
-    <label class="label">Gender</label>
-    <div class="select is-fullwidth">
-      <select formControlName="gender">
-        <option value="" disabled selected></option>
-        <option>Male</option>
-        <option>Female</option>
-        <option>Other</option>
-        <option>Rather not say</option>
-      </select>
-    </div>
-  </div>
+  <app-details-sign-form (updatedDetails)="handleDOB()"></app-details-sign-form>
   <div class="control pt-4">
     <button (click)="createAccount()" class="button is-link is-rounded is-fullwidth">Join NodeFeed</button>
   </div>

@@ -8,6 +8,8 @@ import { SignInComponent } from './components/sign-in/sign-in.component';
 import { SignPageComponent } from './pages/sign-page/sign-page.component';
 import { VerifyEmailPageComponent } from './pages/verify-email-page/verify-email-page.component';
 import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
+import { DetailsSignFormComponent } from './components/details-sign-form/details-sign-form.component';
+import { GoogleSignPageComponent } from './pages/google-sign-page/google-sign-page.component';
 @NgModule({
   declarations: [
     SignFollowUpComponent, 
@@ -16,7 +18,9 @@ import { ProfilePageComponent } from './pages/profile-page/profile-page.componen
     BasicSignFormComponent,
     VerifyEmailPageComponent,
     AccountMenuComponent,
-    ProfilePageComponent
+    ProfilePageComponent,
+    DetailsSignFormComponent,
+    GoogleSignPageComponent
   ],
   exports: [
     AccountMenuComponent
