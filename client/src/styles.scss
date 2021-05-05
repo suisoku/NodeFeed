@@ -15,3 +15,7 @@ body {
 input:invalid {
   @extend .is-danger;
 }
+
+input.ng-dirty.ng-invalid {
+  @extend .is-danger;
+}

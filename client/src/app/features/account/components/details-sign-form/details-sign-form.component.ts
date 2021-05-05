@@ -17,8 +17,8 @@ export class DetailsSignFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.dobForm = this.formBuilder.group({
+      birthMonth: ['', [Validators.required, Validators.pattern('^([1-9]|[0-1][0-2])$')]], //validators never prevent only invalidates
       birthDay: ['', [Validators.required, Validators.max(12)]],
-      birthMonth: [],
       birthYear: [],
       gender: []
     });
