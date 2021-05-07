@@ -7,11 +7,11 @@
   <button (click)="emitCreateAccount()" class="button is-fullwidth is-link mb-4">
     <span>Create an account</span>
   </button>
-  <button class="button is-fullwidth nf-google-button">
+  <button (click)="signWithGoogle()" class="button is-fullwidth nf-google-button">
     <i class="nf-google-icon mr-3"></i>
     <span>Sign in with Google</span>
   </button>
-  <div class="pt-3 has-text-centered">
+  <div (click)="true" class="pt-3 has-text-centered">
     <span><a>Forgot password ?</a></span>
   </div>
 </form>

@@ -26,10 +26,7 @@ export class AuthenticationService {
 
   async registerUser(signInformation: SignInDetailsModel): Promise<void> {
     return this.afAuth.createUserWithEmailAndPassword(signInformation.email, signInformation.password).then((userCredential) => {
-      if (!userCredential.user) {
-        return Promise.reject(new Error("Can't create a profile from a null user object"));
-      }
-      return this._setUserData(userCredential.user, signInformation);
+      return this.setUserData(userCredential.user, signInformation);
     });
   }
 
@@ -47,6 +44,22 @@ export class AuthenticationService {
     return user.sendEmailVerification();
   }
 
+  async googleSignin(): Promise<void> {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    return this.afAuth.signInWithPopup(provider).then((user) => {
+      //acceder a un champ dans le doc user si complete -> ok si non redirect ver continue registration.
+      // guard
+      console.log(user.additionalUserInfo);
+    });
+  }
+
+  async setUserData(user: FirebaseUser | null, signInformation: SignInDetailsModel): Promise<void> {
+    if (!user) {
+      return Promise.reject(new Error("Can't create a profile from a null user object"));
+    }
+    return this._setUserData(user, signInformation);
+  }
+
   private _setUserData(user: firebase.User, signInformation: SignInDetailsModel): Promise<void> {
     //Mounting and verifying DOB
     const newDob = new Date(signInformation.birthYear, signInformation.birthMonth, signInformation.birthDay);
@@ -60,7 +73,7 @@ export class AuthenticationService {
       ...Utils.omit(['birthDay', 'birthMonth', 'birthYear'], signInformation),
       dateOfBirth: newDob
     };
-    console.log("you are a genius", userData);
+    console.log('you are a genius', userData);
     return userRef.set(userData, {
       merge: true
     });

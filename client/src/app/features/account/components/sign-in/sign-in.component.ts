@@ -33,7 +33,7 @@ export class SignInComponent implements OnInit {
   emitCreateAccount(): void {
     this.createAccount.emit(this.credentialsForm.value as CredentialsSettingsModel);
   }
- 
+
   signIn(): void {
     const credentials: CredentialsModel = {
       email: this.credentialsForm.get('email')?.value as string,
@@ -47,5 +47,9 @@ export class SignInComponent implements OnInit {
       .catch((error: Error) => {
         console.log(error.message);
       });
+  }
+
+  signWithGoogle(): void {
+    void this.auth.googleSignin();
   }
 }
