@@ -6,21 +6,21 @@
         <p>A plaltform to <strong>share</strong> ideas, feature requests or bugs of your favorite products.</p>
       </div>
       <div class="nf-form-container box">
-        <div class="progress-bar"></div>
+        <div class="progress-bar" [style.--progress-step]="progressStep"></div>
         <div class="content pt-4">
-          <h4 class="has-text-primary has-text-weight-normal mb-5">Finish signing up with Google</h4>
+          <h4 class="has-text-primary has-text-weight-normal mb-5 mt-1">Finish signing up with Google</h4>
           <app-details-sign-form></app-details-sign-form>
           <div class="nf-separator"></div>
           <div class="control">
-              <button (click)="true" class="button is-rounded is-fullwidth nf-google-button">
+              <button (click)="completeRegistration()" class="button is-rounded is-fullwidth nf-google-button">
                   <i class="nf-google-icon mr-3"></i>
                   <span>Join with Google</span>
               </button>
             </div>
             <div class="pt-3 has-text-centered">
-              <span>Not you? <a (click)="true">Sign in</a></span>
-            </div>
-        </div>
+              <small>Not you? <a (click)="cancelRegistration()">Cancel here</a></small>
+            </div> 
+          </div>
       </div>
     </div>
   </section>

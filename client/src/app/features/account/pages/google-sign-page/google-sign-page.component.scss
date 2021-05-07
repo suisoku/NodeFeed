@@ -26,6 +26,48 @@
 .nf-form-container {
   position: relative; //needed for progress bar position
   width: 390px;
+
+  .progress-bar {
+    --progress-step: 0%;
+
+    height: 1rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 6px 6px 50% 50%;
+    width: 100%;
+    background-color: #ccd5f887;
+    display: flex;
+    align-items: center;
+    overflow: hidden; // to make inner child obey parent borders
+
+    &::before {
+      content: "";
+      display: block;
+      height: 1rem;
+      width: var(--progress-step, 100);
+      overflow: hidden;
+      box-shadow: inset -2px 5px 10px -4px #bcbcbc7a;
+      background: linear-gradient(90deg, #1ce0c3 40%, #02859c);
+      animation: progress-animation 3s linear infinite;
+      background-size: 200% 200%;
+      transition: width 1s;
+
+      @keyframes progress-animation {
+        0% {
+          background-position: 0%;
+        }
+
+        50% {
+          background-position: 90%;
+        }
+
+        100% {
+          background-position: 0%;
+        }
+      }
+    }
+  }
 }
 
 .nf-separator {
@@ -54,19 +96,5 @@
     height: 32px;
     background-size: 32px 32px;
     background-repeat: no-repeat;
-  }
-}
-
-.progress-bar {
-  height: 16px;
-  width: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  border-radius: 5%;
-  
-  .loading-substance {
-    background: linear-gradient(45deg, #1bdfc1, #003bc1);
-
   }
 }
