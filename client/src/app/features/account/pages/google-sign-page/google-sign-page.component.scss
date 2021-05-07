@@ -24,6 +24,7 @@
 }
 
 .nf-form-container {
+  position: relative; //needed for progress bar position
   width: 390px;
 }
 
@@ -53,5 +54,19 @@
     height: 32px;
     background-size: 32px 32px;
     background-repeat: no-repeat;
+  }
+}
+
+.progress-bar {
+  height: 16px;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 5%;
+  
+  .loading-substance {
+    background: linear-gradient(45deg, #1bdfc1, #003bc1);
+
   }
 }
