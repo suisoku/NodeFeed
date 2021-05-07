@@ -23,6 +23,9 @@ export class BasicSignFormComponent {
   }
 
   isInvalidEmail(): boolean {
-    return this.parentForm.get('email')?.hasError('email') ?? true;
+    const hasErrors = !!this.parentForm.get('email')?.hasError('email');
+    const isTouched = !!this.parentForm.get('email')?.touched;
+
+    return hasErrors && isTouched;
   }
 }

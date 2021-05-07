@@ -19,3 +19,15 @@ input:invalid {
 input.ng-dirty.ng-invalid {
   @extend .is-danger;
 }
+
+input.ng-dirty.ng-valid {
+  @extend .is-success;
+}
+
+select.ng-dirty.ng-invalid {
+  border-color: $danger;
+}
+
+select.ng-dirty.ng-valid {
+  border-color: $primary;
+}

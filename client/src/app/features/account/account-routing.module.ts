@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { pipe } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { FirebaseUser } from 'src/firebase-app';
+import { GoogleSignPageComponent } from './pages/google-sign-page/google-sign-page.component';
 import { SignPageComponent } from './pages/sign-page/sign-page.component';
 import { VerifyEmailPageComponent } from './pages/verify-email-page/verify-email-page.component';
 
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: '', redirectTo: 'signin', pathMatch: 'full' },
   { path: 'signin', component: SignPageComponent, canActivate: [AngularFireAuthGuard], data: { authGuardPipe: guardSignIn } },
   { path: 'signup', component: SignPageComponent, canActivate: [AngularFireAuthGuard], data: { authGuardPipe: guardSignIn } },
+  { path: 'signup-google', component: GoogleSignPageComponent },
   {
     path: 'signup/verify-email',
     component: VerifyEmailPageComponent,

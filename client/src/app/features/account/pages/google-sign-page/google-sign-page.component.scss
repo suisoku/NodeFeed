@@ -1,0 +1,57 @@
+.nf-main-section {
+  background-image: url("/assets/bg-2.svg");
+  background-size: cover;
+}
+
+.nf-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  .nf-description {
+    max-width: 550px;
+    flex: 1 1 300px;
+
+    .nf-logo {
+      background-image: url("/assets/logo-nf-2.svg");
+      display: block;
+      width: 300px;
+      height: 100px;
+      background-size: 300px 70px;
+      background-repeat: no-repeat;
+    }
+  }
+}
+
+.nf-form-container {
+  width: 390px;
+}
+
+.nf-separator {
+  align-items: center;
+  border-bottom: 1px solid #dadde1;
+  display: flex;
+  margin: 36px 10px;
+  text-align: center;
+}
+
+.nf-google-button {
+  border: 1px solid #0a66c2;
+  color: #0a66c2;
+
+  &:hover {
+    border: 1px solid #0a66c2;
+    color: #0a66c2;
+    background-color: #ecf4fe;
+    border-width: 2px;
+  }
+
+  .nf-google-icon {
+    background-image: url("/assets/google_icon.svg");
+    display: block;
+    width: 32px;
+    height: 32px;
+    background-size: 32px 32px;
+    background-repeat: no-repeat;
+  }
+}

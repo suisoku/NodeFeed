@@ -12,10 +12,12 @@ import { AuthenticationService } from '../../services/authentication.service';
 })
 export class SignFollowUpComponent implements OnInit {
   @Input() persistedCredentials!: CredentialsSettingsModel;
-
   @Output() signinAccount = new EventEmitter<CredentialsSettingsModel>();
 
   signForm!: FormGroup;
+  detailsSign: Partial<SignInDetailsModel> = {};
+  isDOBvalid = false;
+
   constructor(private formBuilder: FormBuilder, private auth: AuthenticationService, private router: Router) {}
 
   ngOnInit(): void {
@@ -23,7 +25,7 @@ export class SignFollowUpComponent implements OnInit {
       email: [this.persistedCredentials.email, [Validators.required, Validators.email]],
       password: [this.persistedCredentials.password, [Validators.required]],
       hiddenPassword: [this.persistedCredentials.hiddenPassword],
-      name: ['', Validators.email]
+      name: ['', Validators.required]
     });
   }
 
@@ -36,13 +38,18 @@ export class SignFollowUpComponent implements OnInit {
   }
 
   createAccount(): void {
+    // construct final object by merging properties
+    const registration: SignInDetailsModel = { ...(this.signForm.value as SignInDetailsModel), ...this.detailsSign };
+    console.log('registration', registration);
     this.auth
-      .registerUser(this.signForm.value as SignInDetailsModel)
+      .registerUser(registration)
       .then(() => this.router.navigate(['sign/signup/verify-email']))
       .catch(
         (error) => console.log(error) //handle the error states
       );
   }
 
-  handleDOB(): void {}
+  handleDetails(signDetails: Partial<SignInDetailsModel>): void {
+    this.detailsSign = { ...this.detailsSign, ...signDetails };
+  }
 }

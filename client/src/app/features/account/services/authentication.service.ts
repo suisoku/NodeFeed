@@ -7,8 +7,9 @@ import { UserModel } from 'src/app/core/models/user.model';
 import { CredentialsModel } from '../models/credentials.model';
 import { SignInDetailsModel } from '../models/sign-in-details.model';
 import firebase from 'firebase/app';
-import { map } from 'rxjs/operators';
+import { map, max } from 'rxjs/operators';
 import { FirebaseUser } from 'src/firebase-app';
+import { Utils } from 'src/app/core/utilities/utils';
 @Injectable({
   providedIn: 'root'
 })
@@ -33,7 +34,9 @@ export class AuthenticationService {
   }
 
   async signIn(credentials: CredentialsModel): Promise<UserModel> {
-    return this.afAuth.signInWithEmailAndPassword(credentials.email, credentials.password).then(() => ({ gender: 'lol' } as UserModel));
+    return this.afAuth
+      .signInWithEmailAndPassword(credentials.email, credentials.password)
+      .then(() => ({ gender: 'lol' } as UserModel));
   }
 
   async signOut(): Promise<void> {
@@ -45,15 +48,28 @@ export class AuthenticationService {
   }
 
   private _setUserData(user: firebase.User, signInformation: SignInDetailsModel): Promise<void> {
+    //Mounting and verifying DOB
+    const newDob = new Date(signInformation.birthYear, signInformation.birthMonth, signInformation.birthDay);
+    if (!this.verifyDate(newDob)) throw new Error('Date of birth is invalid');
+
     void user.updateProfile({ displayName: signInformation.name });
     void user.sendEmailVerification();
+
     const userRef = this.afStore.doc(`users/${user.uid}`);
     const userData = {
-      ...signInformation
+      ...Utils.omit(['birthDay', 'birthMonth', 'birthYear'], signInformation),
+      dateOfBirth: newDob
     };
-
+    console.log("you are a genius", userData);
     return userRef.set(userData, {
       merge: true
     });
+  }
+
+  private verifyDate(dateToVerify: Date): boolean {
+    const minDate = Number(new Date(1900, 0)); //year 1900
+    const maxDate = Number(new Date());
+
+    return Number(dateToVerify) > minDate && Number(dateToVerify) < maxDate;
   }
 }
