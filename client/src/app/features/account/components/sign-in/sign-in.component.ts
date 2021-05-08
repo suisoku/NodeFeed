@@ -50,6 +50,12 @@ export class SignInComponent implements OnInit {
   }
 
   signWithGoogle(): void {
-    void this.auth.googleSignin();
+    this.auth
+      .googleSignProcess()
+      .then((mess) => {
+        //se rediriger vers google-signup
+        console.log(mess);
+      })
+      .catch((error) => console.log(error));
   }
 }
