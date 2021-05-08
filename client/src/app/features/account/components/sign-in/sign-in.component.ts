@@ -52,10 +52,7 @@ export class SignInComponent implements OnInit {
   signWithGoogle(): void {
     this.auth
       .googleSignProcess()
-      .then((mess) => {
-        //se rediriger vers google-signup
-        console.log(mess);
-      })
+      .then((completeRegistration: boolean) => this._router.navigate([completeRegistration ? '/' : 'signup-google']))
       .catch((error) => console.log(error));
   }
 }

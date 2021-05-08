@@ -11,6 +11,7 @@ import { map, max } from 'rxjs/operators';
 import { FirebaseUser } from 'src/firebase-app';
 import { Utils } from 'src/app/core/utilities/utils';
 import { Router } from '@angular/router';
+import { promise } from 'selenium-webdriver';
 @Injectable({
   providedIn: 'root'
 })
@@ -55,10 +56,9 @@ export class AuthenticationService {
       if (!user) {
         return Promise.reject(new Error("Can't create a profile from a null user object"));
       }
-      console.log("tsting", userCredential.additionalUserInfo);
       //if its a new user -> create the field : completeRegistration -> redirect to google sign up
       if (userCredential.additionalUserInfo?.isNewUser) {
-        return this._completeRegistration(user);
+        return this._setCompleteRegistration(user);
       }
 
       //if its not a new user -> get the data and verify the field -> ok : go to home page , otherwise go to google signup
@@ -68,11 +68,26 @@ export class AuthenticationService {
         userRef.get().subscribe({
           next: (userDocument: firebase.firestore.DocumentSnapshot<unknown>) => {
             const data = userDocument.data() as { completeRegistration: boolean } | undefined;
-            resolve(!!(data && data.completeRegistration) || this._completeRegistration(user));
+            resolve(!!(data && data.completeRegistration) || this._setCompleteRegistration(user));
           },
           error: reject
         });
       });
+    });
+  }
+
+  async completeGoogleSignup(uid: string, additionalInfo: Partial<SignInDetailsModel>): Promise<void> {
+    const newDob = new Date(additionalInfo.birthYear ?? 0, additionalInfo.birthMonth ?? 0, additionalInfo.birthDay ?? 0);
+    if (!this._verifyDate(newDob)) throw new Error('Date of birth is invalid');
+
+    const userRef = this.afStore.doc(`users/${uid}`);
+    const userData = {
+      ...Utils.omit(['birthDay', 'birthMonth', 'birthYear'], additionalInfo),
+      dateOfBirth: newDob
+    };
+    console.log('you are a genius', userData);
+    return userRef.set(userData, {
+      merge: true
     });
   }
 
@@ -81,6 +96,13 @@ export class AuthenticationService {
       return Promise.reject(new Error("Can't create a profile from a null user object"));
     }
     return this._setUserData(user, signInformation);
+  }
+
+  getUserDocument$(user: FirebaseUser): Observable<Record<string, unknown>> {
+    return this.afStore
+      .doc(`users/${user.uid}`)
+      .get()
+      .pipe(map((docSnapshot) => docSnapshot.data() as Record<string, unknown>));
   }
 
   private _setUserData(user: FirebaseUser, signInformation: SignInDetailsModel): Promise<void> {
@@ -109,7 +131,7 @@ export class AuthenticationService {
     return Number(dateToVerify) > minDate && Number(dateToVerify) < maxDate;
   }
 
-  private _completeRegistration(user: FirebaseUser): Promise<boolean> {
+  private async _setCompleteRegistration(user: FirebaseUser): Promise<boolean> {
     const userRef = this.afStore.doc(`users/${user.uid}`);
     const userData = {
       email: user.email,
@@ -117,6 +139,7 @@ export class AuthenticationService {
     };
 
     console.log('you are a genius', userData);
-    return userRef.set(userData, { merge: true }).then(() => false);
+    await userRef.set(userData, { merge: true });
+    return false;
   }
 }

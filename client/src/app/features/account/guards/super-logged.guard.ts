@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/auth';
 import { ActivatedRouteSnapshot, CanActivate, Router, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map, take } from 'rxjs/operators';
+import { AuthenticationService } from '../services/authentication.service';
 
 @Injectable({
   providedIn: 'any'
@@ -16,11 +16,11 @@ import { map, take } from 'rxjs/operators';
  * Takes data if you need a specific redirection when superlogged is true.
  */
 export class SuperLoggedGuard implements CanActivate {
-  constructor(private router: Router, private auth: AngularFireAuth) {}
+  constructor(private router: Router, private auth: AuthenticationService) {}
 
   canActivate(next: ActivatedRouteSnapshot): Observable<boolean | UrlTree> {
     const superRedirect: string[] = next.data.superRedirect as string[];
-    return this.auth.user.pipe(
+    return this.auth.currentUser$.pipe(
       take(1),
       map((user) => {
         if (user) {
