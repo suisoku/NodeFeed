@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { CredentialsSettingsModel } from '../../models/credential-settings.model';
 @Component({
   templateUrl: './sign-page.component.html',
@@ -12,7 +12,7 @@ export class SignPageComponent implements OnInit {
   persistedCredentials: CredentialsSettingsModel = { email: '', password: '', hiddenPassword: true };
   hiddenPassword = true;
 
-  constructor(private route: ActivatedRoute, private router: Router) {}
+  constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     console.log('aa', this.route.pathFromRoot);

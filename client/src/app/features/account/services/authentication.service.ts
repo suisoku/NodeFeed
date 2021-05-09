@@ -1,17 +1,16 @@
 /* eslint-disable no-console */
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { AngularFirestore, DocumentSnapshot } from '@angular/fire/firestore';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { Router } from '@angular/router';
+import firebase from 'firebase/app';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { UserModel } from 'src/app/core/models/user.model';
+import { Utils } from 'src/app/core/utilities/utils';
+import { FirebaseUser } from 'src/firebase-app';
 import { CredentialsModel } from '../models/credentials.model';
 import { SignInDetailsModel } from '../models/sign-in-details.model';
-import firebase from 'firebase/app';
-import { map, max } from 'rxjs/operators';
-import { FirebaseUser } from 'src/firebase-app';
-import { Utils } from 'src/app/core/utilities/utils';
-import { Router } from '@angular/router';
-import { promise } from 'selenium-webdriver';
 @Injectable({
   providedIn: 'root'
 })
@@ -82,6 +81,7 @@ export class AuthenticationService {
 
     const userRef = this.afStore.doc(`users/${uid}`);
     const userData = {
+      completeRegistration: true,
       ...Utils.omit(['birthDay', 'birthMonth', 'birthYear'], additionalInfo),
       dateOfBirth: newDob
     };

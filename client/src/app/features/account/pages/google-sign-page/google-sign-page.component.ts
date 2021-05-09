@@ -1,5 +1,6 @@
 import { AfterViewInit, Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Data, Router } from '@angular/router';
+import { FirebaseUser } from 'src/firebase-app';
 import { SignInDetailsModel } from '../../models/sign-in-details.model';
 import { AuthenticationService } from '../../services/authentication.service';
 
@@ -8,25 +9,43 @@ import { AuthenticationService } from '../../services/authentication.service';
   styleUrls: ['./google-sign-page.component.scss']
 })
 export class GoogleSignPageComponent implements AfterViewInit {
+  userUid!: string;
+
   signInformation: Partial<SignInDetailsModel> = {};
   validModel = false;
+
   progressStep = '0%';
 
-  constructor(private _auth: AuthenticationService, private _router: Router) {}
+  constructor(private _auth: AuthenticationService, private _route: ActivatedRoute, private _router: Router) {
+    this._route.data.subscribe({
+      next: (data: Data) => {
+        const user = data['user'] as FirebaseUser;
+        if (!user) {
+          //just for added security (cuz the guard + resolver should be enough)
+          //toaster.
+          //redirect
+        }
+
+        this.userUid = user.uid;
+        console.log(this.userUid);
+      },
+      error: (error) => console.log(error)
+    });
+  }
 
   ngAfterViewInit(): void {
     //Apply loading in progress effect
-    setTimeout(() => (this.progressStep = '50%'), 300);
+    setTimeout(() => (this.progressStep = '65%'), 300);
   }
 
   cancelRegistration(): void {
-    //log you out and redirect you to signin or up
+    void this._auth.signOut().then(() => this._router.navigate(['signin']));
   }
 
   completeRegistration(): void {
     //Apply loading completed progress effect
     this._auth
-      .completeGoogleSignup('', this.signInformation)
+      .completeGoogleSignup(this.userUid, this.signInformation)
       .then(() => {
         this.progressStep = '100%';
         setTimeout(() => void this._router.navigate(['/']), 300);

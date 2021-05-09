@@ -6,6 +6,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
+  //for route tracing add  enableTracing: true to navigation extra doc 
   imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],
   exports: [RouterModule]
 })

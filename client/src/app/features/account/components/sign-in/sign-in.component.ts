@@ -52,7 +52,10 @@ export class SignInComponent implements OnInit {
   signWithGoogle(): void {
     this.auth
       .googleSignProcess()
-      .then((completeRegistration: boolean) => this._router.navigate([completeRegistration ? '/' : 'signup-google']))
+      .then((completeRegistration: boolean) => {
+        console.log('DUDE COMPONENT', completeRegistration);
+        return this._router.navigate([completeRegistration ? '/' : 'signup-google']);
+      })
       .catch((error) => console.log(error));
   }
 }
