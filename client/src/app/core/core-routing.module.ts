@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { GoogleLoggedGuard } from '../features/account/guards/google-logged.guard';
-import { SuperLoggedGuard } from '../features/account/guards/super-logged.guard';
-import { ProfilePageComponent } from '../features/account/pages/profile-page/profile-page.component';
+import { GoogleLoggedGuard } from '../features/authentication/guards/google-logged.guard';
+import { SuperLoggedGuard } from '../features/authentication/guards/super-logged.guard';
+import { ProfilePageComponent } from '../features/authentication/pages/profile-page/profile-page.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 
 const routes: Routes = [
@@ -10,7 +10,7 @@ const routes: Routes = [
   { path: 'user', component: ProfilePageComponent, canActivate: [SuperLoggedGuard, GoogleLoggedGuard]},
   {
     path: 'sign',
-    loadChildren: () => import('../features/account/account.module').then((m) => m.AccountModule)
+    loadChildren: () => import('../features/authentication/authentication.module').then((m) => m.AuthenticationModule)
   }
 ];
 

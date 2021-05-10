@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { AccountModule } from '../features/account/account.module';
+import { AuthenticationModule } from '../features/authentication/authentication.module';
 import { PostModule } from '../features/post/post.module';
 import { SharedModule } from '../shared/shared.module';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -19,7 +19,7 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
     CoreRoutingModule,
     SharedModule,
     PostModule,
-    AccountModule
+    AuthenticationModule
   ],
   exports: [
     NavbarComponent,

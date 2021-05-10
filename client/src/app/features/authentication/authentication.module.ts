@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { AccountRoutingModule } from './account-routing.module';
+import { AuthenticationRoutingModule } from './authentication-routing.module';
 import { AccountMenuComponent } from './components/account-menu/account-menu.component';
 import { BasicSignFormComponent } from './components/basic-sign-form/basic-sign-form.component';
 import { SignFollowUpComponent } from './components/sign-follow-up/sign-follow-up.component';
@@ -29,7 +29,7 @@ import { SignLayoutPageComponent } from './pages/sign-layout-page/sign-layout-pa
   ],
   imports: [
     SharedModule,
-    AccountRoutingModule
+    AuthenticationRoutingModule
   ]
 })
-export class AccountModule { }
+export class AuthenticationModule { }
