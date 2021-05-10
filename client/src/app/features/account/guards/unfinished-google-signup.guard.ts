@@ -23,7 +23,7 @@ export class UnfinishedGoogleSignupGuard implements CanActivate {
   }
 
   private _userNullUrlTree(): Observable<UrlTree | boolean> {
-    return of(true);
+    return of(this.router.createUrlTree(['sign', 'signin']));
   }
 
   private _userValidUrlTree(user: FirebaseUser): Observable<UrlTree | boolean> {

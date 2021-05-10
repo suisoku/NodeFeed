@@ -58,4 +58,8 @@ export class SignInComponent implements OnInit {
       })
       .catch((error) => console.log(error));
   }
+
+  forgotPassword(): void {
+    //this.auth.
+  }
 }

@@ -1,25 +1,12 @@
-<section class="p-3 mb-3 nf-h-fullheight nf-main-section">
-  <div class="nf-container">
-    <div class="content is-medium nf-description pr-4 pb-5">
-      <a href="/" class="nf-logo"></a>
-      <p class="">Join communities around the products that you like.</p>
-      <p>A plaltform to <strong>share</strong> ideas, feature requests or bugs of your favorite products.</p>
-    </div>
-    <div class="nf-sign-box" [ngClass]="{'is-collapsed': collapsedSignBox}" (transitionend)="switchSignComponent()">
-      <ng-template [ngIf]="signInDisplayMode" [ngIfElse]="signFollowUp">
-        <app-sign-in 
-          #signin 
-          (createAccount)="collapseSignBox($event)"
-          [persistedCredentials]="persistedCredentials"
-        ></app-sign-in>
-      </ng-template>
-      <ng-template #signFollowUp>
-        <app-sign-follow-up
-          #signup
-          (signinAccount)="collapseSignBox($event)"
-          [persistedCredentials]="persistedCredentials"
-        ></app-sign-follow-up>
-      </ng-template>
-    </div>
-  </div>
-</section>
+<div class="nf-sign-box" [ngClass]="{'is-collapsed': collapsedSignBox}" (transitionend)="switchSignComponent()">
+  <ng-template [ngIf]="signInDisplayMode" [ngIfElse]="signFollowUp">
+    <app-sign-in #signin (createAccount)="collapseSignBox($event)" [persistedCredentials]="persistedCredentials"></app-sign-in>
+  </ng-template>
+  <ng-template #signFollowUp>
+    <app-sign-follow-up
+      #signup
+      (signinAccount)="collapseSignBox($event)"
+      [persistedCredentials]="persistedCredentials"
+    ></app-sign-follow-up>
+  </ng-template>
+</div>

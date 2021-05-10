@@ -10,6 +10,7 @@ import { VerifyEmailPageComponent } from './pages/verify-email-page/verify-email
 import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
 import { DetailsSignFormComponent } from './components/details-sign-form/details-sign-form.component';
 import { GoogleSignPageComponent } from './pages/google-sign-page/google-sign-page.component';
+import { SignLayoutPageComponent } from './pages/sign-layout-page/sign-layout-page.component';
 @NgModule({
   declarations: [
     SignFollowUpComponent, 
@@ -20,7 +21,8 @@ import { GoogleSignPageComponent } from './pages/google-sign-page/google-sign-pa
     AccountMenuComponent,
     ProfilePageComponent,
     DetailsSignFormComponent,
-    GoogleSignPageComponent
+    GoogleSignPageComponent,
+    SignLayoutPageComponent
   ],
   exports: [
     AccountMenuComponent

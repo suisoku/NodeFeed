@@ -1,27 +1,17 @@
-<section class="p-3 mb-3 nf-h-fullheight nf-main-section">
-    <div class="nf-container">
-      <div class="content is-medium nf-description pr-4 pb-5">
-        <a href="/" class="nf-logo"></a>
-        <p class="">Join communities around the products that you like.</p>
-        <p>A plaltform to <strong>share</strong> ideas, feature requests or bugs of your favorite products.</p>
-      </div>
-      <div class="nf-form-container box">
-        <div class="progress-bar" [style.--progress-step]="progressStep"></div>
-        <div class="content pt-4">
-          <h4 class="has-text-primary has-text-weight-normal mb-5 mt-1">Finish signing up</h4>
-          <app-details-sign-form (updatedDetails)="signInformation = $event" (validDOB)="validModel = $event"></app-details-sign-form>
-          <div class="nf-separator"></div>
-          <div class="control">
-              <button (click)="completeRegistration()" class="button is-rounded is-fullwidth nf-google-button">
-                  <i class="nf-google-icon mr-3"></i>
-                  <span>Continue with Google</span>
-              </button>
-            </div>
-            <div class="pt-3 has-text-centered">
-              <small>Not you? <a (click)="cancelRegistration()">Cancel here</a></small>
-            </div> 
-          </div>
-      </div>
+<div class="nf-form-container box">
+  <div class="progress-bar" [style.--progress-step]="progressStep"></div>
+  <div class="content pt-4">
+    <h4 class="has-text-primary has-text-weight-normal mb-5 mt-1">Finish signing up</h4>
+    <app-details-sign-form (updatedDetails)="signInformation = $event" (validDOB)="validModel = $event"></app-details-sign-form>
+    <div class="nf-separator"></div>
+    <div class="control">
+      <button (click)="completeRegistration()" class="button is-rounded is-fullwidth nf-google-button">
+        <i class="nf-google-icon mr-3"></i>
+        <span>Continue with Google</span>
+      </button>
     </div>
-  </section>
-  
+    <div class="pt-3 has-text-centered">
+      <small>Not you? <a (click)="cancelRegistration()">Cancel here</a></small>
+    </div>
+  </div>
+</div>

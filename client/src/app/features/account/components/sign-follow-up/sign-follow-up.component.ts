@@ -52,4 +52,13 @@ export class SignFollowUpComponent implements OnInit {
   handleDetails(signDetails: Partial<SignInDetailsModel>): void {
     this.detailsSign = { ...this.detailsSign, ...signDetails };
   }
+
+  signWithGoogle(): void {
+    this.auth
+      .googleSignProcess()
+      .then((completeRegistration: boolean) => {
+        return this.router.navigate([completeRegistration ? '/' : 'signup-google']);
+      })
+      .catch((error) => console.log(error));
+  }
 }

@@ -8,6 +8,7 @@ import { GoogleLoggedGuard } from './guards/google-logged.guard';
 import { UnfinishedGoogleSignupGuard } from './guards/unfinished-google-signup.guard';
 import { UserResolver } from './guards/user.resolver';
 import { GoogleSignPageComponent } from './pages/google-sign-page/google-sign-page.component';
+import { SignLayoutPageComponent } from './pages/sign-layout-page/sign-layout-page.component';
 import { SignPageComponent } from './pages/sign-page/sign-page.component';
 import { VerifyEmailPageComponent } from './pages/verify-email-page/verify-email-page.component';
 
@@ -21,10 +22,35 @@ const guardVerifyEmail: () => AuthPipe = () =>
 
 //Control access at module level (and not at root level) to facilitate refactoring
 const routes: Routes = [
-  { path: '', redirectTo: 'signin', pathMatch: 'full' },
-  { path: 'signin', component: SignPageComponent, canActivate: [AngularFireAuthGuard, GoogleLoggedGuard], data: { authGuardPipe: guardSignIn } },
-  { path: 'signup', component: SignPageComponent, canActivate: [AngularFireAuthGuard, GoogleLoggedGuard], data: { authGuardPipe: guardSignIn } },
-  { path: 'signup-google', component: GoogleSignPageComponent,  canActivate: [UnfinishedGoogleSignupGuard], resolve: {user: UserResolver} },
+  {
+    path: '',
+    component: SignLayoutPageComponent,
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'signin'
+      },
+      {
+        path: 'signin',
+        component: SignPageComponent,
+        canActivate: [AngularFireAuthGuard, GoogleLoggedGuard],
+        data: { authGuardPipe: guardSignIn }
+      },
+      {
+        path: 'signup',
+        component: SignPageComponent,
+        canActivate: [AngularFireAuthGuard, GoogleLoggedGuard],
+        data: { authGuardPipe: guardSignIn }
+      },
+      {
+        path: 'signup-google',
+        component: GoogleSignPageComponent,
+        canActivate: [UnfinishedGoogleSignupGuard],
+        resolve: { user: UserResolver }
+      }
+    ]
+  },
   {
     path: 'signup/verify-email',
     component: VerifyEmailPageComponent,
