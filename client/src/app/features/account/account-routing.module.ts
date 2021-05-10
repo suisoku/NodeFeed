@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { pipe } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { FirebaseUser } from 'src/firebase-app';
+import { GoogleLoggedGuard } from './guards/google-logged.guard';
 import { UnfinishedGoogleSignupGuard } from './guards/unfinished-google-signup.guard';
 import { UserResolver } from './guards/user.resolver';
 import { GoogleSignPageComponent } from './pages/google-sign-page/google-sign-page.component';
@@ -21,8 +22,8 @@ const guardVerifyEmail: () => AuthPipe = () =>
 //Control access at module level (and not at root level) to facilitate refactoring
 const routes: Routes = [
   { path: '', redirectTo: 'signin', pathMatch: 'full' },
-  { path: 'signin', component: SignPageComponent, canActivate: [AngularFireAuthGuard], data: { authGuardPipe: guardSignIn } },
-  { path: 'signup', component: SignPageComponent, canActivate: [AngularFireAuthGuard], data: { authGuardPipe: guardSignIn } },
+  { path: 'signin', component: SignPageComponent, canActivate: [AngularFireAuthGuard, GoogleLoggedGuard], data: { authGuardPipe: guardSignIn } },
+  { path: 'signup', component: SignPageComponent, canActivate: [AngularFireAuthGuard, GoogleLoggedGuard], data: { authGuardPipe: guardSignIn } },
   { path: 'signup-google', component: GoogleSignPageComponent,  canActivate: [UnfinishedGoogleSignupGuard], resolve: {user: UserResolver} },
   {
     path: 'signup/verify-email',

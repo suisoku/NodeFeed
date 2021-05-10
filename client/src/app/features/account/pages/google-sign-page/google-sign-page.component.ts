@@ -48,7 +48,7 @@ export class GoogleSignPageComponent implements AfterViewInit {
       .completeGoogleSignup(this.userUid, this.signInformation)
       .then(() => {
         this.progressStep = '100%';
-        setTimeout(() => void this._router.navigate(['/']), 300);
+        setTimeout(() => void this._router.navigate(['/']), 800);
       })
       .catch((error) => console.log(error));
   }
