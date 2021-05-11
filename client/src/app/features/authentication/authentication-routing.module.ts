@@ -7,6 +7,7 @@ import { FirebaseUser } from 'src/firebase-app';
 import { GoogleLoggedGuard } from './guards/google-logged.guard';
 import { UnfinishedGoogleSignupGuard } from './guards/unfinished-google-signup.guard';
 import { UserResolver } from './guards/user.resolver';
+import { ForgotPasswordPageComponent } from './pages/forgot-password-page/forgot-password-page.component';
 import { GoogleSignPageComponent } from './pages/google-sign-page/google-sign-page.component';
 import { SignLayoutPageComponent } from './pages/sign-layout-page/sign-layout-page.component';
 import { SignPageComponent } from './pages/sign-page/sign-page.component';
@@ -48,6 +49,10 @@ const routes: Routes = [
         component: GoogleSignPageComponent,
         canActivate: [UnfinishedGoogleSignupGuard],
         resolve: { user: UserResolver }
+      },
+      {
+        path: 'forgot-password',
+        component: ForgotPasswordPageComponent,
       }
     ]
   },
