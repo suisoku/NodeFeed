@@ -60,6 +60,6 @@ export class SignInComponent implements OnInit {
   }
 
   forgotPassword(): void {
-    //this.auth.
+    void this._router.navigate(['forgot-password']);
   }
 }
