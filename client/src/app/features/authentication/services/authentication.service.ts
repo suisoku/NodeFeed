@@ -6,9 +6,8 @@ import { Router } from '@angular/router';
 import firebase from 'firebase/app';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { UserModel } from 'src/app/core/models/user.model';
 import { Utils } from 'src/app/core/utilities/utils';
-import { FirebaseUser } from 'src/firebase-app';
+import { FirebaseCredential, FirebaseUser } from 'src/firebase-app';
 import { CredentialsModel } from '../models/credentials.model';
 import { SignInDetailsModel } from '../models/sign-in-details.model';
 @Injectable({
@@ -18,7 +17,7 @@ export class AuthenticationService {
   currentUser$: Observable<FirebaseUser | null>;
   isLoggedIn$: Observable<boolean>;
 
-  constructor(private readonly afAuth: AngularFireAuth, private readonly afStore: AngularFirestore, private _router: Router) {
+  constructor(private readonly afAuth: AngularFireAuth, private readonly afStore: AngularFirestore, private _router: Router, ) {
     this.currentUser$ = this.afAuth.user;
     this.isLoggedIn$ = this.currentUser$.pipe(map((user: firebase.User | null): boolean => !!user));
   }
@@ -31,10 +30,8 @@ export class AuthenticationService {
     });
   }
 
-  async signIn(credentials: CredentialsModel): Promise<UserModel> {
-    return this.afAuth
-      .signInWithEmailAndPassword(credentials.email, credentials.password)
-      .then(() => ({ gender: 'lol' } as UserModel));
+  async signIn(credentials: CredentialsModel): Promise<FirebaseCredential> {
+    return this.afAuth.signInWithEmailAndPassword(credentials.email, credentials.password);
   }
 
   async signOut(): Promise<void> {
@@ -108,6 +105,26 @@ export class AuthenticationService {
   async forgotPassword(email: string): Promise<void> {
     return this.afAuth.sendPasswordResetEmail(email);
   }
+
+  errorMessage(key: string): string {
+    switch (key) {
+      case 'auth/invalid-email':
+        return 'The email is invalid';
+      case 'auth/invalid-password':
+        return 'The password is invalid';
+      case 'auth/wrong-password':
+        return 'The email or password is wrong';
+      case 'auth/user-not-found': //uncatched POST error breaking detection change somewhere
+        return 'The email was not found';
+      case 'auth/email-already-exists':
+        return 'Email already exists';
+      case 'auth/weak-password':
+        return 'Password should be at least 6 characters';
+      default:
+        return 'Error';
+    }
+  }
+
   private _setUserData(user: FirebaseUser, signInformation: SignInDetailsModel): Promise<void> {
     //Mounting and verifying DOB
     const newDob = new Date(signInformation.birthYear, signInformation.birthMonth - 1, signInformation.birthDay);

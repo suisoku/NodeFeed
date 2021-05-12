@@ -1,4 +1,4 @@
-<div [formGroup]="signForm" class="box p-4 nf-form-container is-family-secondary">
+<form [formGroup]="signForm" class="box p-4 nf-form-container is-family-secondary">
   <app-basic-sign-form [parentForm]="signForm"></app-basic-sign-form>
   <div class="nf-separator"></div>
   <div class="field">
@@ -8,15 +8,17 @@
     </div>
   </div>
   <app-details-sign-form (updatedDetails)="handleDetails($event)" (validDOB)="isDOBvalid = $event"></app-details-sign-form>
-  <div class="control pt-4">
-    <button (click)="createAccount()" class="button is-link is-rounded is-fullwidth">Join NodeFeed</button>
+  <div class="has-text-centered has-text-danger pb-2 mt-2">
+    <span>{{errorMessage}} &nbsp;</span>
   </div>
-  <div class="nf-separator"></div>
-  <button (click)="signWithGoogle()" class="button is-fullwidth is-rounded nf-google-button">
+  <div class="control">
+    <button type="submit" (click)="createAccount()" class="button is-link is-rounded is-fullwidth">Join NodeFeed</button>
+  </div>
+  <button (click)="signWithGoogle()" class="button is-fullwidth is-rounded nf-google-button mt-3">
     <i class="nf-google-icon mr-3"></i>
     <span>Sign up with Google</span>
   </button>
   <div class="pt-2 has-text-centered">
     <span>Already on Nodefeed? <a (click)="emitSignIn()">Sign in</a></span>
   </div>
-</div>
+</form>

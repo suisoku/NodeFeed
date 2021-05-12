@@ -1,14 +1,14 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { FirebaseError } from 'src/firebase-app';
 import { CredentialsSettingsModel } from '../../models/credential-settings.model';
 import { SignInDetailsModel } from '../../models/sign-in-details.model';
 import { AuthenticationService } from '../../services/authentication.service';
 @Component({
   selector: 'app-sign-follow-up',
   templateUrl: './sign-follow-up.component.html',
-  styleUrls: ['./sign-follow-up.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./sign-follow-up.component.scss']
 })
 export class SignFollowUpComponent implements OnInit {
   @Input() persistedCredentials!: CredentialsSettingsModel;
@@ -17,6 +17,7 @@ export class SignFollowUpComponent implements OnInit {
   signForm!: FormGroup;
   detailsSign: Partial<SignInDetailsModel> = {};
   isDOBvalid = false;
+  errorMessage = '';
 
   constructor(private formBuilder: FormBuilder, private auth: AuthenticationService, private router: Router) {}
 
@@ -40,13 +41,10 @@ export class SignFollowUpComponent implements OnInit {
   createAccount(): void {
     // construct final object by merging properties
     const registration: SignInDetailsModel = { ...(this.signForm.value as SignInDetailsModel), ...this.detailsSign };
-    console.log('registration', registration);
     this.auth
       .registerUser(registration)
       .then(() => this.router.navigate(['sign/signup/verify-email']))
-      .catch(
-        (error) => console.log(error) //handle the error states
-      );
+      .catch((error: FirebaseError) => (this.errorMessage = this.auth.errorMessage(error.code)));
   }
 
   handleDetails(signDetails: Partial<SignInDetailsModel>): void {

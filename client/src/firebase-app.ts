@@ -4,3 +4,5 @@
 
 import firebase from 'firebase/app';
 export type FirebaseUser = firebase.User;
+export type FirebaseCredential = firebase.auth.UserCredential;
+export type FirebaseError = firebase.FirebaseError;

@@ -1,6 +1,9 @@
 <form [formGroup]="credentialsForm" class="box p-4 nf-form-container is-family-secondary">
   <app-basic-sign-form [parentForm]="credentialsForm"></app-basic-sign-form>
-  <div class="control pt-5">
+  <div class="control pt-3">
+    <div class="has-text-centered has-text-danger pb-1">
+      <span>{{errorMessage}} &nbsp;</span>
+    </div>
     <button (click)="signIn()" class="button is-primary is-rounded is-fullwidth">Sign in</button>
   </div>
   <div class="nf-separator"></div>
