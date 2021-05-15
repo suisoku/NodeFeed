@@ -17,7 +17,7 @@ export class AuthenticationService {
   currentUser$: Observable<FirebaseUser | null>;
   isLoggedIn$: Observable<boolean>;
 
-  constructor(private readonly afAuth: AngularFireAuth, private readonly afStore: AngularFirestore, private _router: Router, ) {
+  constructor(private readonly afAuth: AngularFireAuth, private readonly afStore: AngularFirestore, private _router: Router) {
     this.currentUser$ = this.afAuth.user;
     this.isLoggedIn$ = this.currentUser$.pipe(map((user: firebase.User | null): boolean => !!user));
   }
@@ -116,7 +116,7 @@ export class AuthenticationService {
         return 'The email or password is wrong';
       case 'auth/user-not-found': //uncatched POST error breaking detection change somewhere
         return 'The email was not found';
-      case 'auth/email-already-exists':
+      case 'auth/email-already-in-use':
         return 'Email already exists';
       case 'auth/weak-password':
         return 'Password should be at least 6 characters';

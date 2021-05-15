@@ -2,12 +2,13 @@
 
 /* You can add global styles to this file, and also import other style files */
 html {
-  //height: 100vh;
-    //height: 100vh !important;
-  //background-color: green;
-  background: url("/assets/bg-2.svg") no-repeat fixed;
-  background-size: cover;
+  height: 100vh;
   background-color: $nf-background-color;
+
+  &.sign-layout-background {
+    background: url("/assets/bg-2.svg") no-repeat fixed;
+    background-size: cover;
+  }
 }
 
 body {

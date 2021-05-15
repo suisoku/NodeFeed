@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FirebaseError } from 'src/firebase-app';
@@ -24,9 +24,9 @@ export class SignFollowUpComponent implements OnInit {
   ngOnInit(): void {
     this.signForm = this.formBuilder.group({
       email: [this.persistedCredentials.email, [Validators.required, Validators.email]],
-      password: [this.persistedCredentials.password, [Validators.required]],
+      password: [this.persistedCredentials.password, [Validators.required, Validators.pattern('^[A-Za-z\\d@$!%*#?&\\.]{6,}$')]],
       hiddenPassword: [this.persistedCredentials.hiddenPassword],
-      name: ['', Validators.required]
+      name: ['', [Validators.required, Validators.pattern('[a-zA-Z][A-Za-z\\d@$!%*#?&_-]{3,}')]] //needs improving
     });
   }
 
