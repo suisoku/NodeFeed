@@ -1,12 +1,12 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormHelper } from 'src/app/core/utilities/form-helper';
 import { SignInDetailsModel } from '../../models/sign-in-details.model';
 
 @Component({
   selector: 'app-details-sign-form',
   templateUrl: './details-sign-form.component.html',
-  styleUrls: ['./details-sign-form.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./details-sign-form.component.scss']
 })
 export class DetailsSignFormComponent implements OnInit {
   @Output() updatedDetails = new EventEmitter<Partial<SignInDetailsModel>>(); //+ gender
@@ -38,5 +38,9 @@ export class DetailsSignFormComponent implements OnInit {
     const isAllTouched = birthKeys.every((keyControl: string) => this.dobForm.get(keyControl)?.touched);
 
     return hasErrors && isAllTouched;
+  }
+
+  markAsDirty(): void {
+    FormHelper.markGroupDirty(this.dobForm);
   }
 }

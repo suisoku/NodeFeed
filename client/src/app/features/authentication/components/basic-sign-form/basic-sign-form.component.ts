@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 /**
@@ -8,8 +8,7 @@ import { FormGroup } from '@angular/forms';
 @Component({
   selector: 'app-basic-sign-form',
   templateUrl: './basic-sign-form.component.html',
-  styleUrls: ['./basic-sign-form.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./basic-sign-form.component.scss']
 })
 export class BasicSignFormComponent {
   @Input() parentForm!: FormGroup;

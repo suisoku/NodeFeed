@@ -1,16 +1,20 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { FormHelper } from 'src/app/core/utilities/form-helper';
 import { FirebaseError } from 'src/firebase-app';
 import { CredentialsSettingsModel } from '../../models/credential-settings.model';
 import { SignInDetailsModel } from '../../models/sign-in-details.model';
 import { AuthenticationService } from '../../services/authentication.service';
+import { DetailsSignFormComponent } from '../details-sign-form/details-sign-form.component';
 @Component({
   selector: 'app-sign-follow-up',
   templateUrl: './sign-follow-up.component.html',
   styleUrls: ['./sign-follow-up.component.scss']
 })
 export class SignFollowUpComponent implements OnInit {
+  @ViewChild(DetailsSignFormComponent) dobComponent!: DetailsSignFormComponent;
+
   @Input() persistedCredentials!: CredentialsSettingsModel;
   @Output() signinAccount = new EventEmitter<CredentialsSettingsModel>();
 
@@ -26,7 +30,7 @@ export class SignFollowUpComponent implements OnInit {
       email: [this.persistedCredentials.email, [Validators.required, Validators.email]],
       password: [this.persistedCredentials.password, [Validators.required, Validators.pattern('^[A-Za-z\\d@$!%*#?&\\.]{6,}$')]],
       hiddenPassword: [this.persistedCredentials.hiddenPassword],
-      name: ['', [Validators.required, Validators.pattern('[a-zA-Z][A-Za-z\\d@$!%*#?&_-]{3,}')]] //needs improving
+      name: ['', [Validators.required]] //needs improving Validators.pattern('[a-zA-Z][A-Za-z\\d@$!%*#?&_-]{3,}') only allows one word
     });
   }
 
@@ -40,6 +44,8 @@ export class SignFollowUpComponent implements OnInit {
 
   createAccount(): void {
     // construct final object by merging properties
+    FormHelper.markGroupDirty(this.signForm);
+    this.dobComponent.markAsDirty();
     const registration: SignInDetailsModel = { ...(this.signForm.value as SignInDetailsModel), ...this.detailsSign };
     this.auth
       .registerUser(registration)
