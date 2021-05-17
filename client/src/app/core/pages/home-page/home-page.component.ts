@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import { Observable } from 'rxjs';
 import { BarePostModel } from 'src/app/features/post/models/bare-post.model';
 import { PostsService } from 'src/app/features/post/services/posts.service';
@@ -14,7 +14,9 @@ export class HomePageComponent implements OnInit {
   nodefeed$: Observable<NodefeedModel> = this.nodeFeedService.getNodeFeed('@instagram');
   bareposts$: Observable<BarePostModel[]> = this.postsService.getBarePosts();
 
-  constructor(private nodeFeedService: NodefeedService, private postsService: PostsService) {}
+  constructor(private nodeFeedService: NodefeedService, private postsService: PostsService, private renderer: Renderer2) {
+    this.renderer.removeClass(document.querySelector('html'), 'sign-layout-background');
+  }
 
   ngOnInit(): void {
     void this.nodeFeedService.createNodeFeed({
