@@ -53,6 +53,12 @@
       }
     },
     {
+      "files": ["*.module.ts"],
+      "rules": {
+        "jsdoc/require-jsdoc": "off"
+      }
+    },
+    {
       "files": ["*.spec.ts"],
       "rules": {
         "@typescript-eslint/no-floating-promises": "off",
