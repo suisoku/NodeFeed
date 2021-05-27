@@ -6,6 +6,7 @@ import { CredentialsSettingsModel } from '../../models/credential-settings.model
 import { CredentialsModel } from '../../models/credentials.model';
 import { AuthenticationService } from '../../services/authentication.service';
 
+/** Email sign in component */
 @Component({
   selector: 'app-sign-in',
   templateUrl: './sign-in.component.html',

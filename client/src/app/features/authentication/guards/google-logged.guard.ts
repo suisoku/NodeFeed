@@ -5,15 +5,12 @@ import { map, mergeMap } from 'rxjs/operators';
 import { FirebaseUser } from 'src/firebase-app';
 import { AuthenticationService } from '../services/authentication.service';
 
+/**
+ * Google Logged Guard (independant from superlogged)
+ */
 @Injectable({
   providedIn: 'any'
 })
-
-/**
- * @description
- *
- * Google Logged Guard (independant from superlogged)
- */
 export class GoogleLoggedGuard implements CanActivate {
   constructor(private router: Router, private _auth: AuthenticationService) {}
 

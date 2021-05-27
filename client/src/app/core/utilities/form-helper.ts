@@ -1,5 +1,8 @@
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 
+/**
+ * Provides useful functions for angular formgroups
+ */
 export class FormHelper {
   static markGroupDirty(form: FormGroup | FormArray): void {
     //

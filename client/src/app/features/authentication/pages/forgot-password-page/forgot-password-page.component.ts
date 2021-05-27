@@ -4,6 +4,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../../services/authentication.service';
 
+/**
+ * Provides view to send a forgot password email
+ */
 @Component({
   templateUrl: './forgot-password-page.component.html',
   styleUrls: ['./forgot-password-page.component.scss']

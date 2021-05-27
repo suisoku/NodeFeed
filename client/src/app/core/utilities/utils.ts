@@ -1,3 +1,6 @@
+/**
+ * A short library of useful JS functions relevant to all the project
+ */
 export class Utils {
   /** Omit properties and return a new object */
   static omit<T>(keysToOmit: string[], obj: T): T {

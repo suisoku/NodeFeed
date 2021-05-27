@@ -3,6 +3,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormHelper } from 'src/app/core/utilities/form-helper';
 import { SignInDetailsModel } from '../../models/sign-in-details.model';
 
+/**
+ * Form dealing with additional information in the signup process
+ */
 @Component({
   selector: 'app-details-sign-form',
   templateUrl: './details-sign-form.component.html',

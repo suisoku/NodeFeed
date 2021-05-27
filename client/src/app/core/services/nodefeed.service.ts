@@ -4,6 +4,9 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { NodefeedModel } from '../models/nodefeed.model';
 
+/**
+ * Service managing nodefeed posts uses {@link AngularFireStore}
+ */
 @Injectable({
   providedIn: 'root'
 })

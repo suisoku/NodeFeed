@@ -5,16 +5,13 @@ import { map, mergeMap } from 'rxjs/operators';
 import { FirebaseUser } from 'src/firebase-app';
 import { AuthenticationService } from '../services/authentication.service';
 
-@Injectable({
-  providedIn: 'any'
-})
-
 /**
- * @description
- *
  * Guard signup-google route aiming at  google registration completion
  * signed ? yes verify completion -> true, otherwise a bunch of redirections
  */
+@Injectable({
+  providedIn: 'any'
+})
 export class UnfinishedGoogleSignupGuard implements CanActivate {
   constructor(private router: Router, private _auth: AuthenticationService) {}
 

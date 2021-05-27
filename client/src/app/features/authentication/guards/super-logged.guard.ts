@@ -4,17 +4,14 @@ import { Observable } from 'rxjs';
 import { map, take } from 'rxjs/operators';
 import { AuthenticationService } from '../services/authentication.service';
 
-@Injectable({
-  providedIn: 'any'
-})
-
 /**
- * @description
- *
  * The SuperLoggedGuard verifies that you are logged and verified (email) hence the name SuperLogged.
  * If you fail the conditions you will be redirected accordingly
  * Takes data if you need a specific redirection when superlogged is true.
  */
+@Injectable({
+  providedIn: 'any'
+})
 export class SuperLoggedGuard implements CanActivate {
   constructor(private router: Router, private auth: AuthenticationService) {}
 

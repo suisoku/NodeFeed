@@ -1,5 +1,8 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
+/**
+ * Allows to transform large numbers with several 0s to abbreviated notations i.e 10k, 10M, 10B
+ */
 @Pipe({
   name: 'shortNumber'
 })

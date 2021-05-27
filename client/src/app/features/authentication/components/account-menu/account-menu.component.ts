@@ -3,6 +3,9 @@ import { MatTooltip } from '@angular/material/tooltip';
 import { FirebaseUser } from 'src/firebase-app';
 import { AuthenticationService } from '../../services/authentication.service';
 
+/**
+ * A widget in the navbar displaying current user picture and provide links
+ */
 @Component({
   selector: 'app-account-menu',
   templateUrl: './account-menu.component.html',

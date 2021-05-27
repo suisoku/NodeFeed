@@ -53,7 +53,7 @@
       }
     },
     {
-      "files": ["*.module.ts"],
+      "files": ["*.module.ts", "*.model.ts"],
       "rules": {
         "jsdoc/require-jsdoc": "off"
       }

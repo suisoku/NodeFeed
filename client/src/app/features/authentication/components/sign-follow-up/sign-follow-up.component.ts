@@ -7,6 +7,8 @@ import { CredentialsSettingsModel } from '../../models/credential-settings.model
 import { SignInDetailsModel } from '../../models/sign-in-details.model';
 import { AuthenticationService } from '../../services/authentication.service';
 import { DetailsSignFormComponent } from '../details-sign-form/details-sign-form.component';
+
+/** Component providing the email signup process */
 @Component({
   selector: 'app-sign-follow-up',
   templateUrl: './sign-follow-up.component.html',
