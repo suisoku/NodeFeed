@@ -1,18 +1,12 @@
 {
   "root": true,
-  "ignorePatterns": [
-    "projects/**/*"
-  ],
+  "ignorePatterns": ["projects/**/*"],
+  "plugins": ["jsdoc"],
   "overrides": [
     {
-      "files": [
-        "*.ts"
-      ],
+      "files": ["*.ts"],
       "parserOptions": {
-        "project": [
-          "tsconfig.json",
-          "e2e/tsconfig.json"
-        ],
+        "project": ["tsconfig.json", "e2e/tsconfig.json"],
         "createDefaultProgram": true
       },
       "extends": [
@@ -24,6 +18,14 @@
         "plugin:prettier/recommended"
       ],
       "rules": {
+        "jsdoc/require-jsdoc": [
+          1,
+          {
+            "require": {
+              "ClassDeclaration": true
+            }
+          }
+        ],
         "rxjs/finnish": "error",
         "@angular-eslint/component-selector": [
           "error",
@@ -51,9 +53,7 @@
       }
     },
     {
-      "files": [
-        "*.spec.ts"
-      ],
+      "files": ["*.spec.ts"],
       "rules": {
         "@typescript-eslint/no-floating-promises": "off",
         "@typescript-eslint/no-unsafe-member-access": "off",
@@ -62,13 +62,8 @@
       }
     },
     {
-      "files": [
-        "*.html"
-      ],
-      "extends": [
-        "plugin:@angular-eslint/template/recommended",
-        "plugin:prettier/recommended"
-      ],
+      "files": ["*.html"],
+      "extends": ["plugin:@angular-eslint/template/recommended", "plugin:prettier/recommended"],
       "rules": {}
     }
   ]
