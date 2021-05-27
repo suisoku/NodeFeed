@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FirebaseError } from 'src/firebase-app';
 import { CredentialsSettingsModel } from '../../models/credential-settings.model';
@@ -30,8 +30,8 @@ export class SignInComponent implements OnInit {
   ngOnInit(): void {
     this.hideInputPassword = this.persistedCredentials.hiddenPassword;
     this.credentialsForm = this.formBuilder.group({
-      email: [this.persistedCredentials.email, { validators: [Validators.required, Validators.email], updateOn: 'blur' }],
-      password: [this.persistedCredentials.password, [Validators.required]],
+      email: [this.persistedCredentials.email],
+      password: [this.persistedCredentials.password],
       hiddenPassword: [this.persistedCredentials.hiddenPassword]
     });
   }
@@ -57,12 +57,9 @@ export class SignInComponent implements OnInit {
   }
 
   signWithGoogle(): void {
-    this.auth
-      .googleSignProcess()
-      .then((completeRegistration: boolean) => {
-        return this._router.navigate([completeRegistration ? '/' : 'signup-google']);
-      })
-      .catch((error) => console.log(error));
+    void this.auth.googleSignProcess().then((completeRegistration: boolean) => {
+      return this._router.navigate([completeRegistration ? '/' : 'signup-google']);
+    });
   }
 
   forgotPassword(): void {

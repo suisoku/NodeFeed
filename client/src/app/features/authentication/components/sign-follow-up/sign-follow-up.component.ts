@@ -58,11 +58,8 @@ export class SignFollowUpComponent implements OnInit {
   }
 
   signWithGoogle(): void {
-    this.auth
-      .googleSignProcess()
-      .then((completeRegistration: boolean) => {
-        return this.router.navigate([completeRegistration ? '/' : 'signup-google']);
-      })
-      .catch((error) => console.log(error));
+    void this.auth.googleSignProcess().then((completeRegistration: boolean) => {
+      return this.router.navigate([completeRegistration ? '/' : 'signup-google']);
+    });
   }
 }

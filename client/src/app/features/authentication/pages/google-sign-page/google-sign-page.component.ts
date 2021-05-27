@@ -20,20 +20,12 @@ export class GoogleSignPageComponent implements AfterViewInit {
     this._route.data.subscribe({
       next: (data: Data) => {
         const user = data['user'] as FirebaseUser;
-        if (!user) {
-          //just for added security (cuz the guard + resolver should be enough)
-          //toaster.
-          //redirect
-        }
         this.userUid = user.uid;
-        console.log(this.userUid);
-      },
-      error: (error: unknown) => console.log(error)
+      }
     });
   }
 
   ngAfterViewInit(): void {
-    //Apply loading in progress effect
     setTimeout(() => (this.progressStep = '65%'), 300);
   }
 
@@ -42,13 +34,9 @@ export class GoogleSignPageComponent implements AfterViewInit {
   }
 
   completeRegistration(): void {
-    //Apply loading completed progress effect
-    this._auth
-      .completeGoogleSignup(this.userUid, this.signInformation)
-      .then(() => {
-        this.progressStep = '100%';
-        setTimeout(() => void this._router.navigate(['/']), 800);
-      })
-      .catch((error) => console.log(error));
+    void this._auth.completeGoogleSignup(this.userUid, this.signInformation).then(() => {
+      this.progressStep = '100%';
+      setTimeout(() => void this._router.navigate(['/']), 800);
+    });
   }
 }

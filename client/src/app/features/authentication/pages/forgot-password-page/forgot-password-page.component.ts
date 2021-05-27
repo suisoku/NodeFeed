@@ -32,13 +32,10 @@ export class ForgotPasswordPageComponent implements OnInit {
 
   sendResetEmail(): void {
     const email = this.forgotPwdForm.get('email')?.value as string;
-    this._auth
-      .forgotPassword(email)
-      .then(() => {
-        this.displaySuccessMessage();
-        setTimeout(() => this.cancel(), 1500);
-      }) //toaster
-      .catch((error) => console.log(error));
+    void this._auth.forgotPassword(email).then(() => {
+      this.displaySuccessMessage();
+      setTimeout(() => this.cancel(), 1500);
+    });
   }
   cancel(): void {
     void this._router.navigate(['/sign/signin']);
