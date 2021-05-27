@@ -5,6 +5,7 @@ import { map, take } from 'rxjs/operators';
 import { FirebaseUser } from 'src/firebase-app';
 import { AuthenticationService } from '../services/authentication.service';
 
+/** User resolver by taking first received user */
 @Injectable({
   providedIn: 'root'
 })

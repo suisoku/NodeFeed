@@ -4,6 +4,9 @@ import { FirebaseUser } from 'src/firebase-app';
 import { SignInDetailsModel } from '../../models/sign-in-details.model';
 import { AuthenticationService } from '../../services/authentication.service';
 
+/**
+ * Google registration page that displays the second step registration of the google sign up process
+ */
 @Component({
   templateUrl: './google-sign-page.component.html',
   styleUrls: ['./google-sign-page.component.scss']

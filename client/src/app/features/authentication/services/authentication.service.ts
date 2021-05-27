@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
@@ -10,6 +9,10 @@ import { Utils } from 'src/app/core/utilities/utils';
 import { FirebaseCredential, FirebaseUser } from 'src/firebase-app';
 import { CredentialsModel } from '../models/credentials.model';
 import { SignInDetailsModel } from '../models/sign-in-details.model';
+
+/**
+ * Authentication service wrapping angular fire. Provides all methods and observables relating to user authentication
+ * */
 @Injectable({
   providedIn: 'root'
 })
@@ -82,7 +85,6 @@ export class AuthenticationService {
       ...Utils.omit(['birthDay', 'birthMonth', 'birthYear'], additionalInfo),
       dateOfBirth: newDob
     };
-    console.log('you are a genius', userData);
     return userRef.set(userData, {
       merge: true
     });
@@ -138,7 +140,6 @@ export class AuthenticationService {
       ...Utils.omit(['birthDay', 'birthMonth', 'birthYear'], signInformation),
       dateOfBirth: newDob
     };
-    console.log('you are a genius', userData);
     return userRef.set(userData, {
       merge: true
     });
@@ -157,8 +158,6 @@ export class AuthenticationService {
       email: user.email,
       completeRegistration: false
     };
-
-    console.log('you are a genius', userData);
     await userRef.set(userData, { merge: true });
     return false;
   }

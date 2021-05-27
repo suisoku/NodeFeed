@@ -4,6 +4,9 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { BarePostModel } from '../models/bare-post.model';
 
+/**
+ * Service providing nodefeed articles
+ */
 @Injectable({
   providedIn: 'root'
 })

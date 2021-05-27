@@ -2,6 +2,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CredentialsSettingsModel } from '../../models/credential-settings.model';
+
+/**
+ * Sign in and Sign up main page view
+ */
 @Component({
   templateUrl: './sign-page.component.html',
   styleUrls: ['./sign-page.component.scss']

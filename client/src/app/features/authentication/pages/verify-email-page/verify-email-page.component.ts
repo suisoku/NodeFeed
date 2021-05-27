@@ -6,6 +6,9 @@ import { auditTime, filter, take, tap } from 'rxjs/operators';
 import { FirebaseUser } from 'src/firebase-app';
 import { AuthenticationService } from '../../services/authentication.service';
 
+/**
+ * Displays a button to resend a verification email, listens to activation link event
+ */
 @Component({
   templateUrl: './verify-email-page.component.html',
   styleUrls: ['./verify-email-page.component.scss']
