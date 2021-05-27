@@ -15,7 +15,7 @@ export class NodefeedService {
     this.nodefeedsRef = db.collection('nodefeeds');
   }
 
-  getNodeFeed(name: string): Observable<NodefeedModel> {
+  getNodeFeed$(name: string): Observable<NodefeedModel> {
     return this.nodefeedsRef
       .doc(name)
       .get()

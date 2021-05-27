@@ -15,7 +15,7 @@ export class AccountMenuComponent implements AfterViewInit {
 
   get isEmailVerified(): boolean {
     return this.user?.emailVerified ?? true;
-  };
+  }
 
   @ViewChildren('verifyEmailTooltip') verifyEmailTooltip!: QueryList<MatTooltip>;
 

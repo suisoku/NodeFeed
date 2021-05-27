@@ -1,8 +1,5 @@
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
-
 import { BasicSignFormComponent } from './basic-sign-form.component';
 
 describe('BasicSignFormComponent', () => {
@@ -11,9 +8,8 @@ describe('BasicSignFormComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BasicSignFormComponent ]
-    })
-    .compileComponents();
+      declarations: [BasicSignFormComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

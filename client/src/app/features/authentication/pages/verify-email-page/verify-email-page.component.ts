@@ -25,7 +25,7 @@ export class VerifyEmailPageComponent {
         }
       }
     });
-    this.refreshUserUntilEmailVerified().subscribe(() => {
+    this.refreshUserUntilEmailVerified$().subscribe(() => {
       this.displaySuccessMessage();
       void this.router.navigateByUrl('/');
     });
@@ -48,7 +48,7 @@ export class VerifyEmailPageComponent {
     void this.auth.signOut().then(() => this.router.navigateByUrl('/sign'));
   }
 
-  private refreshUserUntilEmailVerified(interval = 1000): Observable<FirebaseUser | null> {
+  private refreshUserUntilEmailVerified$(interval = 1000): Observable<FirebaseUser | null> {
     return this.auth.currentUser$.pipe(
       auditTime(interval),
       tap((user) => {

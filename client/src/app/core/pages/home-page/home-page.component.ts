@@ -11,8 +11,8 @@ import { NodefeedService } from '../../services/nodefeed.service';
 })
 export class HomePageComponent implements OnInit {
   title!: string;
-  nodefeed$: Observable<NodefeedModel> = this.nodeFeedService.getNodeFeed('@instagram');
-  bareposts$: Observable<BarePostModel[]> = this.postsService.getBarePosts();
+  nodefeed$: Observable<NodefeedModel> = this.nodeFeedService.getNodeFeed$('@instagram');
+  bareposts$: Observable<BarePostModel[]> = this.postsService.getBarePosts$();
 
   constructor(private nodeFeedService: NodefeedService, private postsService: PostsService, private renderer: Renderer2) {
     this.renderer.removeClass(document.querySelector('html'), 'sign-layout-background');

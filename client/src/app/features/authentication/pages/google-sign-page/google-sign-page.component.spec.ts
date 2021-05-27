@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { GoogleSignPageComponent } from './google-sign-page.component';
 
 describe('GoogleSignPageComponent', () => {
@@ -8,9 +7,8 @@ describe('GoogleSignPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ GoogleSignPageComponent ]
-    })
-    .compileComponents();
+      declarations: [GoogleSignPageComponent]
+    }).compileComponents();
   });
 
   beforeEach(() => {

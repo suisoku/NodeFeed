@@ -25,11 +25,10 @@ export class GoogleSignPageComponent implements AfterViewInit {
           //toaster.
           //redirect
         }
-
         this.userUid = user.uid;
         console.log(this.userUid);
       },
-      error: (error) => console.log(error)
+      error: (error: unknown) => console.log(error)
     });
   }
 

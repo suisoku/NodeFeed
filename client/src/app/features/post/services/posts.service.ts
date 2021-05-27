@@ -15,7 +15,7 @@ export class PostsService {
     this.postsRef = db.collection('posts');
   }
 
-  public getBarePosts(): Observable<BarePostModel[]> {
+  public getBarePosts$(): Observable<BarePostModel[]> {
     return this.postsRef
       .get()
       .pipe(map((querySnapshot: QuerySnapshot<BarePostModel>) => querySnapshot.docs.map((docSnapshot) => docSnapshot.data())));

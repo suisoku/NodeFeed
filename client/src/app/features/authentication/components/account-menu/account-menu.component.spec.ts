@@ -8,9 +8,8 @@ describe('AccountMenuComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AccountMenuComponent ]
-    })
-    .compileComponents();
+      declarations: [AccountMenuComponent]
+    }).compileComponents();
   });
 
   beforeEach(() => {
