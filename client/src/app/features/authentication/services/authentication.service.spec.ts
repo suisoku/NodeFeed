@@ -1,9 +1,9 @@
+/* eslint-disable rxjs/finnish */
 import { TestBed } from '@angular/core/testing';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
-import { Observable, of } from 'rxjs';
-
+import { of } from 'rxjs';
 import { AuthenticationService } from './authentication.service';
 
 fdescribe('AuthenticationService', () => {
@@ -13,20 +13,19 @@ fdescribe('AuthenticationService', () => {
   let angularFireAuth: jasmine.SpyObj<AngularFireAuth>; //instance mock
 
   beforeEach(() => {
+    //Mock values
+    const fakeUser$ = of([{ user: 'fakeUser' }]);
+
+    // Mock providers
     const routerProvider = jasmine.createSpyObj('Router', ['collection']);
     const angularFireStoreProvider = jasmine.createSpyObj('AngularFireStore', ['collection']);
-    const angularFireAuthProvider = jasmine.createSpyObj('AngularFireAuth', [
-      'createUserWithEmailAndPassword',
-      'signInWithEmailAndPassword',
-      'signOut',
-      'signInWithPopup',
-      'sendPasswordResetEmail',
-      'user'
-    ]); //provider mock
+    const angularFireAuthProvider = jasmine.createSpyObj(
+      'AngularFireAuth',
+      ['createUserWithEmailAndPassword', 'signInWithEmailAndPassword', 'signOut', 'signInWithPopup', 'sendPasswordResetEmail'],
+      { user: fakeUser$ }
+    ); //provider mock
 
-    //angularFireAuthProvider.user.and.returnValue(of([{ user: 'fakeUser' }]));
-    const fakeUser$ = of([{ user: 'fakeUser' }]);
-    angularFireAuthProvider.user.and.returnValue(fakeUser$);
+    //spyOnProperty(angularFireAuthProvider, 'user', 'get').and.returnValue(() => fakeUser$);
 
     TestBed.configureTestingModule({
       providers: [
