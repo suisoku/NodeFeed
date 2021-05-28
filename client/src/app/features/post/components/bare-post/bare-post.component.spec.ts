@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ContentFeedComponent } from './bare-post.component';
+import { BarePostComponent } from './bare-post.component';
 
-describe('ContentFeedComponent', () => {
-  let component: ContentFeedComponent;
-  let fixture: ComponentFixture<ContentFeedComponent>;
+describe('BarePostComponent', () => {
+  let component: BarePostComponent;
+  let fixture: ComponentFixture<BarePostComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ContentFeedComponent]
+      declarations: [BarePostComponent]
     }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ContentFeedComponent);
+    fixture = TestBed.createComponent(BarePostComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
