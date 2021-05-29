@@ -29,7 +29,10 @@ export class AuthenticationService {
 
   async registerUser(signInformation: SignInDetailsModel): Promise<void> {
     return this.afAuth.createUserWithEmailAndPassword(signInformation.email, signInformation.password).then((userCredential) => {
-      return this.setUserData(userCredential.user, signInformation);
+      if (!userCredential.user) {
+        return Promise.reject(new Error("Can't create a profile from a null user object"));
+      }
+      return this._setUserData(userCredential.user, signInformation);
     });
   }
 
@@ -88,13 +91,6 @@ export class AuthenticationService {
     return userRef.set(userData, {
       merge: true
     });
-  }
-
-  async setUserData(user: FirebaseUser | null, signInformation: SignInDetailsModel): Promise<void> {
-    if (!user) {
-      return Promise.reject(new Error("Can't create a profile from a null user object"));
-    }
-    return this._setUserData(user, signInformation);
   }
 
   getUserDocument$(user: FirebaseUser): Observable<Record<string, unknown>> {
