@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/unbound-method */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable rxjs/finnish */
 import { TestBed } from '@angular/core/testing';
@@ -63,7 +64,7 @@ fdescribe('AuthenticationService', () => {
     );
   });
 
-  it('calls registerUser with nominal signInDetails object', () => {
+  it('calls registerUser with nominal signInDetails object', async () => {
     const signInformation: SignInDetailsModel = {
       email: 'abc@abc.fr',
       password: 'abc',
@@ -79,39 +80,50 @@ fdescribe('AuthenticationService', () => {
       updateProfile: (profile: { displayName: string }) => Promise.resolve(),
       sendEmailVerification: () => Promise.resolve()
     } as FirebaseUser;
+
     spyOn(userMock, 'updateProfile');
+    spyOn(userMock, 'sendEmailVerification');
 
     const userCredential = {
       user: userMock
     } as FirebaseCredential;
 
     angularFireAuth.createUserWithEmailAndPassword.and.returnValue(Promise.resolve(userCredential));
+
+    const docSetSpy = jasmine.createSpy();
     angularFireStore.doc.and.returnValue(({
-      set: () => Promise.resolve()
+      set: docSetSpy
     } as unknown) as AngularFirestoreDocument<SignInDetailsModel>);
 
     //act
-    service.registerUser(signInformation);
+    await service.registerUser(signInformation);
+
+    //expectations
+    const expectedUserData = {
+      email: signInformation.email,
+      password: signInformation.password,
+      gender: signInformation.gender,
+      name: signInformation.name,
+      dateOfBirth: new Date(1996, 9, 1)
+    };
 
     //evaluate
     expect(angularFireAuth.createUserWithEmailAndPassword).toHaveBeenCalledOnceWith(
       signInformation.email,
       signInformation.password
     );
-    console.log((userMock.updateProfile as any).calls.any()); //it fires corect type of result , so the problem must be async cycles.
-    // eslint-disable-next-line @typescript-eslint/unbound-method
-    expect((userMock.updateProfile as any).calls.any()).toHaveBeenCalledTimes(1);
-    // I expect that an email verification is sent
-    // I expect to have correct document
-    // Expect user doc methods being called
-
-    //2 considerations you need the whole function to exectue successfull
-    //catch exceptions  + mock everything that is left to mock
-    // async cycles to handle
+    expect(userMock.updateProfile).toHaveBeenCalledTimes(1);
+    expect(userMock.sendEmailVerification).toHaveBeenCalledTimes(1);
+    expect(angularFireStore.doc).toHaveBeenCalledTimes(1);
+    expect(docSetSpy).toHaveBeenCalledOnceWith(expectedUserData, jasmine.any(Object));
   });
 
-  it('calls registerUser case2', () => {
-    //
+  it('calls registerUser with a faulty DOB in SignInDetailsModel', () => {
+    expect(true).toBe(true);
+  });
+
+  it('calls registerUser with a generally faulty SignInDetailsModel', () => {
+    expect(true).toBe(true);
   });
 
   it('calls signIn which calls angular fire sign in', () => {
