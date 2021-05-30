@@ -119,7 +119,19 @@ fdescribe('AuthenticationService', () => {
   });
 
   it('calls registerUser with a faulty DOB in SignInDetailsModel', () => {
-    expect(true).toBe(true);
+    const signInformation: SignInDetailsModel = {
+      email: 'abc@abc.fr',
+      password: 'abc',
+      gender: 'Male',
+      name: 'Nour',
+      birthDay: 1,
+      birthMonth: 10,
+      birthYear: 1899
+    };
+
+    await service.registerUser(signInformation);
+
+    expect(service.registerUser).toBe(true);
   });
 
   it('calls registerUser with a generally faulty SignInDetailsModel', () => {
