@@ -10,6 +10,7 @@ import { FirebaseCredential, FirebaseUser } from 'src/firebase-app';
 import { CredentialsModel } from '../models/credentials.model';
 import { SignInDetailsModel } from '../models/sign-in-details.model';
 import { AuthenticationService } from './authentication.service';
+import firebase from 'firebase/app';
 
 fdescribe('AuthenticationService', () => {
   let service: AuthenticationService;
@@ -53,97 +54,118 @@ fdescribe('AuthenticationService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('calls registerUser which calls createUserWithEmailAndPassword', () => {
-    const signInformation = { email: 'abc@abc.fr', password: 'abc' } as SignInDetailsModel;
-    angularFireAuth.createUserWithEmailAndPassword.and.returnValue(Promise.resolve({} as FirebaseCredential));
-    service.registerUser(signInformation).catch(() => ({}));
+  describe('Sign in methods suite [registerUser() , GoogleSignProcess()]', () => {
+    let signInformationMock: SignInDetailsModel;
+    let userMock: FirebaseUser;
+    let userCredentialMock: FirebaseCredential;
 
-    expect(angularFireAuth.createUserWithEmailAndPassword).toHaveBeenCalledOnceWith(
-      signInformation.email,
-      signInformation.password
+    beforeEach(() => {
+      signInformationMock = {
+        email: 'abc@abc.fr',
+        password: 'abc',
+        birthDay: 1,
+        birthMonth: 10,
+        birthYear: 1996,
+        gender: 'Male',
+        name: 'Nour'
+      };
+
+      userMock = {
+        email: 'fakeUser@abc.com',
+        updateProfile: (profile: { displayName: string }) => Promise.resolve(),
+        sendEmailVerification: () => Promise.resolve()
+      } as FirebaseUser;
+
+      spyOn(userMock, 'updateProfile');
+      spyOn(userMock, 'sendEmailVerification');
+
+      userCredentialMock = {
+        user: userMock
+      } as FirebaseCredential;
+    });
+
+    /**  RegisterUser tests section */
+
+    it('calls registerUser which calls createUserWithEmailAndPassword and throws user null', async () => {
+      angularFireAuth.createUserWithEmailAndPassword.and.returnValue(Promise.resolve({} as FirebaseCredential));
+
+      await expectAsync(service.registerUser(signInformationMock)).toBeRejectedWith(
+        new Error("Can't create a profile from a null user object")
+      );
+      expect(angularFireAuth.createUserWithEmailAndPassword).toHaveBeenCalledOnceWith(
+        signInformationMock.email,
+        signInformationMock.password
+      );
+    });
+
+    it('calls registerUser with nominal signInDetails object with success', async () => {
+      angularFireAuth.createUserWithEmailAndPassword.and.returnValue(Promise.resolve(userCredentialMock));
+
+      const docSetSpy = jasmine.createSpy();
+      angularFireStore.doc.and.returnValue(({
+        set: docSetSpy
+      } as unknown) as AngularFirestoreDocument<SignInDetailsModel>);
+
+      //act
+      await service.registerUser(signInformationMock);
+
+      //expectations
+      const expectedUserData = {
+        email: signInformationMock.email,
+        password: signInformationMock.password,
+        gender: signInformationMock.gender,
+        name: signInformationMock.name,
+        dateOfBirth: new Date(1996, 9, 1)
+      };
+
+      //evaluate
+      expect(angularFireAuth.createUserWithEmailAndPassword).toHaveBeenCalledOnceWith(
+        signInformationMock.email,
+        signInformationMock.password
+      );
+      expect(userMock.updateProfile).toHaveBeenCalledTimes(1);
+      expect(userMock.sendEmailVerification).toHaveBeenCalledTimes(1);
+      expect(angularFireStore.doc).toHaveBeenCalledTimes(1);
+      expect(docSetSpy).toHaveBeenCalledOnceWith(expectedUserData, jasmine.any(Object));
+    });
+
+    const faultyDOBSubSuite = [
+      { description: 'below min year', inputYear: 1888 },
+      { description: 'above max year', inputYear: 3888 }
+    ];
+
+    faultyDOBSubSuite.forEach((params) =>
+      it(`calls registerUser with a faulty DOB ${params.description} `, async () => {
+        signInformationMock.birthYear = params.inputYear;
+        angularFireAuth.createUserWithEmailAndPassword.and.returnValue(Promise.resolve(userCredentialMock));
+        // act and evaluate
+        await expectAsync(service.registerUser(signInformationMock)).toBeRejectedWith(new Error('Date of birth is invalid'));
+      })
     );
-  });
 
-  it('calls registerUser with nominal signInDetails object', async () => {
-    const signInformation: SignInDetailsModel = {
-      email: 'abc@abc.fr',
-      password: 'abc',
-      birthDay: 1,
-      birthMonth: 10,
-      birthYear: 1996,
-      gender: 'Male',
-      name: 'Nour'
-    };
+    /** GoogleSignProcess tests section */
 
-    const userMock = {
-      email: 'fakeUser@abc.com',
-      updateProfile: (profile: { displayName: string }) => Promise.resolve(),
-      sendEmailVerification: () => Promise.resolve()
-    } as FirebaseUser;
+    it('calls googleSignProcess with no user and should return Reject promise', async () => {
+      angularFireAuth.signInWithPopup.and.returnValue(Promise.resolve({ user: null } as FirebaseCredential));
 
-    spyOn(userMock, 'updateProfile');
-    spyOn(userMock, 'sendEmailVerification');
-
-    const userCredential = {
-      user: userMock
-    } as FirebaseCredential;
-
-    angularFireAuth.createUserWithEmailAndPassword.and.returnValue(Promise.resolve(userCredential));
-
-    const docSetSpy = jasmine.createSpy();
-    angularFireStore.doc.and.returnValue(({
-      set: docSetSpy
-    } as unknown) as AngularFirestoreDocument<SignInDetailsModel>);
-
-    //act
-    await service.registerUser(signInformation);
-
-    //expectations
-    const expectedUserData = {
-      email: signInformation.email,
-      password: signInformation.password,
-      gender: signInformation.gender,
-      name: signInformation.name,
-      dateOfBirth: new Date(1996, 9, 1)
-    };
-
-    //evaluate
-    expect(angularFireAuth.createUserWithEmailAndPassword).toHaveBeenCalledOnceWith(
-      signInformation.email,
-      signInformation.password
-    );
-    expect(userMock.updateProfile).toHaveBeenCalledTimes(1);
-    expect(userMock.sendEmailVerification).toHaveBeenCalledTimes(1);
-    expect(angularFireStore.doc).toHaveBeenCalledTimes(1);
-    expect(docSetSpy).toHaveBeenCalledOnceWith(expectedUserData, jasmine.any(Object));
-  });
-
-  it('calls registerUser with a faulty DOB in SignInDetailsModel', () => {
-    const signInformation: SignInDetailsModel = {
-      email: 'abc@abc.fr',
-      password: 'abc',
-      gender: 'Male',
-      name: 'Nour',
-      birthDay: 1,
-      birthMonth: 10,
-      birthYear: 1899
-    };
-
-    await service.registerUser(signInformation);
-
-    expect(service.registerUser).toBe(true);
-  });
-
-  it('calls registerUser with a generally faulty SignInDetailsModel', () => {
-    expect(true).toBe(true);
+      // act and evaluate
+      await expectAsync(service.googleSignProcess()).toBeRejectedWith(
+        new Error("Can't create a profile from a null user object")
+      );
+      expect(angularFireAuth.signInWithPopup).toHaveBeenCalledTimes(1);
+    });
   });
 
   it('calls signIn which calls angular fire sign in', () => {
-    const signInformation = { email: 'abc@abc.fr', password: 'abc' } as CredentialsModel;
+    const signInformationMock = { email: 'abc@abc.fr', password: 'abc' } as CredentialsModel;
+    spyOn(firebase.auth, 'GoogleAuthProvider').and.returnValue({} as firebase.auth.GoogleAuthProvider);
 
-    service.signIn(signInformation);
+    service.signIn(signInformationMock);
 
-    expect(angularFireAuth.signInWithEmailAndPassword).toHaveBeenCalledOnceWith(signInformation.email, signInformation.password);
+    expect(angularFireAuth.signInWithEmailAndPassword).toHaveBeenCalledOnceWith(
+      signInformationMock.email,
+      signInformationMock.password
+    );
   });
 
   it('calls signout which calls angular fire sign out', () => {

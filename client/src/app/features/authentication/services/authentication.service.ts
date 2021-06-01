@@ -80,7 +80,7 @@ export class AuthenticationService {
 
   async completeGoogleSignup(uid: string, additionalInfo: Partial<SignInDetailsModel>): Promise<void> {
     const newDob = new Date(additionalInfo.birthYear ?? 0, (additionalInfo.birthMonth ?? 0) - 1, additionalInfo.birthDay ?? 0);
-    if (!this._verifyDate(newDob)) throw new Error('Date of birth is invalid');
+    if (!this._verifyDate(newDob)) return Promise.reject(new Error('Date of birth is invalid'));
 
     const userRef = this.afStore.doc(`users/${uid}`);
     const userData = {
@@ -126,7 +126,7 @@ export class AuthenticationService {
   private _setUserData(user: FirebaseUser, signInformation: SignInDetailsModel): Promise<void> {
     //Mounting and verifying DOB
     const newDob = new Date(signInformation.birthYear, signInformation.birthMonth - 1, signInformation.birthDay);
-    if (!this._verifyDate(newDob)) throw new Error('Date of birth is invalid');
+    if (!this._verifyDate(newDob)) return Promise.reject(new Error('Date of birth is invalid'));
 
     void user.updateProfile({ displayName: signInformation.name });
     void user.sendEmailVerification();
