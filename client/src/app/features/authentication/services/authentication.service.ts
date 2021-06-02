@@ -20,6 +20,11 @@ export class AuthenticationService {
   currentUser$: Observable<FirebaseUser | null>;
   isLoggedIn$: Observable<boolean>;
 
+  //Abstracting away all third-party namespace exported functions.
+  get googleAuthProvider(): firebase.auth.AuthProvider {
+    return new firebase.auth.GoogleAuthProvider();
+  }
+
   constructor(private readonly afAuth: AngularFireAuth, private readonly afStore: AngularFirestore, private _router: Router) {
     this.currentUser$ = this.afAuth.user;
     this.isLoggedIn$ = this.currentUser$.pipe(map((user: firebase.User | null): boolean => !!user));
@@ -52,8 +57,7 @@ export class AuthenticationService {
    * @returns true if user has completed registration , false otherwise
    */
   async googleSignProcess(): Promise<boolean> {
-    const provider = new firebase.auth.GoogleAuthProvider();
-    return this.afAuth.signInWithPopup(provider).then((userCredential) => {
+    return this.afAuth.signInWithPopup(this.googleAuthProvider).then((userCredential) => {
       const user = userCredential.user;
       if (!user) {
         return Promise.reject(new Error("Can't create a profile from a null user object"));

@@ -146,8 +146,15 @@ fdescribe('AuthenticationService', () => {
     /** GoogleSignProcess tests section */
 
     it('calls googleSignProcess with no user and should return Reject promise', async () => {
+      const authProviderMock = {
+        addScope: (scope: string) => ({} as firebase.auth.GoogleAuthProvider),
+        providerId: 'id',
+        setCustomParameters: (customOAuthParameters) => ({} as firebase.auth.GoogleAuthProvider)
+      } as firebase.auth.GoogleAuthProvider;
+
       angularFireAuth.signInWithPopup.and.returnValue(Promise.resolve({ user: null } as FirebaseCredential));
 
+      spyOnProperty(service, 'googleAuthProvider', 'get').and.returnValue(authProviderMock);
       // act and evaluate
       await expectAsync(service.googleSignProcess()).toBeRejectedWith(
         new Error("Can't create a profile from a null user object")
@@ -158,7 +165,6 @@ fdescribe('AuthenticationService', () => {
 
   it('calls signIn which calls angular fire sign in', () => {
     const signInformationMock = { email: 'abc@abc.fr', password: 'abc' } as CredentialsModel;
-    spyOn(firebase.auth, 'GoogleAuthProvider').and.returnValue({} as firebase.auth.GoogleAuthProvider);
 
     service.signIn(signInformationMock);
 
