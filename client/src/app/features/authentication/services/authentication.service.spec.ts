@@ -11,6 +11,7 @@ import { CredentialsModel } from '../models/credentials.model';
 import { SignInDetailsModel } from '../models/sign-in-details.model';
 import { AuthenticationService } from './authentication.service';
 import firebase from 'firebase/app';
+import { map } from 'rxjs/operators';
 
 fdescribe('AuthenticationService', () => {
   let service: AuthenticationService;
@@ -333,16 +334,20 @@ fdescribe('AuthenticationService', () => {
   it('calls getUserDocument$ and uses firestore functions', () => {
     const firestoreDocument = {
       get: () => of(documentMock)
-    } as AngularFirestoreDocument<unknown>;
-
-    spyOn(firestoreDocument, 'get');
+    } as AngularFirestoreDocument;
     angularFireStore.doc.and.returnValue(firestoreDocument);
 
-    //act
-    service.getUserDocument$({ uid: 'uidFake' } as FirebaseUser);
+    // call through important to delegate behaviour to actual implementation
+    spyOn(firestoreDocument, 'get').and.callThrough();
 
-    expect(angularFireStore.doc).toHaveBeenCalled(); //with args not working
-    expect(firestoreDocument.get).toHaveBeenCalled();
+    // act
+    service.getUserDocument$({ uid: 'uidFake' } as FirebaseUser).subscribe({
+      next: (userDoc) => {
+        expect(angularFireStore.doc).toHaveBeenCalled(); //with args not working
+        expect(firestoreDocument.get).toHaveBeenCalled();
+      }
+    });
+
     //test also final returned observable
   });
 });
