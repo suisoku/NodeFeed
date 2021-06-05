@@ -1,6 +1,3 @@
-/* eslint-disable @typescript-eslint/unbound-method */
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable rxjs/finnish */
 import { TestBed } from '@angular/core/testing';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore, AngularFirestoreDocument, DocumentSnapshot } from '@angular/fire/firestore';
@@ -13,7 +10,7 @@ import { AuthenticationService } from './authentication.service';
 import firebase from 'firebase/app';
 import { map } from 'rxjs/operators';
 
-fdescribe('AuthenticationService', () => {
+describe('AuthenticationService', () => {
   let service: AuthenticationService;
   let router: jasmine.SpyObj<Router>; //instance mock
   let angularFireStore: jasmine.SpyObj<AngularFirestore>; //instance mock
