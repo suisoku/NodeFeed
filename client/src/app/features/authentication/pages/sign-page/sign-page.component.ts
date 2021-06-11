@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CredentialsSettingsModel } from '../../models/credential-settings.model';
@@ -19,12 +18,10 @@ export class SignPageComponent implements OnInit {
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    console.log('aa', this.route.pathFromRoot);
     this.route.url.subscribe((urlSegment) => {
-      console.log(urlSegment);
       if (urlSegment[0].path === 'signup') this.signInDisplayMode = false;
       else if (urlSegment[0].path === 'signin') this.signInDisplayMode = true;
-      else console.log('error');
+      //else throw new Error('urlSegment is faulty'); // TODO: better message throw error
     });
   }
 

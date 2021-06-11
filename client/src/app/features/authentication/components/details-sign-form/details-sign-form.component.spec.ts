@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { FormBuilder, FormGroupDirective, ReactiveFormsModule } from '@angular/forms';
 import { DetailsSignFormComponent } from './details-sign-form.component';
 
 describe('DetailsSignFormComponent', () => {
@@ -8,7 +8,9 @@ describe('DetailsSignFormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [DetailsSignFormComponent]
+      imports: [ReactiveFormsModule],
+      declarations: [DetailsSignFormComponent],
+      providers: [FormGroupDirective, FormBuilder]
     }).compileComponents();
   });
 

@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
 import { BarePostModel } from '../../models/bare-post.model';
-import { PostsService } from '../../services/posts.service';
 
 /**
  * Abstract view of a nodefeed article
@@ -12,7 +11,6 @@ import { PostsService } from '../../services/posts.service';
 })
 export class BarePostComponent {
   @Input() barePost!: BarePostModel;
-  constructor(private postsService: PostsService) {}
 }
 // IdeaPost
 // FeaturePost

@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { Router } from '@angular/router';
 import firebase from 'firebase/app';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -25,7 +24,7 @@ export class AuthenticationService {
     return new firebase.auth.GoogleAuthProvider();
   }
 
-  constructor(private readonly afAuth: AngularFireAuth, private readonly afStore: AngularFirestore, private _router: Router) {
+  constructor(private readonly afAuth: AngularFireAuth, private readonly afStore: AngularFirestore) {
     this.currentUser$ = this.afAuth.user;
     this.isLoggedIn$ = this.currentUser$.pipe(map((user: firebase.User | null): boolean => !!user));
   }
