@@ -30,6 +30,7 @@ export class AccountMenuComponent implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
+    // On tooltip init: programs 3sec showup behaviour
     this.verifyEmailTooltip.changes.subscribe({
       next: (tooltips: QueryList<MatTooltip>) => {
         tooltips?.first?.show();

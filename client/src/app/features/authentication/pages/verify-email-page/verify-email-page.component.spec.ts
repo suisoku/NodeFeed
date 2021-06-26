@@ -17,7 +17,7 @@ describe('VerifyEmailPageComponent', () => {
       'AuthenticationService',
       ['signOut', 'sendEmailVerification', 'updateCurrentUser'],
       {
-        currentUser$: of(FirebaseMockHelper.firebaseUserMock())
+        currentUser$: of(FirebaseMockHelper.userMock())
       }
     );
 

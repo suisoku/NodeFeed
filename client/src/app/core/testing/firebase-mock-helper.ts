@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { FirebaseUser } from 'src/firebase-app';
+import { FirebaseCredential, FirebaseUser } from 'src/firebase-app';
 
 /** This utility class provides numerous mocks useful for stubbing firebase common objects  */
 export class FirebaseMockHelper {
-  static firebaseUserMock = (): FirebaseUser => {
+  static userMock = (): FirebaseUser => {
     return {
       displayName: 'fakeDisplayName',
       email: 'fake@fake.com',
@@ -15,5 +15,14 @@ export class FirebaseMockHelper {
       sendEmailVerification: () => Promise.resolve(),
       reload: () => Promise.resolve()
     } as FirebaseUser;
+  };
+
+  static userCredentialMock = (): FirebaseCredential => {
+    return {
+      credential: null,
+      user: null,
+      additionalUserInfo: null,
+      operationType: null
+    } as FirebaseCredential;
   };
 }

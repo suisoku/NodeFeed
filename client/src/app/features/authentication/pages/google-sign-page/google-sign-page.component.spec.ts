@@ -15,7 +15,7 @@ describe('GoogleSignPageComponent', () => {
   let authService: jasmine.SpyObj<AuthenticationService>;
 
   beforeEach(async () => {
-    const routeDataMock: Observable<Data> = of({ user: FirebaseMockHelper.firebaseUserMock() });
+    const routeDataMock: Observable<Data> = of({ user: FirebaseMockHelper.userMock() });
 
     const routerProvider = jasmine.createSpyObj('Router', ['navigate']);
     const routeProvider = jasmine.createSpyObj('ActivatedRoute', [], { data: routeDataMock });
