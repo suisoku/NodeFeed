@@ -44,8 +44,6 @@ Bug reporting
 Ideas
 News  
 
-<br/>
-
 ### Home page demonstration
 
 ![Home page demonstraction wireframe](_assets/homepage-demo.png)
@@ -108,9 +106,6 @@ The delta time between feature functionality completion and redesign work should
 
 11. PlatformsModule :  
     Mobile versions, general responsivity , etc
-
-<br/>
-<br/>
 
 ### Oberview of the main model concepts	
 
