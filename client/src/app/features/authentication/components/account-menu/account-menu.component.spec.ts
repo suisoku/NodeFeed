@@ -1,7 +1,8 @@
 import { ChangeDetectorRef } from '@angular/core';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, flush, TestBed, tick } from '@angular/core/testing';
 import { MatIcon } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatProgressBar } from '@angular/material/progress-bar';
 import { MatTooltip, MatTooltipModule } from '@angular/material/tooltip';
 import { of, Subject } from 'rxjs';
 import { FirebaseMockHelper } from 'src/app/core/testing/firebase-mock-helper';
@@ -22,7 +23,7 @@ fdescribe('AccountMenuComponent', () => {
     const authServiceProvider = new AuthenticationStubService();
     await TestBed.configureTestingModule({
       imports: [MatTooltipModule, MatMenuModule],
-      declarations: [AccountMenuComponent, MatTooltip, MatIcon],
+      declarations: [AccountMenuComponent, MatTooltip, MatIcon, MatProgressBar],
       providers: [
         { provide: ChangeDetectorRef, useValue: changeDetectionRefProvider },
         { provide: AuthenticationService, useValue: authServiceProvider }
@@ -41,7 +42,7 @@ fdescribe('AccountMenuComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  // main feature specifications
+  // Main feature specifications
   it('should display user menu bar if the user is logged', () => {
     // Arrange (by default spy service returns a user)
     (authenticationService.currentUser$ as Subject<FirebaseUser>).next(FirebaseMockHelper.userMock());
@@ -52,10 +53,6 @@ fdescribe('AccountMenuComponent', () => {
     // Assert
     const firstSpan = fixture.nativeElement.querySelector('span');
     expect(firstSpan.textContent).toContain(fireUserMock.displayName);
-  });
-
-  it('should display loading bar while waiting user authentication status', () => {
-    expect(component).toBeTruthy();
   });
 
   it('should display nothing if user is null', () => {
@@ -73,12 +70,38 @@ fdescribe('AccountMenuComponent', () => {
     expect(mainDiv.querySelector('div')).toBeFalsy();
   });
 
-  //secondary feature specifications
-  it('should display tooltip when no verified email and user hover-event', () => {
+  it('should display loading bar while waiting user authentication status', fakeAsync(() => {
+    // Arrange
+    setTimeout(() => (authenticationService.currentUser$ as Subject<FirebaseUser>).next(FirebaseMockHelper.userMock()), 300);
+
+    // Should display loading
+    fixture.detectChanges();
+    let mainDiv = fixture.nativeElement.querySelector('.nf-account-filler');
+    expect(mainDiv).toBeTruthy();
+
+    //Then should display value
+    tick(300);
+    fixture.detectChanges();
+    const firstSpan = fixture.nativeElement.querySelector('span');
+    mainDiv = fixture.nativeElement.querySelector('.nf-account-filler');
+
+    expect(mainDiv).toBeFalsy();
+    expect(firstSpan.textContent).toContain(fireUserMock.displayName);
+
+    flush();
+  }));
+
+  // secondary feature specifications
+  // TODO: finish secondary spec tests and verify coverage
+  xit('should display tooltip when no verified email and user hover-event', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should disconnect when users click on disconnect button', () => {
+  xit('should change view to nothing if user becomes null in the process', () => {
+    expect(component).toBeTruthy();
+  });
+
+  xit('should disconnect when users click on disconnect button', () => {
     expect(component).toBeTruthy();
   });
 });
