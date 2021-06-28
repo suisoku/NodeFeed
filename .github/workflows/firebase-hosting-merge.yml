@@ -16,6 +16,7 @@ jobs:
         working-directory: client
       - name: Run verifications
         run : yarn lint && yarn style
+        working-directory: client
       - name: Deploy and Host
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
