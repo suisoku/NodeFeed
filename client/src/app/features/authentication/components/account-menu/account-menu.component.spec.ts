@@ -4,7 +4,7 @@ import { MatIcon } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatProgressBar } from '@angular/material/progress-bar';
 import { MatTooltip, MatTooltipModule } from '@angular/material/tooltip';
-import { of, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 import { FirebaseMockHelper } from 'src/app/core/testing/firebase-mock-helper';
 import { FirebaseUser } from 'src/firebase-app';
 import { AuthenticationService } from '../../services/authentication.service';
