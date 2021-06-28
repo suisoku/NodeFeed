@@ -6,5 +6,6 @@ describe('Pipe: ShortNumbere', () => {
   it('create an instance', () => {
     const pipe = new ShortNumberPipe();
     expect(pipe).toBeTruthy();
+    //TODO: add K and M test
   });
 });
