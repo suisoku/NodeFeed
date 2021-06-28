@@ -1,7 +1,7 @@
 
 # Feed module
 
-Feed module is the most important module. In there you will the most added value and the biggest business value. So you really need to envision it thouroughly. 
+Feed module is the most important module. In there you will put the most added value and the biggest business value. So you really need to envision it thouroughly. 
 
 My original idea (besides the core purpose) is to have a nodefeed page wich is essentially a reddit like community with some added benefits 
 	• Advanced bug reporting,(kinda of a glorified post) (Echelon 0: crude label system, then we will see how to transform into a more useful system)
