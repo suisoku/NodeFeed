@@ -4,23 +4,23 @@
 Feed module is the most important module. In there you will put the most added value and the biggest business value. So you really need to envision it thouroughly. 
 
 My original idea (besides the core purpose) is to have a nodefeed page wich is essentially a reddit like community with some added benefits 
-	• Advanced bug reporting,(kinda of a glorified post) (Echelon 0: crude label system, then we will see how to transform into a more useful system)
-		○ Idk how to do it , but you make sure to reference correctly bug without having duplicates 
-	• Built-in ressources system (papers, softwares) (as a sidenav thing)
-	• Listing feature for subproducts(sidenav thing)
-	• Distinguished Feedback/Idea reporting system
-	• Really what I want you to do is more of a github thing than a reddit ultimately , some interesting features include:
-		○ Sponsors and contributors (sidenav)
-		○ Release system
-		○ Link to official page
-		○ Labeling/flair system
+* Advanced bug reporting,(kinda of a glorified post) (Echelon 0: crude label system, then we will see how to transform into a more useful system	
+ Idk how to do it , but you make sure to reference correctly bug without having duplicates 
+* Built-in ressources system (papers, softwares) (as a sidenav thing)
+* Listing feature for subproducts(sidenav thing)
+* Distinguished Feedback/Idea reporting system
+* Really what I want you to do is more of a github thing than a reddit ultimately , some interesting features include:
+	* Sponsors and contributors (sidenav)
+	* Release system
+	* Link to official page
+	* Labeling/flair system
 
 And then companies can claim the page to access 2 things:
-	• Statistical data
-	• Administration tools (this is a problem) [solved]
-		○ Handle feature requests , bugs 
-		○ Publish releases 
-		○ Official communications etc 
+* Statistical data
+* Administration tools (this is a problem) [solved]
+	* Handle feature requests , bugs 
+	* Publish releases 
+	* Official communications etc 
 
 The whole idea is that companies no longer need to support forums/SAV forms etc , it is taken care of by NodeFeed now (uberisation) hence the page claiming.
 Because we are dealing with homogenous communities (it's all about products and business), the author will not have any special control. The rules are the same everywhere (no need of custom moderation like reddit)
@@ -58,8 +58,8 @@ Anyways the general idea is the regular is user is not entitled to administrate 
         
 	
 ## Identified class of problems:
-	• Where to put button(s) that allows to create a nodefeed page ?
-	• Who has control over that page ? Is there a verification process vefore submitting a page ?
-		○ Serious business model  proposition
-	• How to identify a page ? By its domain name , name ? , special identifier ?
+ * Where to put button(s) that allows to create a nodefeed page ?
+ * Who has control over that page ? Is there a verification process vefore submitting a page ?
+   * Serious business model  proposition
+ * How to identify a page ? By its domain name , name ? , special identifier ?
 
