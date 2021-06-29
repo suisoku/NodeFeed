@@ -7,9 +7,7 @@ A functional specification describes how a product will work entirely from the
   * User story wich is the human readable explanation of a given feature
   * Specifications: more narrow requirements of a given feature 
 
-
 ## What is Nodefeed ?
-
 
 The core idea is to create a social media platform between customers and companies in order to share ideas , give feedback and request features and bug fixes ala github ala reddit.
 
@@ -24,17 +22,16 @@ Websites that overlaps with the Nodefeed core's functionalities:
 * Community based pages: Reddit
 * Feedback/Bug report system: Github
 
-
 Cool features that I might add later:
-	• Powerful and huge repository of products
-	• Product comparator
-	• Find where to buy the product
-	• Add Nodefeed badge
-	
-	
+    • Powerful and huge repository of products
+    • Product comparator
+    • Find where to buy the product
+    • Add Nodefeed badge
+
 Pour le systeme de claim s'inspirer de google maps claim un magasin  
 
 ### What is not
+
     It's not Google shopping , because products are created by users, and because is created by  users the product listing will be organic, you will not have products without communities, you will have several products linked to one community. (incentives to enforce)
 
 What you should see on the feed (imagine Iphone feed)
@@ -49,21 +46,22 @@ News
 ![Home page demonstraction wireframe](_assets/homepage-demo.png)
 
 ## Business model
-Will be close to linkedin model:
 
+Will be close to linkedin model:
 
 Main source of profit will be premium subscriptions where I offer statistical data/admin access to products of the company
 Secondary sources (most to least important)
-	• Sponsored content / Classic Ads business model (like any social media)
-		○ Very strong because we are already in a spending platform , its not snapchat
-	• Referes program that goes with advanced features for example comparators/links to sellers etc.
+    • Sponsored content / Classic Ads business model (like any social media)
+        ○ Very strong because we are already in a spending platform , its not snapchat
+    • Referes program that goes with advanced features for example comparators/links to sellers etc.
 Other exotics avenues: crypto / platform-money / reputation etc etc.
 
-
 ## Design: Vision and Values:
-	- Fall into minimalism : Cut to the chase accessibility , streamlined , nippon/jp , 2000's web 
-	- Fall into capability , functionnal features -> speed tool
-	- Then build back up through refactoing to offer design
+
+    - Fall into minimalism : Cut to the chase accessibility , streamlined , nippon/jp , 2000's web 
+    - Fall into capability , functionnal features -> speed tool
+    - Then build back up through refactoing to offer design
+
 The delta time between feature functionality completion and redesign work shouldn't take too little time no too much time
 
 ## Main Modules List
@@ -107,9 +105,10 @@ The delta time between feature functionality completion and redesign work should
 11. PlatformsModule :  
     Mobile versions, general responsivity , etc
 
-### Oberview of the main model concepts	
+### Oberview of the main model concepts
 
 * NodeFeed Page: community around a product or a service 
+  
   * Collection: nodefeeds
   * Title
   * Name
@@ -119,16 +118,18 @@ The delta time between feature functionality completion and redesign work should
   * Picture
 
 * Collections : Posts
+  
   * Title
   * Author ID
   * Type
-  *  Date
-  *  Content
-  *  Nodefeed ID
-  *  LikeCounter
-  *  CommentCounter
-  
+  * Date
+  * Content
+  * Nodefeed ID
+  * LikeCounter
+  * CommentCounter
+
 * Collection: Comments
+  
   * Comment
   * Author ID
   * LikeCounter
@@ -137,11 +138,10 @@ The delta time between feature functionality completion and redesign work should
   * DateJoined
 
 ### Feature concept
+
 A collection of coherent use cases, usually around one page, they heavily share components between them as well as services. A feature offers one functionality.
 
 Feature modules are intended to be self contained.
 
 Each module has a specific scope, e.g. CommentModule, ProfileModule, FeedModule, PhotoModule, ShareModule, LikeModule, etc
 Preferably without too many links between each module
-
-
