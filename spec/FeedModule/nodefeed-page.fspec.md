@@ -3,11 +3,21 @@
 ## User story
 
 The user is able to visit a nodefeed page of a given product.
-Whereby he can post , share, comment , like and fullow semantic posts
+Whereby he can post , share, comment , like semantic posts
 
 
 ## Feature list
-
+* The page in itself
+* Page creation (E0)
+* Semantic Post (PostModule ,but I need a basic one though) (E0) (the only original feature)
+* Follow a page (E0)
+* You can rate a page and share it (E0) ( as a link for amazon for example)
+* Social interaction with posts
+* Home feed (E1)
+* Related nodefeeds
+* Filter a given nodefeed page
+* Ressources side nav zone
+* You need to think harder about cutting edge features 
 ### Page creation
 The user is able to create a nodefeed page of a given product:
 3 questions arises: 
@@ -24,3 +34,4 @@ This works assuming you don't have 2 different products with the same name, whic
 [Q3] Basic name checking. Also use UX guidance to avoid maximally this situation. Then Moderation to remove wrong pages
 
 [Q2] I am tempted to say that the communities collectively decide with their follow vote to choose a product or not. I think the only thing that I can do is to setup incentives to promote one particular direction.
+
