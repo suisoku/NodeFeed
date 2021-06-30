@@ -33,7 +33,6 @@ I don't need to wireframe for that shit , Just basic stuff for now:
 
 
 ### Landing search page
-<br/>
 
 ![Landing search page](_assets/search_page.png)
 
