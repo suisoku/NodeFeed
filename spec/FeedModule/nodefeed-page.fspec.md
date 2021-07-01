@@ -12,7 +12,7 @@ My vision is that a nodefeed page should become the **world reference** in terms
  4. Additional features like bug reporting , feedback , idea submission etc. / e-commerce/github plug
 
 ## Feature list
-* The page in itself
+* [Page display](#page-display)
 * [Page creation](#page-creation)
 * Semantic Post (PostModule ,but I need a basic one though) (E0) (the only original feature)
 * Follow a page (E0)
@@ -45,19 +45,37 @@ This works assuming you don't have 2 different products with the same name, whic
 ### Fonctionalities
 
 * The user will be able to create a page after searching a result if he doesn't find the product (Main route)
-*  He can also create a nodefeed from home page a la reddit (think of a exotic UX place)
-*  Parameters
+*  He can also create a nodefeed from home page a la reddit (think of a exotic UX place) In the navbar
+*  Only an authenticated user can create a nodefeed
+
+
+### UI Specs
+* Modal (no need of a routable page)
+  * 2 step : first check name , give suggestions ala stackoverflow
+  * Next step regular form , with validation
+* Parameters
    *  The title (will create identifier : name already in use tooltip)
    *  Description
    *  Profile picture 
    *  Category ? get relevant : material / imamterial etc
    *  Link to official product / company
 
+
 Later if business is creating/claiming the page we will add additional information for feature purposes
 
 This is deeply linked to SearchModule.
 
+## Page display
 
+### Fonctionalities
+The user should see a page with it's related content and controls  
+The page should be accessible through a link
+### Specs
+* Routable link
+* Obvious stuff display the page , connect control to the page id etc
+* Rate bar (in the header)
+* Follow button (in the header)
+* Sidenav: //TODO:
 ## General considerations
 In general I see 2 main type of products (arbitrary distincitons but hey we well in the 21century)
 
