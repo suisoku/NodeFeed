@@ -8,6 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [ShortNumberPipe],
@@ -21,7 +22,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatIconModule,
     MatProgressBarModule,
     MatSnackBarModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatDialogModule
   ],
   exports: [
     ShortNumberPipe,
@@ -34,7 +36,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatIconModule,
     MatProgressBarModule,
     MatSnackBarModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatDialogModule
   ]
 })
 export class SharedModule {}

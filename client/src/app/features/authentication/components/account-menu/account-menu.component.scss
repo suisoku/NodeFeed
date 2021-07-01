@@ -1,14 +1,12 @@
-@import "global-styles";
-
 .account-box {
   .nf-account-button {
-    border: 1px solid $primary;
-    color: $primary;
+    border: 1px solid #00d1b2;
+    color: #00d1b2;
     padding: 0.4rem 0.6rem;
 
     &:hover {
-      color: $primary;
-      background-color: $white-ter;
+      color: #00d1b2;
+      background-color: hsl(0, 0%, 96%);
     }
 
     &:focus {
@@ -30,13 +28,21 @@
   .nf-menu-icon {
     transform: scale(0.7);
   }
+
+  .nf-add-icon {
+    transform: scale(1.2);
+  }
+
+  .nf-menu-divider {
+    background-color: hsl(0, 0%, 86%);
+    margin: 0.3rem 1rem;
+  }
+
+  .nf-account-filler {
+    width: 200px;
+  }
 }
 
-.nf-menu-divider {
-  background-color: $grey-lighter;
-  margin: 0.3rem 1rem;
-}
-
-.nf-account-filler {
-  width: 200px;
+.createNfModal .mat-dialog-container {
+  padding: 0;
 }

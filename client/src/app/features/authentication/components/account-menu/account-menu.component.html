@@ -1,5 +1,12 @@
 <div class="account-box" *ngIf="!isLoadingUser; else loading">
-  <div *ngIf="user; else noUser">
+  <div *ngIf="user; else noUser" class="is-flex">
+    <button
+      class="button is-primary is-outlined p-2 mr-2"
+      matTooltip="Create a nodefeed page"
+      (click)="openCreateNodefeedModal()"
+    >
+      <mat-icon fontSet="material-icons-outlined" class="nf-add-icon">add</mat-icon>
+    </button>
     <button
       [matMenuTriggerFor]="userMenu"
       (click)="menuIconState = !menuIconState"
