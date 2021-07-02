@@ -2,14 +2,21 @@
   <div class="progress-bar" [style.--progress-step]="progressStep"></div>
   <div class="content pt-4">
     <h4 class="has-text-primary has-text-weight-normal mb-5 mt-1">Create a Nodefeed</h4>
-    <div class="nf-separator"></div>
-    <div class="control">
-      <button class="button is-rounded is-link">
-        <span>Create</span>
-      </button>
+    <p>
+      You haven't found the nodefeed page that you are looking for?, Go ahead and be the first to create the nodefeed about the
+      product that you want
+    </p>
+    <div class="field">
+      <label class="label">Name</label>
+      <div class="control">
+        <input class="input" type="text" placeholder="Text input" />
+      </div>
     </div>
-    <div class="pt-3 has-text-centered">
-      <small>Not you? <a>Cancel here</a></small>
+
+    <div class="nf-separator"></div>
+    <div class="buttons is-right">
+      <button class="button is-inverted is-danger">Cancel</button>
+      <button class="button is-outlined is-link">Create</button>
     </div>
   </div>
 </div>
