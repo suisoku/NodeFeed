@@ -1,6 +1,7 @@
 .nf-form-container {
   position: relative; //needed for progress bar position
-  width: 390px;
+  max-width: 550px;
+  //TODO: add diffferent container sizes for smaller screens and smartphones
 
   .progress-bar {
     --progress-step: 0%;
@@ -51,4 +52,10 @@
   display: flex;
   margin: 36px 10px;
   text-align: center;
+}
+
+.nf-tooltip-icon {
+  transform: translate(2px, 2px);
+  font-size: 16px;
+  color: grey;
 }
