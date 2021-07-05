@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { NodefeedModel } from 'src/app/core/models/nodefeed.model';
 import { NodefeedService } from 'src/app/core/services/nodefeed.service';
 
 /**
@@ -17,9 +18,10 @@ export class CreateFeedModalComponent implements OnInit, AfterViewInit {
   constructor(public nodefeedService: NodefeedService, private modalRef: MatDialogRef<CreateFeedModalComponent>) {}
 
   ngOnInit(): void {
-    this.nodefeedNameControl = new FormControl('');
+    this.nodefeedNameControl = new FormCossntrol('', { updateOn: 'blur', validators: [Validators.minLength(3)] });
     this.nodefeedNameControl.valueChanges.subscribe((name: string) => {
-      //this.nodefeedService.getNodeFeed$(name). You should only request data when out of focus( clicking submit ,or by doing something elese)
+      //TODO: add validator to ban special characters
+      this.nodefeedService.getNodeFeed$(name).subscribe((nodefeed: NodefeedModel) =>)
     });
   }
 
