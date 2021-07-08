@@ -20,15 +20,16 @@
       </label>
       <div class="control mt-3">
         <input class="input" type="text" placeholder="i.e Iphone" [formControl]="nodefeedNameControl" />
-        <p *ngIf="true" class="help is-danger">This nodefeed name is already in use</p>
+        <p *ngIf="nameExists" class="help is-danger">This nodefeed name is already in use</p>
+        <p *ngIf="nodefeedNameControl.invalid" class="help is-danger">The name requires at least 3 characters in length</p>
       </div>
     </div>
     <div>A nodefeed page with the same name already exists, maybe this is the product you are looking for:</div>
 
     <div class="nf-separator"></div>
     <div class="buttons is-right">
-      <button class="button is-inverted is-danger">Cancel</button>
-      <button class="button is-outlined is-link">Next <mat-icon class="pl-1">navigate_next</mat-icon></button>
+      <button (click)="closeModal()" class="button is-inverted is-danger">Cancel</button>
+      <button (click)="createNodefeedPage()" class="button is-outlined is-link">Next <mat-icon class="pl-1">navigate_next</mat-icon></button>
     </div>
   </div>
 </div>
