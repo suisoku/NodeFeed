@@ -1,8 +1,13 @@
 .nf-form-container {
   position: relative; //needed for progress bar position
-  max-width: 550px;
-  //TODO: add diffferent container sizes for smaller screens and smartphones
+  height: 400px;
+  width: 600px;
 
+  @media (max-width: 750px) {
+    width: 400px;
+  }
+
+  // TODO : move progress-bar css  it to common utilities scss file
   .progress-bar {
     --progress-step: 0%;
 

@@ -1,10 +1,10 @@
 <div class="nf-form-container box">
   <div class="progress-bar" [style.--progress-step]="progressStep"></div>
-  <div class="content pt-4">
+  <div *ngIf="!nextViewNodefeedCreation" class="content pt-4">
     <h4 class="has-text-primary has-text-weight-normal mb-5 mt-1">Create a Nodefeed page</h4>
     <p>
-      You haven't found the nodefeed page that you are looking for?, Go ahead and be the first to create the nodefeed page about
-      the product that you want
+      You haven't found the nodefeed page you are looking for ? Go ahead and be the first to create the nodefeed page about the
+      product that you want !
     </p>
     <div class="field mt-3">
       <label class="label">
@@ -24,12 +24,36 @@
         <p *ngIf="nodefeedNameControl.invalid" class="help is-danger">The name requires at least 3 characters in length</p>
       </div>
     </div>
-    <div>A nodefeed page with the same name already exists, maybe this is the product you are looking for:</div>
-
     <div class="nf-separator"></div>
     <div class="buttons is-right">
       <button (click)="closeModal()" class="button is-inverted is-danger">Cancel</button>
-      <button (click)="createNodefeedPage()" class="button is-outlined is-link">Next <mat-icon class="pl-1">navigate_next</mat-icon></button>
+      <button (click)="createNodefeedPage()" class="button is-outlined is-link">
+        Next <mat-icon class="pl-1">navigate_next</mat-icon>
+      </button>
+    </div>
+  </div>
+  <div *ngIf="nextViewNodefeedCreation" class="content pt-4">
+    <h4 class="has-text-primary has-text-weight-normal mb-5 mt-1">Create a Nodefeed page</h4>
+    <p>Continue</p>
+    <div class="field mt-3">
+      <label class="label">
+        Name
+        <mat-icon
+          class="nf-tooltip-icon"
+          fontSet="material-icons-outlined"
+          matTooltip="Use the name of the corresponding product, this name cannot be changed"
+          matTooltipPosition="right"
+        >
+          info
+        </mat-icon>
+      </label>
+    </div>
+    <div class="nf-separator"></div>
+    <div class="buttons is-right">
+      <button (click)="closeModal()" class="button is-inverted is-danger">Cancel</button>
+      <button (click)="createNodefeedPage()" class="button is-outlined is-link">
+        Next <mat-icon class="pl-1">navigate_next</mat-icon>
+      </button>
     </div>
   </div>
 </div>
