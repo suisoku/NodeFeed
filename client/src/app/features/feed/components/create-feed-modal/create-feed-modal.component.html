@@ -32,28 +32,5 @@
       </button>
     </div>
   </div>
-  <div *ngIf="nextViewNodefeedCreation" class="content pt-4">
-    <h4 class="has-text-primary has-text-weight-normal mb-5 mt-1">Create a Nodefeed page</h4>
-    <p>Continue</p>
-    <div class="field mt-3">
-      <label class="label">
-        Name
-        <mat-icon
-          class="nf-tooltip-icon"
-          fontSet="material-icons-outlined"
-          matTooltip="Use the name of the corresponding product, this name cannot be changed"
-          matTooltipPosition="right"
-        >
-          info
-        </mat-icon>
-      </label>
-    </div>
-    <div class="nf-separator"></div>
-    <div class="buttons is-right">
-      <button (click)="closeModal()" class="button is-inverted is-danger">Cancel</button>
-      <button (click)="createNodefeedPage()" class="button is-outlined is-link">
-        Next <mat-icon class="pl-1">navigate_next</mat-icon>
-      </button>
-    </div>
-  </div>
+  <app-next-step-nf-page-creation *ngIf="nextViewNodefeedCreation"></app-next-step-nf-page-creation>
 </div>

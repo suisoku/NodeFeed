@@ -40,12 +40,8 @@ export class CreateFeedModalComponent implements OnInit, AfterViewInit {
     this.nodefeedService.getNodeFeed$(this.nodefeedNameControl.value).subscribe((nodefeed) => {
       this.nameExists = !!nodefeed;
       this.nextViewNodefeedCreation = !this.nameExists;
-      // if doesnt exist move on to next step
-      // T spec I need to display another view and flush current one and I need a transition to do so
-      // options ? routable modals (but doenst adress performance)
-      // another child component (for more separation but nothing special)
-      // simple ng-template that displays next view
-      //(I will go with this one , always look for simple solution , only complexify if there is a particular feature needed)
+      //TODO : complete error handling
+      //TODO: advance progress step
     });
   }
 

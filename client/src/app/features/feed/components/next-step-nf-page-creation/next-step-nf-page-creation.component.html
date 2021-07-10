@@ -1,0 +1,43 @@
+<h4 class="has-text-primary has-text-weight-normal mb-5 mt-1">Complete the {{true}} page</h4>
+<p>Just add a few more information describing the product</p>
+<div class="field mt-3">
+  <label class="label">
+    Description
+    <mat-icon class="nf-tooltip-icon" fontSet="material-icons-outlined" matTooltip="nothing" matTooltipPosition="right">
+      info
+    </mat-icon>
+  </label>
+  <div class="control mt-3">
+    <textarea class="textarea" placeholder="Nodefeed product description" [formControl]="descriptionFormControl"></textarea>
+    <!-- <p *ngIf="nameExists" class="help is-danger">Please describe the product in a few words</p>-->
+  </div>
+</div>
+<div class="field mt-3">
+  <label class="label">
+    Category Tags
+    <mat-icon class="nf-tooltip-icon" fontSet="material-icons-outlined" matTooltip="nothing" matTooltipPosition="right">
+      info
+    </mat-icon>
+  </label>
+  <div class="control mt-3">
+    <input class="input" type="text" placeholder="Phone, Electronics ..." />
+    <!-- <p *ngIf="nameExists" class="help is-danger">Please describe the product in a few words</p>-->
+  </div>
+</div>
+<div class="field mt-3">
+  <label class="label">
+    Optional Link
+    <mat-icon class="nf-tooltip-icon" fontSet="material-icons-outlined" matTooltip="nothing" matTooltipPosition="right">
+      info
+    </mat-icon>
+  </label>
+  <div class="control mt-3">
+    <input class="input" type="text" placeholder="e.g https:/apple.com/iphone/" />
+    <!-- <p *ngIf="nameExists" class="help is-danger">Please describe the product in a few words</p>-->
+  </div>
+</div>
+<div class="nf-separator"></div>
+<div class="buttons is-right">
+  <button (click)="true" class="button is-inverted is-danger">Previous</button>
+  <button (click)="true" class="button is-outlined is-link">Complete <mat-icon class="pl-1">navigate_next</mat-icon></button>
+</div>
