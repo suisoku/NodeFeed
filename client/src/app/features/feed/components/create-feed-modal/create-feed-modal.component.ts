@@ -17,9 +17,9 @@ export class CreateFeedModalComponent implements OnInit, AfterViewInit {
   progressStep = '0%';
   nameExists = false;
   creationSteps = {
-    nameStepCompleted: false,
-    detailsStepCompleted: false,
-    profileUploadStepCompleted: false
+    nameStepCompleted: true,
+    detailsStepCompleted: true,
+    profileUploadStepCompleted: true
   };
   nodefeedToCreate: NodefeedModel = {
     title: '',

@@ -1,0 +1,26 @@
+.nf-profile {
+  border-radius: 50%;
+  overflow: hidden;
+  height: 116px;
+  width: 116px;
+  margin-right: 2rem;
+  box-shadow: 0 16px 30px -15px rgba(0, 0, 0, 0.5);
+
+  .nf-profile-image {
+    object-fit: cover;
+  }
+}
+
+.nf-separator {
+  align-items: center;
+  border-bottom: 1px solid #dadde1;
+  display: flex;
+  margin: 16px 10px;
+  text-align: center;
+}
+
+.nf-photo-uploader {
+  max-width: 280px;
+  height: 132px;
+  font-size: 0.9rem;
+}
