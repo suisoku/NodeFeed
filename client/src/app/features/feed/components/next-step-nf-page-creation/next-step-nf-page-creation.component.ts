@@ -1,5 +1,7 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NodefeedModel } from 'src/app/core/models/nodefeed.model';
+import { FormHelper } from 'src/app/core/utilities/form-helper';
 
 /**
  * Next step view of the page creation modal
@@ -11,13 +13,32 @@ import { FormControl, Validators } from '@angular/forms';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NextStepNfPageCreationComponent implements OnInit {
-  descriptionFormControl!: FormControl;
+  @Input() nodefeedModel!: NodefeedModel;
+  @Output() nodefeedModelChange = new EventEmitter<NodefeedModel>();
+  @Output() cancel = new EventEmitter<void>();
+  @Output() completed = new EventEmitter<void>();
 
-  constructor() {
-    //
-  }
+  detailsPageCreationForm!: FormGroup;
+
+  constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
-    this.descriptionFormControl = new FormControl('', { updateOn: 'blur', validators: [Validators.required] });
+    this.detailsPageCreationForm = this.formBuilder.group({
+      description: ['', [Validators.required, Validators.minLength(10)]],
+      categories: [''],
+      link: ['']
+    });
+  }
+
+  fillingDetailsStep(): void {
+    FormHelper.markGroupDirty(this.detailsPageCreationForm);
+    this.nodefeedModel.description = this.detailsPageCreationForm.get('description')?.value as string;
+    this.nodefeedModel.tags = this.detailsPageCreationForm.get('categories')?.value as string;
+    this.nodefeedModel.officialLink = this.detailsPageCreationForm.get('link')?.value as string;
+
+    if (this.detailsPageCreationForm.valid) {
+      this.nodefeedModelChange.emit(this.nodefeedModel);
+      this.completed.emit();
+    }
   }
 }

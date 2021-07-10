@@ -29,6 +29,10 @@ input.ng-dirty.ng-valid {
   @extend .is-success;
 }
 
+textarea.ng-dirty.ng-invalid {
+  @extend .is-danger;
+}
+
 select.ng-dirty.ng-invalid {
   border-color: $danger;
 }

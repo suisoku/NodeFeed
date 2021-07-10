@@ -61,6 +61,11 @@ This works assuming you don't have 2 different products with the same name, whic
    *  Link to official product / company
 
 
+### TSPEC : Private/readonly/special parameters
+  * Rating (readonly)
+  * Followers (readonly)
+  * Profile picture (google cloud thing)
+  
 Later if business is creating/claiming the page we will add additional information for feature purposes
 
 This is deeply linked to SearchModule.

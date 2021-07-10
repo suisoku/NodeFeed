@@ -21,7 +21,9 @@
       <div class="control mt-3">
         <input class="input" type="text" placeholder="i.e Iphone" [formControl]="nodefeedNameControl" />
         <p *ngIf="nameExists" class="help is-danger">This nodefeed name is already in use</p>
-        <p *ngIf="nodefeedNameControl.invalid" class="help is-danger">The name requires at least 3 characters in length</p>
+        <p *ngIf="nodefeedNameControl.invalid && nodefeedNameControl.dirty" class="help is-danger">
+          The name requires at least 3 characters in length
+        </p>
       </div>
     </div>
     <div class="nf-separator"></div>
@@ -33,6 +35,9 @@
     </div>
   </div>
   <app-next-step-nf-page-creation
+    [(nodefeedModel)]="nodefeedToCreate"
+    (cancel)="closeModal()"
+    (completed)="sendToProfileUploadStep()"
     *ngIf="creationSteps.nameStepCompleted && !creationSteps.detailsStepCompleted"
   ></app-next-step-nf-page-creation>
   <app-upload-pic-step-page-creation *ngIf="creationSteps.detailsStepCompleted"></app-upload-pic-step-page-creation>

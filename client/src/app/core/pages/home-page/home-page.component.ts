@@ -26,6 +26,8 @@ export class HomePageComponent implements OnInit {
       name: '@instagram',
       title: 'Instagram',
       description: 'New age platform allowing young creators to share their feed',
+      officialLink: '',
+      tags: '',
       followersCounter: 62734,
       postsCounter: 34167
     });
@@ -50,6 +52,8 @@ export class HomePageComponent implements OnInit {
       name: '@instagram',
       title: 'Instagram',
       description: 'New age platform allowing young creators to share their feed',
+      officialLink: '',
+      tags: '',
       followersCounter: 652734,
       postsCounter: 14167
     };

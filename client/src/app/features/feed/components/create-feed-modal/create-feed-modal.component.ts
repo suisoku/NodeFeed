@@ -24,6 +24,8 @@ export class CreateFeedModalComponent implements OnInit, AfterViewInit {
   nodefeedToCreate: NodefeedModel = {
     title: '',
     name: '',
+    officialLink: '',
+    tags: '',
     description: '',
     followersCounter: 0,
     postsCounter: 0
@@ -32,12 +34,18 @@ export class CreateFeedModalComponent implements OnInit, AfterViewInit {
   constructor(public nodefeedService: NodefeedService, private modalRef: MatDialogRef<CreateFeedModalComponent>) {}
 
   ngOnInit(): void {
-    this.nodefeedNameControl = new FormControl('', { updateOn: 'blur', validators: [Validators.minLength(3)] });
+    this.nodefeedNameControl = new FormControl('', {
+      updateOn: 'blur',
+      validators: [Validators.minLength(3), Validators.required]
+    });
     this.nodefeedNameControl.valueChanges
       .pipe(
-        tap((value) => console.log(value)),
+        tap(() => (this.nameExists = false)),
         filter((nodeFeedName: string) => nodeFeedName.length >= 3),
-        switchMap((nodeFeedName) => this.nodefeedService.getNodeFeed$(nodeFeedName))
+        switchMap((nodeFeedName) => {
+          const nodeFeedId = nodeFeedName.replace(' ', '.'); //TODO: more robust regex, handle edge cases
+          return this.nodefeedService.getNodeFeed$(nodeFeedId);
+        })
       )
       .subscribe((nodefeed) => {
         this.nameExists = !!nodefeed;
@@ -49,14 +57,26 @@ export class CreateFeedModalComponent implements OnInit, AfterViewInit {
   }
 
   nameStepNodefeedPage(): void {
-    // I need to take the title and remove the spaces
-    this.nodefeedService.getNodeFeed$(this.nodefeedNameControl.value).subscribe((nodefeed) => {
-      this.nameExists = !!nodefeed;
-      this.creationSteps.nameStepCompleted = !this.nameExists;
+    //TODO: optmizable ? doing a request although we made one on blur
+    const nodeFeedId = (this.nodefeedNameControl.value as string).replace(' ', '.');
+    if (this.nodefeedNameControl.invalid) {
+      this.nodefeedNameControl.markAsDirty();
+      return;
+    }
+    this.nodefeedService.getNodeFeed$(nodeFeedId).subscribe((nodefeed) => {
+      if (nodefeed == null) {
+        this.nodefeedToCreate.title = this.nodefeedNameControl.value as string;
+        this.nodefeedToCreate.name = nodeFeedId;
+        this.creationSteps.nameStepCompleted = true;
 
-      //TODO : complete error handling
-      //TODO: advance progress step
+        this.progressStep = '50%';
+      }
     });
+  }
+
+  sendToProfileUploadStep(): void {
+    this.creationSteps.detailsStepCompleted = true;
+    this.progressStep = '80%';
   }
 
   closeModal(): void {
