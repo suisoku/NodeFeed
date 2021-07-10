@@ -2,6 +2,7 @@ import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { filter, switchMap, tap } from 'rxjs/operators';
+import { NodefeedModel } from 'src/app/core/models/nodefeed.model';
 import { NodefeedService } from 'src/app/core/services/nodefeed.service';
 
 /**
@@ -15,7 +16,18 @@ export class CreateFeedModalComponent implements OnInit, AfterViewInit {
   nodefeedNameControl!: FormControl;
   progressStep = '0%';
   nameExists = false;
-  nextViewNodefeedCreation = false;
+  creationSteps = {
+    nameStepCompleted: false,
+    detailsStepCompleted: false,
+    profileUploadStepCompleted: false
+  };
+  nodefeedToCreate: NodefeedModel = {
+    title: '',
+    name: '',
+    description: '',
+    followersCounter: 0,
+    postsCounter: 0
+  };
 
   constructor(public nodefeedService: NodefeedService, private modalRef: MatDialogRef<CreateFeedModalComponent>) {}
 
@@ -36,10 +48,12 @@ export class CreateFeedModalComponent implements OnInit, AfterViewInit {
     setTimeout(() => (this.progressStep = '25%'), 300);
   }
 
-  createNodefeedPage(): void {
+  nameStepNodefeedPage(): void {
+    // I need to take the title and remove the spaces
     this.nodefeedService.getNodeFeed$(this.nodefeedNameControl.value).subscribe((nodefeed) => {
       this.nameExists = !!nodefeed;
-      this.nextViewNodefeedCreation = !this.nameExists;
+      this.creationSteps.nameStepCompleted = !this.nameExists;
+
       //TODO : complete error handling
       //TODO: advance progress step
     });

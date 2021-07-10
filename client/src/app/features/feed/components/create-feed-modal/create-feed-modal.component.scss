@@ -1,53 +1,9 @@
 .nf-form-container {
   position: relative; //needed for progress bar position
-  //height: 400px;
   width: 600px;
 
   @media (max-width: 750px) {
     width: 400px;
-  }
-
-  // TODO : move progress-bar css  it to common utilities scss file
-  .progress-bar {
-    --progress-step: 0%;
-
-    height: 1rem;
-    position: absolute;
-    top: 0;
-    left: 0;
-    border-radius: 6px 6px 50% 50%;
-    width: 100%;
-    background-color: #ccd5f887;
-    display: flex;
-    align-items: center;
-    overflow: hidden; // to make inner child obey parent borders
-
-    &::before {
-      content: "";
-      display: block;
-      height: 1rem;
-      width: var(--progress-step, 100);
-      overflow: hidden;
-      box-shadow: inset -2px 5px 10px -4px #bcbcbc7a;
-      background: linear-gradient(90deg, #1ce0c3 40%, #02859c);
-      animation: progress-animation 3s linear infinite;
-      background-size: 200% 200%;
-      transition: width 1s;
-
-      @keyframes progress-animation {
-        0% {
-          background-position: 0%;
-        }
-
-        50% {
-          background-position: 90%;
-        }
-
-        100% {
-          background-position: 0%;
-        }
-      }
-    }
   }
 }
 
@@ -55,7 +11,7 @@
   align-items: center;
   border-bottom: 1px solid #dadde1;
   display: flex;
-  margin: 36px 10px;
+  margin: 40px 10px 20px 10px;
   text-align: center;
 }
 
