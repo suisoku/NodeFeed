@@ -7359,6 +7359,13 @@ next-tick@~1.0.0:
   resolved "https://registry.yarnpkg.com/next-tick/-/next-tick-1.0.0.tgz#ca86d1fe8828169b0120208e3dc8424b9db8342c"
   integrity sha1-yobR/ogoFpsBICCOPchCS524NCw=
 
+ngx-image-cropper@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/ngx-image-cropper/-/ngx-image-cropper-4.0.0.tgz#8981f42503b724288a3ae40c1c6d5d925eb81915"
+  integrity sha512-6g9/4DepnOO8PTZcdH7qZSur/e+PriekjMeJFr2WGVP4/DkNxYqneVerpuwghcpjETp30ClO5iG6098mFzV++w==
+  dependencies:
+    tslib "^1.10.0"
+
 nice-try@^1.0.4:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/nice-try/-/nice-try-1.0.5.tgz#a3378a7696ce7d223e88fc9b764bd7ef1089e366"

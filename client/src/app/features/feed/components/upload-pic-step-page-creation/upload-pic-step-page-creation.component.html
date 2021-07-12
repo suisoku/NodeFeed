@@ -1,17 +1,49 @@
-<h4 class="has-text-primary is-size-5 mb-5 mt-1">Almost done !</h4>
-
-<div class="is-flex is-justify-content-center mt-5">
-  <figure class="nf-profile is-flex-shrink-0">
-    <img class="nf-profile-image" src="assets/pro-pic.png" />
-  </figure>
-  <div class="nf-photo-uploader">
-    <p>Last step, add a picture representing the product (Recommanded size : 512x512)</p>
-    <button class="button is-link is-fullwidth mt-3">Upload an image</button>
-    <div class="mt-2 has-text-centered is-size-7"><a>Reset the image</a></div>
+<div *ngIf="!imageSelected; else photoEditor">
+  <h4 class="has-text-primary is-size-5 mb-5 mt-1">Almost done !</h4>
+  <div class="is-flex is-justify-content-center mt-5">
+    <figure class="nf-profile is-flex-shrink-0">
+      <img class="nf-profile-image" [src]="croppedImage" />
+      <span *ngIf="!croppedImage" class="nf-fallback-initial">{{ getNameInitial() | titlecase}}</span>
+    </figure>
+    <div class="nf-photo-uploader">
+      <p>Last step, add a picture representing the product (Recommanded size : 512x512)</p>
+      <div class="file is-link mt-3">
+        <label class="file-label is-flex-grow-1">
+          <input class="file-input" type="file" name="resume" (change)="fileChangeEvent($event)" />
+          <span class="file-cta nf-uploader-button">
+            <span class="file-icon">
+              <i class="fas fa-upload"></i>
+            </span>
+            <span class="file-label"> Choose a file… </span>
+          </span>
+        </label>
+      </div>
+      <div class="mt-2 has-text-centered is-size-7"><a (click)="croppedImage=null">Reset the image</a></div>
+    </div>
+  </div>
+  <div class="nf-separator"></div>
+  <div class="buttons is-right">
+    <button (click)="cancel.emit()" class="button is-inverted is-danger">Cancel</button>
+    <button (click)="completeUpload()" class="button is-outlined is-link">Create <mat-icon class="pl-1">done</mat-icon></button>
   </div>
 </div>
-<div class="nf-separator"></div>
-<div class="buttons is-right">
-  <button (click)="true" class="button is-inverted is-danger">Cancel</button>
-  <button (click)="true" class="button is-outlined is-link">Create <mat-icon class="pl-1">add</mat-icon></button>
-</div>
+
+<ng-template #photoEditor>
+  <div class="">
+    <h4 class="has-text-primary is-size-5 mb-5 mt-1">Edit the picture</h4>
+    <div class="nf-cropper-box">
+      <image-cropper
+        [imageChangedEvent]="imageSelected"
+        [maintainAspectRatio]="true"
+        [roundCropper]="true"
+        (imageCropped)="imageCropped($event)"
+      ></image-cropper>
+    </div>
+    <!-- <img [src]="croppedImage" /> -->
+    <div class="nf-separator"></div>
+    <div class="buttons is-right">
+      <button (click)="goBackFromEditor()" class="button is-inverted is-danger">Go back</button>
+      <button (click)="applyCropping()" class="button is-outlined is-link">Apply</button>
+    </div>
+  </div>
+</ng-template>

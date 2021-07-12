@@ -17,9 +17,9 @@ export class CreateFeedModalComponent implements OnInit, AfterViewInit {
   progressStep = '0%';
   nameExists = false;
   creationSteps = {
-    nameStepCompleted: true,
-    detailsStepCompleted: true,
-    profileUploadStepCompleted: true
+    nameStepCompleted: false,
+    detailsStepCompleted: false,
+    profileUploadStepCompleted: false
   };
   nodefeedToCreate: NodefeedModel = {
     title: '',
@@ -77,6 +77,11 @@ export class CreateFeedModalComponent implements OnInit, AfterViewInit {
   sendToProfileUploadStep(): void {
     this.creationSteps.detailsStepCompleted = true;
     this.progressStep = '80%';
+  }
+
+  createNodeFeedPage(): void {
+    //on event completion
+    this.progressStep = '100%';
   }
 
   closeModal(): void {

@@ -5,9 +5,10 @@ import { CreateFeedModalComponent } from './components/create-feed-modal/create-
 import { FeedRoutingModule } from './feed-routing.module';
 import { NextStepNfPageCreationComponent } from './components/next-step-nf-page-creation/next-step-nf-page-creation.component';
 import { UploadPicStepPageCreationComponent } from './components/upload-pic-step-page-creation/upload-pic-step-page-creation.component';
+import { ImageCropperModule } from 'ngx-image-cropper';
 
 @NgModule({
   declarations: [CreateFeedModalComponent, NextStepNfPageCreationComponent, UploadPicStepPageCreationComponent],
-  imports: [CommonModule, SharedModule,FeedRoutingModule]
+  imports: [CommonModule, SharedModule, FeedRoutingModule, ImageCropperModule]
 })
 export class FeedModule {}

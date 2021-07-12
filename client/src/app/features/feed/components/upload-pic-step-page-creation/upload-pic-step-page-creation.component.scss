@@ -5,9 +5,17 @@
   width: 116px;
   margin-right: 2rem;
   box-shadow: 0 16px 30px -15px rgba(0, 0, 0, 0.5);
+  background-color: #44bd94e0;
+  text-align: center;
 
   .nf-profile-image {
     object-fit: cover;
+  }
+
+  .nf-fallback-initial {
+    color: white;
+    font-size: 4rem;
+    line-height: 7rem;
   }
 }
 
@@ -23,4 +31,15 @@
   max-width: 280px;
   height: 132px;
   font-size: 0.9rem;
+
+  .nf-uploader-button {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.nf-cropper-box {
+  width: 550px;
+  max-height: 400px;
 }

@@ -40,5 +40,10 @@
     (completed)="sendToProfileUploadStep()"
     *ngIf="creationSteps.nameStepCompleted && !creationSteps.detailsStepCompleted"
   ></app-next-step-nf-page-creation>
-  <app-upload-pic-step-page-creation *ngIf="creationSteps.detailsStepCompleted"></app-upload-pic-step-page-creation>
+  <app-upload-pic-step-page-creation
+    *ngIf="creationSteps.detailsStepCompleted"
+    [nodeFeedName]="nodefeedToCreate.title"
+    (cancel)="closeModal()"
+    (save)="createNodeFeedPage()"
+  ></app-upload-pic-step-page-creation>
 </div>
