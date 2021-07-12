@@ -44,6 +44,6 @@
     *ngIf="creationSteps.detailsStepCompleted"
     [nodeFeedName]="nodefeedToCreate.title"
     (cancel)="closeModal()"
-    (save)="createNodeFeedPage()"
+    (save)="createNodeFeedPage($event)"
   ></app-upload-pic-step-page-creation>
 </div>

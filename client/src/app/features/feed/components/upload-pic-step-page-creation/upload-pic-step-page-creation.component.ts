@@ -43,7 +43,7 @@ export class UploadPicStepPageCreationComponent {
   }
 
   completeUpload(): void {
-    //compress
+    //TODO: compress image
     if (this.croppedImage) {
       console.log(this.croppedImage.length);
     }

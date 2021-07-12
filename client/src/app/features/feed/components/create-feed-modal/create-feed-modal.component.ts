@@ -43,7 +43,7 @@ export class CreateFeedModalComponent implements OnInit, AfterViewInit {
         tap(() => (this.nameExists = false)),
         filter((nodeFeedName: string) => nodeFeedName.length >= 3),
         switchMap((nodeFeedName) => {
-          const nodeFeedId = nodeFeedName.replace(' ', '.'); //TODO: more robust regex, handle edge cases
+          const nodeFeedId = nodeFeedName.replace(/ /g, '.'); //TODO: more robust regex, handle edge cases
           return this.nodefeedService.getNodeFeed$(nodeFeedId);
         })
       )
@@ -58,7 +58,7 @@ export class CreateFeedModalComponent implements OnInit, AfterViewInit {
 
   nameStepNodefeedPage(): void {
     //TODO: optmizable ? doing a request although we made one on blur
-    const nodeFeedId = (this.nodefeedNameControl.value as string).replace(' ', '.');
+    const nodeFeedId = (this.nodefeedNameControl.value as string).replace(/ /g, '.');
     if (this.nodefeedNameControl.invalid) {
       this.nodefeedNameControl.markAsDirty();
       return;
@@ -79,9 +79,27 @@ export class CreateFeedModalComponent implements OnInit, AfterViewInit {
     this.progressStep = '80%';
   }
 
-  createNodeFeedPage(): void {
+  createNodeFeedPage(dataPicture: string | null): void {
     //on event completion
-    this.progressStep = '100%';
+    console.log('info', this.nodefeedToCreate, dataPicture?.length);
+    this.progressStep = '90%';
+    this.nodefeedService
+      .createNodeFeed(this.nodefeedToCreate)
+      .then(() => {
+        if (!dataPicture) {
+          this.progressStep = '100%';
+          this.closeModal();
+          return;
+        }
+        this.nodefeedService
+          .storeNodefeedPicture(this.nodefeedToCreate.name, dataPicture)
+          .then(() => {
+            this.progressStep = '100%';
+            this.closeModal();
+          })
+          .catch((error) => console.log(error));
+      })
+      .catch((error) => console.log(error));
   }
 
   closeModal(): void {
