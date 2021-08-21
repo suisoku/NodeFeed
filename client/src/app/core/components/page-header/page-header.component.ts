@@ -11,4 +11,9 @@ import { NodefeedModel } from '../../models/nodefeed.model';
 })
 export class PageHeaderComponent {
   @Input() nodefeed!: NodefeedModel | null;
+  @Input() profilePicture!: string | null;
+
+  getNameInitial(): string {
+    return this.nodefeed?.name.charAt(0) || 'A';
+  }
 }

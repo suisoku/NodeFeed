@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAnalyticsModule } from '@angular/fire/analytics';
@@ -12,6 +13,7 @@ import { SharedModule } from './shared/shared.module';
 @NgModule({
   declarations: [AppComponent],
   imports: [
+    HttpClientModule,
     BrowserModule,
     BrowserAnimationsModule,
     SharedModule,

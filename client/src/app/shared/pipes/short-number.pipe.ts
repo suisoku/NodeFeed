@@ -9,7 +9,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class ShortNumberPipe implements PipeTransform {
   transform(number: number): null | string {
     if (isNaN(number) || number === null || number === 0) {
-      return null;
+      return '0';
     } // will only work value is a number
     let abs = Math.abs(number);
     const rounder = Math.pow(10, 1);

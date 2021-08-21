@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { concatMap, map, switchMap } from 'rxjs/operators';
 import { NodefeedModel } from '../models/nodefeed.model';
 import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage';
+import { HttpClient } from '@angular/common/http';
 
 /**
  * Service managing nodefeed posts uses {@link AngularFireStore}
@@ -15,7 +16,7 @@ export class NodefeedService {
   nodefeeds: NodefeedModel[] = [];
   nodefeedsRef: AngularFirestoreCollection<NodefeedModel>;
 
-  constructor(private db: AngularFirestore, private storage: AngularFireStorage) {
+  constructor(private db: AngularFirestore, private storage: AngularFireStorage, private http: HttpClient) {
     this.nodefeedsRef = db.collection('nodefeeds');
   }
 
@@ -33,5 +34,11 @@ export class NodefeedService {
   storeNodefeedPicture(nodefeedName: string, picture: string): AngularFireUploadTask {
     const ref = this.storage.ref(`nodefeed_pictures/${nodefeedName}`);
     return ref.putString(picture);
+  }
+
+  getNodefeedPicture$(nodefeedName: string): Observable<string> {
+    const ref = this.storage.ref(`nodefeed_pictures/${nodefeedName}`);
+    const headers = { 'Access-Control-Allow-Origin': '*' };
+    return ref.getDownloadURL().pipe(switchMap((url: string) => this.http.get(url, { headers, responseType: 'text' })));
   }
 }

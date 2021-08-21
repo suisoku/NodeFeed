@@ -1,0 +1,51 @@
+@import "global-styles";
+
+.nf-layout-container {
+  padding: 20px 10px;
+
+  @media (min-width: 705px) and (max-width: 860px) {
+    align-items: start !important;
+  }
+}
+
+.nf-container {
+  max-width: 980px;
+  min-width: 380px;
+  width: 100%;
+}
+
+.nf-sidenav {
+  top: 57px;
+  align-self: flex-start;
+  position: sticky;
+  display: none;
+
+  @media (min-width: 705px) {
+    display: block;
+  }
+}
+
+.nf-content-box {
+  min-width: 380px;
+  max-width: 650px;
+}
+
+.beta {
+  margin-left: 0.5rem;
+  background-color: $primary;
+  color: white;
+  font-weight: normal;
+  padding: 0.1rem 0.5rem 0.1rem 0.5rem;
+  border-radius: 0.35rem;
+  font-size: 19px;
+}
+
+// Overriding Expansion-Panel component styles
+.mat-expansion-panel-header {
+  height: 54px;
+
+  &-title {
+    font-size: 20px;
+    font-weight: bold;
+  }
+}

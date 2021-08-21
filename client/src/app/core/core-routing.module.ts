@@ -4,9 +4,11 @@ import { GoogleLoggedGuard } from '../features/authentication/guards/google-logg
 import { SuperLoggedGuard } from '../features/authentication/guards/super-logged.guard';
 import { ProfilePageComponent } from '../features/authentication/pages/profile-page/profile-page.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
+import { NodeFeedPageComponent } from './pages/node-feed-page/node-feed-page.component';
 
 const routes: Routes = [
   { path: '', component: HomePageComponent, pathMatch: 'full', canActivate: [GoogleLoggedGuard] },
+  { path: 'nf/:id', component: NodeFeedPageComponent, canActivate: [GoogleLoggedGuard] },
   { path: 'user', component: ProfilePageComponent, canActivate: [SuperLoggedGuard, GoogleLoggedGuard]},
   {
     path: 'sign',

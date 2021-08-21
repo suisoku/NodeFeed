@@ -58,7 +58,7 @@ export class CreateFeedModalComponent implements OnInit, AfterViewInit {
 
   nameStepNodefeedPage(): void {
     //TODO: optmizable ? doing a request although we made one on blur
-    const nodeFeedId = (this.nodefeedNameControl.value as string).replace(/ /g, '.');
+    const nodeFeedId = (this.nodefeedNameControl.value as string).replace(/ /g, '_');
     if (this.nodefeedNameControl.invalid) {
       this.nodefeedNameControl.markAsDirty();
       return;
