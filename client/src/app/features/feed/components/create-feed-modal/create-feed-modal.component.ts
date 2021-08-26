@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { filter, switchMap, tap } from 'rxjs/operators';
 import { NodefeedModel } from 'src/app/core/models/nodefeed.model';
 import { NodefeedService } from 'src/app/core/services/nodefeed.service';
@@ -31,7 +32,11 @@ export class CreateFeedModalComponent implements OnInit, AfterViewInit {
     postsCounter: 0
   };
 
-  constructor(public nodefeedService: NodefeedService, private modalRef: MatDialogRef<CreateFeedModalComponent>) {}
+  constructor(
+    public nodefeedService: NodefeedService,
+    private modalRef: MatDialogRef<CreateFeedModalComponent>,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.nodefeedNameControl = new FormControl('', {
@@ -58,7 +63,7 @@ export class CreateFeedModalComponent implements OnInit, AfterViewInit {
 
   nameStepNodefeedPage(): void {
     //TODO: optmizable ? doing a request although we made one on blur
-    const nodeFeedId = (this.nodefeedNameControl.value as string).replace(/ /g, '_');
+    const nodeFeedId = (this.nodefeedNameControl.value as string).replace(/ /g, '_').toLowerCase();
     if (this.nodefeedNameControl.invalid) {
       this.nodefeedNameControl.markAsDirty();
       return;
@@ -79,27 +84,18 @@ export class CreateFeedModalComponent implements OnInit, AfterViewInit {
     this.progressStep = '80%';
   }
 
-  createNodeFeedPage(dataPicture: string | null): void {
+  async createNodeFeedPage(dataPicture: string | null): Promise<void> {
     //on event completion
     console.log('info', this.nodefeedToCreate, dataPicture?.length);
     this.progressStep = '90%';
-    this.nodefeedService
-      .createNodeFeed(this.nodefeedToCreate)
-      .then(() => {
-        if (!dataPicture) {
-          this.progressStep = '100%';
-          this.closeModal();
-          return;
-        }
-        this.nodefeedService
-          .storeNodefeedPicture(this.nodefeedToCreate.name, dataPicture)
-          .then(() => {
-            this.progressStep = '100%';
-            this.closeModal();
-          })
-          .catch((error) => console.log(error));
-      })
-      .catch((error) => console.log(error));
+    await this.nodefeedService.createNodeFeed(this.nodefeedToCreate);
+
+    if (dataPicture) {
+      await this.nodefeedService.storeNodefeedPicture(this.nodefeedToCreate.name, dataPicture);
+    }
+    this.progressStep = '100%';
+    this.closeModal();
+    await this.router.navigateByUrl('nf/' + this.nodefeedToCreate.name);
   }
 
   closeModal(): void {

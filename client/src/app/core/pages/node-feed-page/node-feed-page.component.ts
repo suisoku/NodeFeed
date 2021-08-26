@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Params } from '@angular/router';
 import { Observable, of } from 'rxjs';
-import { concatMap } from 'rxjs/operators';
+import { catchError, concatMap, share, switchMap, tap } from 'rxjs/operators';
 import { BarePostModel } from 'src/app/features/post/models/bare-post.model';
 import { PostsService } from 'src/app/features/post/services/posts.service';
 import { NodefeedModel } from '../../models/nodefeed.model';
@@ -17,18 +17,20 @@ import { NodefeedService } from '../../services/nodefeed.service';
 export class NodeFeedPageComponent implements OnInit {
   title!: string;
   nodefeed$!: Observable<NodefeedModel>;
-  profilePicUrl$!: Observable<string | null>;
+  profilePicUrl$: Observable<string | null>;
   bareposts$: Observable<BarePostModel[]> = of([{} as BarePostModel]);
 
   constructor(private route: ActivatedRoute, private nodeFeedService: NodefeedService, private postsService: PostsService) {
     this.title = 'lol';
     this.nodefeed$ = this.route.paramMap.pipe(concatMap((params) => this.nodeFeedService.getNodeFeed$(params.get('id') ?? '')));
-    this.profilePicUrl$ = this.route.paramMap.pipe(
-      concatMap((params) => {
-        const id = params.get('id');
-        console.log('is there any idea', id);
-        return id ? this.nodeFeedService.getNodefeedPicture$(id) : of(null);
-      })
+
+    this.profilePicUrl$ = this.nodefeed$.pipe(
+      switchMap((nf) =>
+        this.nodeFeedService.getNodefeedPicture$(nf.name).pipe(
+          tap((val) => console.log('tapping pic', val)),
+          catchError(() => of(null))
+        )
+      )
     );
     // TODO: what do do in case of empty string ?
   }
