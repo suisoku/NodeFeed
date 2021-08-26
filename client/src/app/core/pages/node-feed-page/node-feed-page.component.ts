@@ -26,6 +26,7 @@ export class NodeFeedPageComponent implements OnInit {
     this.profilePicUrl$ = this.route.paramMap.pipe(
       concatMap((params) => {
         const id = params.get('id');
+        console.log('is there any idea', id);
         return id ? this.nodeFeedService.getNodefeedPicture$(id) : of(null);
       })
     );
