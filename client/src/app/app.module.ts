@@ -18,7 +18,6 @@ import { SharedModule } from './shared/shared.module';
     BrowserModule,
     BrowserAnimationsModule,
     SharedModule,
-    NgxImageCompressService,
     AppRoutingModule,
     AngularFireAnalyticsModule,
     AngularFirestoreModule,
