@@ -84,14 +84,12 @@ export class CreateFeedModalComponent implements OnInit, AfterViewInit {
     this.progressStep = '80%';
   }
 
-  async createNodeFeedPage(dataPicture: string | null): Promise<void> {
-    //on event completion
-    console.log('info', this.nodefeedToCreate, dataPicture?.length);
+  async createNodeFeedPage(blobPic: Blob | null): Promise<void> {
     this.progressStep = '90%';
     await this.nodefeedService.createNodeFeed(this.nodefeedToCreate);
 
-    if (dataPicture) {
-      await this.nodefeedService.storeNodefeedPicture(this.nodefeedToCreate.name, dataPicture);
+    if (blobPic) {
+      await this.nodefeedService.storeNodefeedPicture(this.nodefeedToCreate.name, blobPic);
     }
     this.progressStep = '100%';
     this.closeModal();

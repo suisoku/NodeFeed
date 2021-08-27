@@ -1,10 +1,10 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
-import { concatMap, map, switchMap, tap } from 'rxjs/operators';
-import { NodefeedModel } from '../models/nodefeed.model';
 import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage';
-import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { NodefeedModel } from '../models/nodefeed.model';
 
 /**
  * Service managing nodefeed posts uses {@link AngularFireStore}
@@ -31,20 +31,13 @@ export class NodefeedService {
     return this.nodefeedsRef.doc(nodefeedToCreate.name).set(nodefeedToCreate);
   }
 
-  storeNodefeedPicture(nodefeedName: string, picture: string): AngularFireUploadTask {
-    const ref = this.storage.ref(`nodefeed_pictures/${nodefeedName}`);
-    return ref.putString(picture);
+  storeNodefeedPicture(nodefeedName: string, picture: Blob): AngularFireUploadTask {
+    const ref = this.storage.ref(`nodefeed_pictures/${nodefeedName}.png`);
+    return ref.put(picture);
   }
 
   getNodefeedPicture$(nodefeedName: string): Observable<string> {
-    const ref = this.storage.ref(`nodefeed_pictures/${nodefeedName}`);
-    const headers = {};
-    return ref
-      .getDownloadURL()
-      .pipe(
-        switchMap((url: string) =>
-          this.http.get(url, { headers, responseType: 'text' }).pipe(tap((res) => console.log('asdasd', res)))
-        )
-      );
+    const ref = this.storage.ref(`nodefeed_pictures/${nodefeedName}.png`);
+    return ref.getDownloadURL() as Observable<string>;
   }
 }
