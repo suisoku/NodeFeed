@@ -37,6 +37,8 @@
 }
 
 .nf-description-banner {
+  height: 46px;
+  overflow: hidden;
   @media (max-width: 480px) {
     display: none;
   }

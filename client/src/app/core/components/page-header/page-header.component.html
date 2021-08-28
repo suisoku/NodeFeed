@@ -4,19 +4,16 @@
       <img class="nf-profile-image" [src]="profilePicture" />
       <span *ngIf="!profilePicture" class="nf-fallback-initial">{{ getNameInitial() | titlecase}}</span>
     </figure>
-    <div class="is-flex-grow-1">
-      <div class="is-flex is-flex-wrap-wrap is-justify-content-space-between">
-        <div class="is-flex-shrink-0 pr-2">
-          <h3 class="title is-4 mb-1">{{nodefeed.title}}</h3>
-          <span class="has-text-grey">{{nodefeed.name}}</span>
-        </div>
-        <button class="is-family-secondary button is-link is-rounded is-medium mr-5 is-outlined">Follow</button>
-      </div>
-      <p class="nf-description-banner mt-4">{{nodefeed.description}}</p>
-      <div class="nf-description-banner mt-3">
-        <span class="pr-2"><strong>{{ nodefeed.followersCounter | shortNumber }}</strong> followers</span>
-        <span><strong>{{nodefeed.postsCounter | shortNumber}}</strong> nodefeeds</span>
-      </div>
+    <div class="is-flex is-flex-wrap-wrap is-justify-content-space-between is-flex-grow-1">
+      <h3 class="title is-4 mb-1">{{nodefeed.title}}</h3>
+      <button class="is-family-secondary button is-link is-rounded is-medium mr-5 is-outlined">Follow</button>
+    </div>
+    <div class="nf-description-banner mt-4">
+      <p>{{nodefeed.description}}</p>
+    </div>
+    <div class="nf-description-banner mt-3">
+      <span class="pr-2"><strong>{{ nodefeed.followersCounter | shortNumber }}</strong> followers</span>
+      <span><strong>{{nodefeed.postsCounter | shortNumber}}</strong> nodefeeds</span>
     </div>
   </div>
   <ng-template #headerFacade>
