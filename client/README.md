@@ -78,4 +78,4 @@ $ npm run pre-push
 
 ### Workflow strategy
 
-We need to choose ether [Gitflow](https://www.atlassian.com/fr/git/tutorials/comparing-workflows/gitflow-workflow) or [Oneflow](https://www.endoflineblog.com/oneflow-a-git-branching-model-and-workflow)
+We need to choose either [Gitflow](https://www.atlassian.com/fr/git/tutorials/comparing-workflows/gitflow-workflow) or [Oneflow](https://www.endoflineblog.com/oneflow-a-git-branching-model-and-workflow)

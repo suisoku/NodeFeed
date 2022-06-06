@@ -22,10 +22,10 @@ export class NodeFeedPageComponent {
 
   constructor(private route: ActivatedRoute, private nodeFeedService: NodefeedService, private postsService: PostsService) {
     this.title = 'lol';
-    this.nodefeed$ = this.route.paramMap.pipe(concatMap((params) => this.nodeFeedService.getNodeFeed$(params.get('id') ?? '')));
+    this.nodefeed$ = this.route.paramMap.pipe(concatMap(params => this.nodeFeedService.getNodeFeed$(params.get('id') ?? '')));
 
     this.profilePicUrl$ = this.nodefeed$.pipe(
-      switchMap((nf) => this.nodeFeedService.getNodefeedPicture$(nf.name).pipe(catchError(() => of(null))))
+      switchMap(nf => this.nodeFeedService.getNodefeedPicture$(nf.name).pipe(catchError(() => of(null))))
     );
   }
 }

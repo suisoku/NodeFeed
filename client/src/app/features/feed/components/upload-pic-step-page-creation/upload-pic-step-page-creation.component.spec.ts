@@ -8,9 +8,8 @@ describe('UploadPicStepPageCreationComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ UploadPicStepPageCreationComponent ]
-    })
-    .compileComponents();
+      declarations: [UploadPicStepPageCreationComponent]
+    }).compileComponents();
   });
 
   beforeEach(() => {

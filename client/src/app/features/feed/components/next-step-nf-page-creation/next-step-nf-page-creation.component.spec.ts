@@ -8,9 +8,8 @@ describe('NextStepNfPageCreationComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NextStepNfPageCreationComponent ]
-    })
-    .compileComponents();
+      declarations: [NextStepNfPageCreationComponent]
+    }).compileComponents();
   });
 
   beforeEach(() => {
