@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Injectable } from '@angular/core';
-import firebase from 'firebase/app';
+import firebase from 'firebase/compat/app';
 import { Observable, of, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { FirebaseMockHelper } from 'src/app/core/testing/firebase-mock-helper';

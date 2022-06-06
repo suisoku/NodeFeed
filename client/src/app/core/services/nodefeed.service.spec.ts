@@ -1,12 +1,10 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-
 import { TestBed, inject } from '@angular/core/testing';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore } from '@angular/fire/compat/firestore/';
 import { NodefeedService } from './nodefeed.service';
 
 describe('NodefeedService', () => {
   let service: NodefeedService;
-  let angularFireStore: jasmine.SpyObj<AngularFirestore>; //instance mock
+  let angularFireStore: AngularFirestore; //instance mock
 
   beforeEach(() => {
     const angularFireStoreProvider = jasmine.createSpyObj('AngularFireStore', ['collection']);
@@ -14,7 +12,7 @@ describe('NodefeedService', () => {
       providers: [NodefeedService, { provide: AngularFirestore, useValue: angularFireStoreProvider }]
     });
 
-    angularFireStore = TestBed.inject(AngularFirestore) as jasmine.SpyObj<AngularFirestore>;
+    angularFireStore = TestBed.inject(AngularFirestore);
     service = TestBed.inject(NodefeedService);
   });
 

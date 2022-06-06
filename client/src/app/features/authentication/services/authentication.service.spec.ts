@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
-import { AngularFireAuth } from '@angular/fire/auth';
-import { AngularFirestore, AngularFirestoreDocument, DocumentSnapshot } from '@angular/fire/firestore';
-import firebase from 'firebase/app';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { AngularFirestore, AngularFirestoreDocument, DocumentSnapshot } from '@angular/fire/compat/firestore';
+import firebase from 'firebase/compat/app';
 import { of } from 'rxjs';
 import { FirebaseCredential, FirebaseUser } from 'src/firebase-app';
 import { CredentialsModel } from '../models/credentials.model';
@@ -19,12 +19,12 @@ describe('AuthenticationService', () => {
   beforeEach(() => {
     //Mock values
     const fakeUser$ = of([{ user: 'fakeUser' }]);
-    documentMock = ({
+    documentMock = {
       data: () => {
         return 'random';
       },
       get: (field: string) => null
-    } as unknown) as DocumentSnapshot<unknown>;
+    } as unknown as DocumentSnapshot<unknown>;
 
     // Mock providers
     const angularFireStoreProvider = jasmine.createSpyObj('AngularFireStore', ['doc']);
@@ -96,15 +96,15 @@ describe('AuthenticationService', () => {
 
       docSetSpy = jasmine.createSpy();
       docGetSpy = jasmine.createSpy();
-      angularFireStore.doc.and.returnValue(({
+      angularFireStore.doc.and.returnValue({
         set: docSetSpy,
         get: docGetSpy
-      } as unknown) as AngularFirestoreDocument<SignInDetailsModel>);
+      } as unknown as AngularFirestoreDocument<SignInDetailsModel>);
 
       authProviderMock = {
         addScope: (scope: string) => ({} as firebase.auth.GoogleAuthProvider),
         providerId: 'id',
-        setCustomParameters: (customOAuthParameters) => ({} as firebase.auth.GoogleAuthProvider)
+        setCustomParameters: customOAuthParameters => ({} as firebase.auth.GoogleAuthProvider)
       } as firebase.auth.GoogleAuthProvider;
       spyOnProperty(service, 'googleAuthProvider', 'get').and.returnValue(authProviderMock);
     });
@@ -155,7 +155,7 @@ describe('AuthenticationService', () => {
       { description: 'above max year', inputYear: 3888 }
     ];
 
-    faultyDOBSubSuite.forEach((params) =>
+    faultyDOBSubSuite.forEach(params =>
       it(`calls registerUser with a faulty DOB ${params.description} `, async () => {
         signInformationMock.birthYear = params.inputYear;
         angularFireAuth.createUserWithEmailAndPassword.and.returnValue(Promise.resolve(userCredentialMock));
@@ -194,12 +194,12 @@ describe('AuthenticationService', () => {
     });
     it('calls googleSignProcess with old user and completed registration, should return Resolve(true)', async () => {
       // Arrange
-      const documentMock = ({
+      const documentMock = {
         data: () => {
           return { completeRegistration: true };
         },
         get: (field: string) => null
-      } as unknown) as DocumentSnapshot<unknown>;
+      } as unknown as DocumentSnapshot<unknown>;
 
       angularFireAuth.signInWithPopup.and.returnValue(Promise.resolve(userCredentialMock));
       docGetSpy.and.returnValue(of(documentMock));
@@ -218,7 +218,7 @@ describe('AuthenticationService', () => {
       { description: 'uncompleted registration', input: { completeRegistration: false } }
     ];
 
-    faultyUserDocWithGoogleSignProcess.forEach((params) =>
+    faultyUserDocWithGoogleSignProcess.forEach(params =>
       it(`calls googleSignProcess with user and ${params.description}, should complete registration `, async () => {
         // Arrange
         angularFireAuth.signInWithPopup.and.returnValue(Promise.resolve(userCredentialMock));
@@ -234,7 +234,7 @@ describe('AuthenticationService', () => {
     );
     /** CompleteGoogleSignup testing region */
 
-    faultyDOBSubSuite.forEach((params) =>
+    faultyDOBSubSuite.forEach(params =>
       it(`calls completeGoogleSignup with a faulty DOB ${params.description} and should reject promise `, async () => {
         signInformationMock.birthYear = params.inputYear;
 
@@ -293,7 +293,7 @@ describe('AuthenticationService', () => {
   });
 
   it('calls sendEmailVerification by using method of input parameter (user)', () => {
-    const user = jasmine.createSpyObj('user', ['sendEmailVerification']);
+    const user = jasmine.createSpyObj('user', ['sendEmailVerification']) as FirebaseUser;
 
     // act
     service.sendEmailVerification(user);
@@ -333,7 +333,7 @@ describe('AuthenticationService', () => {
 
     // act
     service.getUserDocument$({ uid: 'uidFake' } as FirebaseUser).subscribe({
-      next: (userDoc) => {
+      next: userDoc => {
         expect(angularFireStore.doc).toHaveBeenCalled(); //with args not working
         expect(firestoreDocument.get).toHaveBeenCalled();
       }

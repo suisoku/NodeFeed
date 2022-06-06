@@ -15,7 +15,7 @@ export class GoogleLoggedGuard implements CanActivate {
   constructor(private router: Router, private _auth: AuthenticationService) {}
 
   canActivate(): Observable<boolean | UrlTree> {
-    return this._auth.currentUser$.pipe(mergeMap((user) => (user ? this.userValidUrlTree$(user) : of(true))));
+    return this._auth.currentUser$.pipe(mergeMap(user => (user ? this.userValidUrlTree$(user) : of(true))));
   }
 
   private userNullUrlTree$(): Observable<UrlTree | boolean> {
@@ -24,7 +24,7 @@ export class GoogleLoggedGuard implements CanActivate {
 
   private userValidUrlTree$(user: FirebaseUser): Observable<UrlTree | boolean> {
     return this._auth.getUserDocument$(user).pipe(
-      map((userDoc) => {
+      map(userDoc => {
         if (!!userDoc && userDoc['completeRegistration'] === false) return this.router.createUrlTree(['sign/signup-google']);
         return true;
       })

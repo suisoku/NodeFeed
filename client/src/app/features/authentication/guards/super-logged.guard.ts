@@ -19,7 +19,7 @@ export class SuperLoggedGuard implements CanActivate {
     const superRedirect: string[] = next.data.superRedirect as string[];
     return this.auth.currentUser$.pipe(
       take(1),
-      map((user) => {
+      map(user => {
         if (user) {
           if (user.emailVerified) {
             return superRedirect ? this.router.createUrlTree(superRedirect) : true;

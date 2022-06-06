@@ -37,7 +37,7 @@ export class DetailsSignFormComponent implements OnInit {
 
   invalidDOB(): boolean {
     const birthKeys = Object.keys(this.dobForm.controls).filter((keyControl: string) => keyControl.includes('birth'));
-    const hasErrors = birthKeys.some((keyControl) => this.dobForm.get(keyControl)?.errors);
+    const hasErrors = birthKeys.some(keyControl => this.dobForm.get(keyControl)?.errors);
     const isAllTouched = birthKeys.every((keyControl: string) => this.dobForm.get(keyControl)?.touched);
 
     return hasErrors && isAllTouched;

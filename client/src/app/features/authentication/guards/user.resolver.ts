@@ -15,7 +15,7 @@ export class UserResolver implements Resolve<FirebaseUser> {
   resolve(): Observable<FirebaseUser> {
     return this._auth.currentUser$.pipe(
       take(1),
-      map((user) => user as FirebaseUser)
+      map(user => user as FirebaseUser)
     );
   }
 }

@@ -1,27 +1,81 @@
 # Client
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.3.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.0.
 
-## Development server
+## Description
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+NodeFeed's description ... .
 
-## Code scaffolding
+## Installation
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```bash
+# with npm
+$ npm install
+# with yarn
+$ yarn install
+```
 
-## Build
+## Running the app
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+```bash
+# development
+$ npm start
+# or
+$ ng serve
+# build for production
+$ npm run build
+```
 
-## Running unit tests
+## Test
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```bash
+# unit tests
+$ npm run test
+# e2e tests : Be sure to have the latest version of chrome
+$ npm run e2e
+# test coverage
+$ npm run coverage
+```
 
-## Running end-to-end tests
+## Generate the Documentation
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+The documenation will be useful by commenting the code.
 
-## Further help
+```bash
+# build
+$ npm run compodoc:build
+# build and serve
+$ npm run compodoc:build-and-serve
+# serve and open
+$ npm run compodoc:serve
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## Git best practices
+
+### Branches naming :
+
+To help the code review and the reverts if needed, having a better branches naming could be useful and help the reviewer to focus on the main changes during the pull request:
+
+- features: start the name by _**feature/task-name-and-more**_
+- update: start the name by _**update/whatever-you-want**_ : when updating dependencies or something similar
+- bugs: start the name by _**hotfix/x.y.z+1**_, **x.y.z** is the version where the bug was catched
+- release : start the name by _**release/x+n.y+m.z+p**_, **x.y.z** is the previous version. According the changes and following the [semever](https://semver.org/lang/fr/) convention, increase the x or y or z, not all in the same time.
+
+### Before any PR
+
+Please make sure everything is **OK** :
+
+```bash
+# lint OK
+$ npm run lint
+# test OK
+$ npm run test
+# build OK
+$ npm run build
+# or in one command for the lazzy peaple, a all in one script
+$ npm run pre-push
+```
+
+### Workflow strategy
+
+We need to choose ether [Gitflow](https://www.atlassian.com/fr/git/tutorials/comparing-workflows/gitflow-workflow) or [Oneflow](https://www.endoflineblog.com/oneflow-a-git-branching-model-and-workflow)

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
-import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage';
+import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/compat/storage';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { NodefeedModel } from '../models/nodefeed.model';
@@ -24,7 +24,7 @@ export class NodefeedService {
     return this.nodefeedsRef
       .doc(name)
       .get()
-      .pipe(map((doc) => doc.data() as NodefeedModel));
+      .pipe(map(doc => doc.data() as NodefeedModel));
   }
 
   createNodeFeed(nodefeedToCreate: NodefeedModel): Promise<void> {
