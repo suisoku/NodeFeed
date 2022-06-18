@@ -20,7 +20,7 @@ export class VerifyEmailPageComponent {
 
   constructor(private router: Router, private auth: AuthenticationService, private snackBar: MatSnackBar) {
     this.auth.currentUser$.pipe(take(1)).subscribe({
-      next: (user) => {
+      next: user => {
         if (user) {
           this.emailToVerify = user.email ?? '';
           this.verifiedEmail = user.emailVerified;
@@ -54,11 +54,11 @@ export class VerifyEmailPageComponent {
   private refreshUserUntilEmailVerified$(interval = 1000): Observable<FirebaseUser | null> {
     return this.auth.currentUser$.pipe(
       auditTime(interval),
-      tap((user) => {
+      tap(user => {
         void user?.reload();
         void this.auth.updateCurrentUser(user);
       }),
-      filter((user) => !!user?.emailVerified),
+      filter(user => !!user?.emailVerified),
       take(1)
     );
   }

@@ -18,7 +18,7 @@ export class SignPageComponent implements OnInit {
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.route.url.subscribe((urlSegment) => {
+    this.route.url.subscribe(urlSegment => {
       if (urlSegment[0].path === 'signup') this.signInDisplayMode = false;
       else if (urlSegment[0].path === 'signin') this.signInDisplayMode = true;
       //else throw new Error('urlSegment is faulty'); // TODO: better message throw error

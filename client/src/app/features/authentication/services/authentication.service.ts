@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/auth';
-import { AngularFirestore } from '@angular/fire/firestore';
-import firebase from 'firebase/app';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import firebase from 'firebase/compat/app';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Utils } from 'src/app/core/utilities/utils';
@@ -32,7 +32,7 @@ export class AuthenticationService {
   updateCurrentUser: (user: firebase.User | null) => Promise<void> = this.afAuth.updateCurrentUser;
 
   async registerUser(signInformation: SignInDetailsModel): Promise<void> {
-    return this.afAuth.createUserWithEmailAndPassword(signInformation.email, signInformation.password).then((userCredential) => {
+    return this.afAuth.createUserWithEmailAndPassword(signInformation.email, signInformation.password).then(userCredential => {
       if (!userCredential.user) {
         return Promise.reject(new Error("Can't create a profile from a null user object"));
       }
@@ -56,7 +56,7 @@ export class AuthenticationService {
    * @returns true if user has completed registration , false otherwise
    */
   async googleSignProcess(): Promise<boolean> {
-    return this.afAuth.signInWithPopup(this.googleAuthProvider).then((userCredential) => {
+    return this.afAuth.signInWithPopup(this.googleAuthProvider).then(userCredential => {
       const user = userCredential.user;
       if (!user) {
         return Promise.reject(new Error("Can't create a profile from a null user object"));
@@ -100,7 +100,7 @@ export class AuthenticationService {
     return this.afStore
       .doc(`users/${user.uid}`)
       .get()
-      .pipe(map((docSnapshot) => docSnapshot.data() as Record<string, unknown>));
+      .pipe(map(docSnapshot => docSnapshot.data() as Record<string, unknown>));
   }
 
   async forgotPassword(email: string): Promise<void> {

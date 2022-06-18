@@ -26,7 +26,7 @@ export class AccountMenuComponent implements AfterViewInit {
   @ViewChildren('verifyEmailTooltip') verifyEmailTooltip!: QueryList<MatTooltip>;
 
   constructor(private auth: AuthenticationService, private cdr: ChangeDetectorRef, private dialog: MatDialog) {
-    this.auth.currentUser$.subscribe((user) => {
+    this.auth.currentUser$.subscribe(user => {
       this.user = user;
       this.isLoadingUser = false;
     });

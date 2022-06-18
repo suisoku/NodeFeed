@@ -6,7 +6,7 @@ import { FormArray, FormControl, FormGroup } from '@angular/forms';
 export class FormHelper {
   static markGroupDirty(form: FormGroup | FormArray): void {
     //
-    Object.keys(form.controls).forEach((key) => {
+    Object.keys(form.controls).forEach(key => {
       switch (form.get(key)?.constructor.name) {
         case 'FormControl':
           FormHelper.markControlDirty(form.get(key) as FormControl);

@@ -16,7 +16,7 @@ export class UnfinishedGoogleSignupGuard implements CanActivate {
   constructor(private router: Router, private _auth: AuthenticationService) {}
 
   canActivate(): Observable<boolean | UrlTree> {
-    return this._auth.currentUser$.pipe(mergeMap((user) => (user ? this.userValidUrlTree$(user) : this.userNullUrlTree$())));
+    return this._auth.currentUser$.pipe(mergeMap(user => (user ? this.userValidUrlTree$(user) : this.userNullUrlTree$())));
   }
 
   private userNullUrlTree$(): Observable<UrlTree | boolean> {
@@ -26,7 +26,7 @@ export class UnfinishedGoogleSignupGuard implements CanActivate {
   private userValidUrlTree$(user: FirebaseUser): Observable<UrlTree | boolean> {
     return this._auth
       .getUserDocument$(user)
-      .pipe(map((userDoc) => (!!userDoc && userDoc['completeRegistration'] === false) || this.router.createUrlTree(['/'])));
+      .pipe(map(userDoc => (!!userDoc && userDoc['completeRegistration'] === false) || this.router.createUrlTree(['/'])));
   }
 }
 

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { AngularFireAuthGuard, AuthPipe } from '@angular/fire/auth-guard';
+import { AngularFireAuthGuard, AuthPipe } from '@angular/fire/compat/auth-guard';
 import { RouterModule, Routes } from '@angular/router';
 import { pipe } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -52,7 +52,7 @@ const routes: Routes = [
       },
       {
         path: 'forgot-password',
-        component: ForgotPasswordPageComponent,
+        component: ForgotPasswordPageComponent
       }
     ]
   },

@@ -13,8 +13,7 @@
           class="nf-tooltip-icon"
           fontSet="material-icons-outlined"
           matTooltip="Use the name of the corresponding product, this name cannot be changed"
-          matTooltipPosition="right"
-        >
+          matTooltipPosition="right">
           info
         </mat-icon>
       </label>
@@ -38,12 +37,10 @@
     [(nodefeedModel)]="nodefeedToCreate"
     (cancel)="closeModal()"
     (completed)="sendToProfileUploadStep()"
-    *ngIf="creationSteps.nameStepCompleted && !creationSteps.detailsStepCompleted"
-  ></app-next-step-nf-page-creation>
+    *ngIf="creationSteps.nameStepCompleted && !creationSteps.detailsStepCompleted"></app-next-step-nf-page-creation>
   <app-upload-pic-step-page-creation
     *ngIf="creationSteps.detailsStepCompleted"
     [nodeFeedName]="nodefeedToCreate.title"
     (cancel)="closeModal()"
-    (save)="createNodeFeedPage($event)"
-  ></app-upload-pic-step-page-creation>
+    (save)="createNodeFeedPage($event)"></app-upload-pic-step-page-creation>
 </div>

@@ -47,12 +47,12 @@ export class CreateFeedModalComponent implements OnInit, AfterViewInit {
       .pipe(
         tap(() => (this.nameExists = false)),
         filter((nodeFeedName: string) => nodeFeedName.length >= 3),
-        switchMap((nodeFeedName) => {
+        switchMap(nodeFeedName => {
           const nodeFeedId = nodeFeedName.replace(/ /g, '.'); //TODO: more robust regex, handle edge cases
           return this.nodefeedService.getNodeFeed$(nodeFeedId);
         })
       )
-      .subscribe((nodefeed) => {
+      .subscribe(nodefeed => {
         this.nameExists = !!nodefeed;
       });
   }
@@ -68,7 +68,7 @@ export class CreateFeedModalComponent implements OnInit, AfterViewInit {
       this.nodefeedNameControl.markAsDirty();
       return;
     }
-    this.nodefeedService.getNodeFeed$(nodeFeedId).subscribe((nodefeed) => {
+    this.nodefeedService.getNodeFeed$(nodeFeedId).subscribe(nodefeed => {
       if (nodefeed == null) {
         this.nodefeedToCreate.title = this.nodefeedNameControl.value as string;
         this.nodefeedToCreate.name = nodeFeedId;

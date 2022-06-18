@@ -1,5 +1,6 @@
 import { ChangeDetectorRef } from '@angular/core';
 import { ComponentFixture, fakeAsync, flush, TestBed, tick } from '@angular/core/testing';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatIcon } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatProgressBar } from '@angular/material/progress-bar';
@@ -22,7 +23,7 @@ fdescribe('AccountMenuComponent', () => {
     const changeDetectionRefProvider = jasmine.createSpyObj('ChangeDetectorRef', ['detectChanges']);
     const authServiceProvider = new AuthenticationStubService();
     await TestBed.configureTestingModule({
-      imports: [MatTooltipModule, MatMenuModule],
+      imports: [MatTooltipModule, MatMenuModule, MatDialogModule],
       declarations: [AccountMenuComponent, MatTooltip, MatIcon, MatProgressBar],
       providers: [
         { provide: ChangeDetectorRef, useValue: changeDetectionRefProvider },
