@@ -1,4 +1,4 @@
-@import "variables";
+@import 'variables';
 
 /* list of useful helper classes */
 
@@ -16,4 +16,13 @@
 .nf-h-standard-container {
   max-width: $nf-g-standard-max-width;
   min-width: $nf-g-standard-min-width;
+}
+
+.nf-background-primary {
+  background-color: $nf-primary-color;
+}
+
+.content .nf-color-primary,
+.nf-color-primary {
+  color: $nf-primary-color;
 }

@@ -8,25 +8,24 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { CoreRoutingModule } from './core-routing.module';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { NodeFeedPageComponent } from './pages/node-feed-page/node-feed-page.component';
-
+import { MatDialogModule } from '@angular/material/dialog';
+import { CreatePostModule } from '../features/post/components/create-post/create-post.module';
 @NgModule({
   declarations: [
     NavbarComponent,
     SidenavComponent,
     PageHeaderComponent,
     HomePageComponent,
-    NodeFeedPageComponent 
+    NodeFeedPageComponent
   ],
   imports: [
     CoreRoutingModule,
     SharedModule,
     PostModule,
-    AuthenticationModule
+    AuthenticationModule,
+    MatDialogModule,
+    CreatePostModule
   ],
-  exports: [
-    NavbarComponent,
-    SidenavComponent,
-    PageHeaderComponent
-  ]
+  exports: [NavbarComponent, SidenavComponent, PageHeaderComponent]
 })
 export class CoreModule {}

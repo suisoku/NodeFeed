@@ -49,7 +49,9 @@
             "ignoreStatic": true // weird rule and fires errors when using validators
           }
         ],
-        "no-console": "warn"
+        "no-console": "warn",
+        "no-empty-function": "off",
+        "@typescript-eslint/no-empty-function": ["error"]
       }
     },
     {
