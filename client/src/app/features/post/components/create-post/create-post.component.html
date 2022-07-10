@@ -1,4 +1,52 @@
 <div class="container content">
   <h2 class="nf-color-primary">Create Post</h2>
-  <p>Choose the type</p>
+  <p *ngIf="!isPostTypeSelected">Choose the type</p>
+  <div *ngIf="isPostTypeSelected" class="is-flex is-flex-direction-column">
+    <span
+      >You choosen to create a <span class="has-text-weight-bold">{{typePostLabel}} Post</span>. Give us few
+      informations for complete the post.
+    </span>
+    <span class="is-italic">(You can still change if you make a mistake)</span>
+  </div>
+  <div class="control">
+    <div class="pt-3 buttons is-justify-content-space-around">
+      <button
+        (click)="choosePostType(creationPostState.BUG_POST)"
+        class="button is-rounded is-danger"
+        [ngClass]="{
+          'has-background-grey': isPostTypeSelected && currentCreationPostState !== creationPostState.BUG_POST}"
+        [disabled]="isPostTypeSelected">
+        Bug
+      </button>
+      <button
+        (click)="choosePostType(creationPostState.FEEDBACK_POST)"
+        class="button is-rounded is-link"
+        [ngClass]="{
+          'has-background-grey': isPostTypeSelected && currentCreationPostState !== creationPostState.FEEDBACK_POST}"
+        [disabled]="isPostTypeSelected">
+        Feedback
+      </button>
+      <button
+        (click)="choosePostType(creationPostState.NEWS_POST)"
+        class="button is-rounded is-primary"
+        [ngClass]="{
+          'has-background-grey': isPostTypeSelected && currentCreationPostState !== creationPostState.NEWS_POST}"
+        [disabled]="isPostTypeSelected">
+        News
+      </button>
+    </div>
+  </div>
+  <ng-container [ngSwitch]="currentCreationPostState">
+    <app-news *ngSwitchCase="creationPostState.NEWS_POST"></app-news>
+    <app-feedback *ngSwitchCase="creationPostState.FEEDBACK_POST"></app-feedback>
+    <app-bug *ngSwitchCase="creationPostState.BUG_POST"></app-bug>
+    <ng-container *ngSwitchDefault></ng-container>
+  </ng-container>
+
+  <div class="control">
+    <div class="pt-6 buttons is-justify-content-end">
+      <button class="button is-rounded is-primary is-outlined" mat-dialog-close>Cancel</button>
+      <button class="button is-rounded is-primary" (click)="next()">Create</button>
+    </div>
+  </div>
 </div>

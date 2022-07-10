@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 /**
- * News Post
+ * News
  */
 @Component({
   selector: 'app-news',
