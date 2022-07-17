@@ -15,7 +15,7 @@ export class SidenavComponent {
 
   public openCreationPostDialog(): void {
     this.dialog.open(CreatePostComponent, {
-      width: '500px',
+      width: '600px',
       enterAnimationDuration: '300ms',
       disableClose: true
     });

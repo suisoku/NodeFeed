@@ -8,10 +8,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
+import { FirstCharPipe } from './pipes/first-char.pipe';
 
 @NgModule({
-  declarations: [ShortNumberPipe],
+  declarations: [ShortNumberPipe, FirstCharPipe],
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -37,7 +38,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatProgressBarModule,
     MatSnackBarModule,
     MatTooltipModule,
-    MatDialogModule
+    MatDialogModule,
+    FirstCharPipe
   ]
 })
 export class SharedModule {}

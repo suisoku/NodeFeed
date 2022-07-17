@@ -9,10 +9,10 @@
     <span class="is-italic">(You can still change if you make a mistake)</span>
   </div>
   <div class="control">
-    <div class="pt-3 buttons is-justify-content-space-around">
+    <div class="pt-3 buttons is-justify-content-center">
       <button
         (click)="choosePostType(creationPostState.BUG_POST)"
-        class="button is-rounded is-danger"
+        class="mr-6 button is-rounded is-danger"
         [ngClass]="{
           'has-background-grey': isPostTypeSelected && currentCreationPostState !== creationPostState.BUG_POST}"
         [disabled]="isPostTypeSelected">
@@ -20,7 +20,7 @@
       </button>
       <button
         (click)="choosePostType(creationPostState.FEEDBACK_POST)"
-        class="button is-rounded is-link"
+        class="mr-6 button is-rounded is-link"
         [ngClass]="{
           'has-background-grey': isPostTypeSelected && currentCreationPostState !== creationPostState.FEEDBACK_POST}"
         [disabled]="isPostTypeSelected">
@@ -36,11 +36,38 @@
       </button>
     </div>
   </div>
-  <ng-container [ngSwitch]="currentCreationPostState">
-    <app-news *ngSwitchCase="creationPostState.NEWS_POST"></app-news>
-    <app-feedback *ngSwitchCase="creationPostState.FEEDBACK_POST"></app-feedback>
-    <app-bug *ngSwitchCase="creationPostState.BUG_POST"></app-bug>
-    <ng-container *ngSwitchDefault></ng-container>
+
+  <ng-container *ngIf="isPostTypeSelected">
+    <div class="pt-3 is-flex is-flex-direction-column">
+      <label for="description" class="pb-2 has-text-weight-bold">Description</label>
+      <textarea name="description" id="description" rows="4" placeholder="Description" class="p-2"></textarea>
+    </div>
+
+    <div class="pt-3 is-flex is-flex-direction-column">
+      <label class="pb-2 has-text-weight-bold">Description</label>
+      <div class="is-flex is-justify-content-center mt-5">
+        <figure class="nf-profile is-flex-shrink-0">
+          <img class="nf-profile-image" [src]="croppedImage" />
+          <span *ngIf="!croppedImage" class="nf-fallback-initial">{{ typePostLabel | firstChar }}</span>
+        </figure>
+        <div class="nf-photo-uploader">
+          <p>
+            You should add a picture like a scheme or other for representing the new functionality you wish !
+          </p>
+          <div class="file is-link mt-3">
+            <label class="file-label is-flex-grow-1">
+              <input class="file-input" type="file" name="resume" (change)="fileChangeEvent($event)" />
+              <span class="file-cta nf-uploader-button">
+                <span class="file-icon">
+                  <i class="fas fa-upload"></i>
+                </span>
+                <span class="file-label"> Choose a file… </span>
+              </span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
   </ng-container>
 
   <div class="control">
