@@ -10,10 +10,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Build Nodefeed
-        run: yarn install --frozen-lockfile && yarn build
+        run: npm install && npm run build
         working-directory: client
       - name: Run verifications
-        run : yarn lint && yarn style
+        run : npm run lint && npm run style
         working-directory: client
       - name: Deploy preview
         uses: FirebaseExtended/action-hosting-deploy@v0
