@@ -7,13 +7,15 @@ import { PageHeaderComponent } from './components/page-header/page-header.compon
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { CoreRoutingModule } from './core-routing.module';
 import { HomePageComponent } from './pages/home-page/home-page.component';
+import { LandingPageComponent } from './pages/landing-page/landing-page.component';
 
 @NgModule({
   declarations: [
     NavbarComponent,
     SidenavComponent,
     PageHeaderComponent,
-    HomePageComponent 
+    HomePageComponent,
+    LandingPageComponent
   ],
   imports: [
     CoreRoutingModule,
