@@ -1,8 +1,74 @@
 
-.has-navbar-fixed-top{
-  padding-top : 0px !important;
+//containers
+
+#container{
+  display:flex;
+  justify-content:center;
+  width: 100vw;
+  height: 100vh;
 }
 
-#h{
+#wrapper{
   background-color:red;
+  width:70vw;
+  min-width: 800px;
+}
+
+#wrapper *{
+  margin: 0 auto;
+}
+
+// level 1 elements
+$btn-width-max : max(6vw, 150px);
+$btn-height-max : max(calc(6vw / 2.5), 35px);
+#beta-access{
+  border-radius : 0.35rem;
+  width : $btn-width-max;
+  height: $btn-height-max;
+  display: block;
+  margin: 0px 0px 0px auto !important;
+}
+
+#brand{
+  width: max(374px,40vw);
+}
+
+// level 2 elements
+
+// -- brand
+#subtitle{
+  font-size: max(1em,1.6vw);
+}
+
+// -- newsletter
+$text-size: max(0.85em,0.9vw);
+$btn-width-max : max(6vw, 130px);
+$btn-height-max : max(calc(6vw / 2.5), 40px);
+#newsletter p{
+  text-wrap: none;
+  font-size: max(1em,1.32vw);
+}
+
+#newsletter input{
+  width: 80%;
+  height:$btn-height-max;
+  border-radius: 1rem;
+  margin-right: 2%;
+  border-color: #A7A7A7;
+}
+
+// oth properties
+.btn-secondary{
+  background-color: #01CAA6;
+  color: white;
+  border-width: 0px;
+  width : $btn-width-max;
+  height: $btn-height-max;
+  font-weight : bold;
+  border-radius:130px;
+  font-size: $text-size;
+}
+
+.text-secondary{
+  color: #00D1B2;
 }

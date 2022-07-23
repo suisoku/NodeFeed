@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a3709679-2d1d-4ce5-a6f7-18d51bfa8c34" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/client/src/app/core/pages/landing-page/landing-page.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/app/core/pages/landing-page/landing-page.component.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/app/core/pages/landing-page/landing-page.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/app/core/core-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/app/core/core-routing.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/app/core/core.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/app/core/core.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/core/pages/landing-page/landing-page.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/app/core/pages/landing-page/landing-page.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/core/pages/landing-page/landing-page.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/app/core/pages/landing-page/landing-page.component.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,5 +50,6 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>
