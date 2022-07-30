@@ -28,7 +28,7 @@ h3,h4{
 
 h3{
   margin-top: 7vh !important;
-  font-size: max(1.5em,3vw);
+  font-size: max(1.8em,3vw);
 }
 
 h4{
@@ -39,6 +39,8 @@ h4{
 
 img{
   margin-top: 8vh !important;
+  width: 26vw;
+  min-width:264px;
 }
 
 button, img{
