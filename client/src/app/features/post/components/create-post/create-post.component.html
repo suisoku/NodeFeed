@@ -36,6 +36,16 @@
 
   <ng-container *ngIf="isPostTypeSelected" [formGroup]="postFrom">
     <div class="pt-3 is-flex is-flex-direction-column">
+      <div class="mb-3">
+        <ng-select
+          [items]="nodefeeds$ | async"
+          bindLabel="name"
+          bindValue="name"
+          labelForId="state"
+          placeholder="nf/page"
+          formControlName="nodefeed">
+        </ng-select>
+      </div>
       <label for="title" class="label">Title <span class="tag is-warning is-light">required</span></label>
       <input
         class="input mb-3"

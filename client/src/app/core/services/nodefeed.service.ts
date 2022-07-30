@@ -27,6 +27,17 @@ export class NodefeedService {
       .pipe(map(doc => doc.data() as NodefeedModel));
   }
 
+  /**
+   *
+   * @returns List of Nodefeed
+   */
+  getNodeFeeds$(): Observable<NodefeedModel[]> {
+    return this.db
+      .collection('nodefeeds')
+      .snapshotChanges()
+      .pipe(map(snaps => snaps.map(snap => snap.payload.doc.data() as NodefeedModel)));
+  }
+
   createNodeFeed(nodefeedToCreate: NodefeedModel): Promise<void> {
     return this.nodefeedsRef.doc(nodefeedToCreate.name).set(nodefeedToCreate);
   }

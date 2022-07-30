@@ -24,6 +24,6 @@
       </mat-expansion-panel>
       <app-post-bare *ngFor="let post of bareposts$ | async" [barePost]="post"></app-post-bare>
     </div>
-    <app-sidenav class="ml-5 mt-5 nf-sidenav"></app-sidenav>
+    <app-sidenav class="ml-5 mt-5 nf-sidenav" [pageName]="(nodefeed$ | async)?.name"></app-sidenav>
   </section>
 </div>
