@@ -1,0 +1,33 @@
+.nf-post-description {
+  resize: none;
+}
+
+.nf-profile {
+  overflow: hidden;
+  height: 116px;
+  width: 116px;
+  margin-left: 0;
+  box-shadow: 0 16px 30px -15px rgba(0, 0, 0, 0.5);
+  background-color: #44bd94e0;
+  text-align: center;
+
+  .nf-profile-image {
+    object-fit: cover;
+  }
+
+  .nf-fallback-initial {
+    color: white;
+    font-size: 4rem;
+    line-height: 7rem;
+  }
+
+  @media (max-width: 580px) {
+    height: 64px;
+    width: 64px;
+  }
+}
+
+.nf-post-upload-photo {
+  align-items: center;
+  text-align: center;
+}

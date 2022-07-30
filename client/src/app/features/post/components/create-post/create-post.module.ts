@@ -3,10 +3,12 @@ import { CommonModule } from '@angular/common';
 import { CreatePostComponent } from './create-post.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { ImageCropperModule } from 'ngx-image-cropper';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [CreatePostComponent],
-  imports: [CommonModule, MatDialogModule, SharedModule],
+  imports: [CommonModule, MatDialogModule, SharedModule, ImageCropperModule, ReactiveFormsModule],
   exports: [CreatePostComponent]
 })
 export class CreatePostModule {}

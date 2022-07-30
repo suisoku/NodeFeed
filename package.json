@@ -1,0 +1,19 @@
+{
+  "name": "nodefeed",
+  "version": "0.0.0",
+  "description": "A angular project",
+  "private": false,
+  "scripts": {
+    "dev": "cd client && ng serve",
+    "test": "npm run unit"
+  },
+  "engines": {
+    "node": ">= 16.14.2",
+    "npm": ">= 8.13.2"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
+}

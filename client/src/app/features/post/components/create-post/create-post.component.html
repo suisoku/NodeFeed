@@ -1,4 +1,4 @@
-<div class="container content">
+<div class="container content" *ngIf="!imageSelected; else photoEditor">
   <h2 class="nf-color-primary">Create Post</h2>
   <p *ngIf="!isPostTypeSelected">Choose the type</p>
   <div *ngIf="isPostTypeSelected" class="is-flex is-flex-direction-column">
@@ -14,49 +14,84 @@
         (click)="choosePostType(creationPostState.BUG_POST)"
         class="mr-6 button is-rounded is-danger"
         [ngClass]="{
-          'has-background-grey': isPostTypeSelected && currentCreationPostState !== creationPostState.BUG_POST}"
-        [disabled]="isPostTypeSelected">
+          'has-background-grey': isPostTypeSelected && currentCreationPostState !== creationPostState.BUG_POST}">
         Bug
       </button>
       <button
         (click)="choosePostType(creationPostState.FEEDBACK_POST)"
         class="mr-6 button is-rounded is-link"
         [ngClass]="{
-          'has-background-grey': isPostTypeSelected && currentCreationPostState !== creationPostState.FEEDBACK_POST}"
-        [disabled]="isPostTypeSelected">
+          'has-background-grey': isPostTypeSelected && currentCreationPostState !== creationPostState.FEEDBACK_POST}">
         Feedback
       </button>
       <button
         (click)="choosePostType(creationPostState.NEWS_POST)"
         class="button is-rounded is-primary"
         [ngClass]="{
-          'has-background-grey': isPostTypeSelected && currentCreationPostState !== creationPostState.NEWS_POST}"
-        [disabled]="isPostTypeSelected">
+          'has-background-grey': isPostTypeSelected && currentCreationPostState !== creationPostState.NEWS_POST}">
         News
       </button>
     </div>
   </div>
 
-  <ng-container *ngIf="isPostTypeSelected">
+  <ng-container *ngIf="isPostTypeSelected" [formGroup]="postFrom">
     <div class="pt-3 is-flex is-flex-direction-column">
-      <label for="description" class="pb-2 has-text-weight-bold">Description</label>
-      <textarea name="description" id="description" rows="4" placeholder="Description" class="p-2"></textarea>
+      <label for="title" class="label">Title <span class="tag is-warning is-light">required</span></label>
+      <input
+        class="input mb-3"
+        id="title"
+        type="text"
+        formControlName="title"
+        [ngClass]="{'is-success': postFrom.controls.title.valid, 'is-danger': !postFrom.controls.title.valid && postFrom.controls.title.dirty}"
+        aria-label="Title of a post" />
+      <label for="description" class="label"
+        >Description <span class="tag is-warning is-light">required</span></label
+      >
+      <textarea
+        name="description"
+        id="description"
+        rows="4"
+        class="p-2 nf-post-description textarea"
+        formControlName="description"
+        [ngClass]="{'is-success': postFrom.controls.description.valid, 'is-danger': !postFrom.controls.description.valid && postFrom.controls.description.dirty}"
+        aria-label="Description of a post"></textarea>
     </div>
 
     <div class="pt-3 is-flex is-flex-direction-column">
-      <label class="pb-2 has-text-weight-bold">Description</label>
-      <div class="is-flex is-justify-content-center mt-5">
+      <label class="label">Picture <span class="tag is-info is-light">optional</span></label>
+      <div class="is-flex is-justify-content-center">
         <figure class="nf-profile is-flex-shrink-0">
-          <img class="nf-profile-image" [src]="croppedImage" />
+          <img
+            *ngIf="croppedImage"
+            class="nf-profile-image"
+            [src]="croppedImage"
+            alt="Image of illustrating the post"
+            role="complementary" />
           <span *ngIf="!croppedImage" class="nf-fallback-initial">{{ typePostLabel | firstChar }}</span>
         </figure>
-        <div class="nf-photo-uploader">
-          <p>
-            You should add a picture like a scheme or other for representing the new functionality you wish !
+        <div class="is-flex is-flex-direction-column nf-post-upload-photo">
+          <p [ngSwitch]="currentCreationPostState">
+            <ng-container *ngSwitchCase="creationPostState.NEWS_POST"
+              >You should add a picture like a scheme or other for representing the new functionality you wish
+              !</ng-container
+            >
+            <ng-container *ngSwitchCase="creationPostState.BUG_POST"
+              >You should add a picture like a scheme or other for representing the bug you notice
+              !</ng-container
+            >
+            <ng-container *ngSwitchCase="creationPostState.FEEDBACK_POST"
+              >You should add a picture for representing your post !</ng-container
+            >
+            <ng-container *ngSwitchDefault>You should add picture ;)</ng-container>
           </p>
-          <div class="file is-link mt-3">
+          <div class="file is-link mt-3" *ngIf="!croppedImage; else resetImageButton">
             <label class="file-label is-flex-grow-1">
-              <input class="file-input" type="file" name="resume" (change)="fileChangeEvent($event)" />
+              <input
+                class="file-input"
+                type="file"
+                name="resume"
+                (change)="fileChangeEvent($event)"
+                aria-label="upload image" />
               <span class="file-cta nf-uploader-button">
                 <span class="file-icon">
                   <i class="fas fa-upload"></i>
@@ -65,15 +100,54 @@
               </span>
             </label>
           </div>
+          <ng-template #resetImageButton
+            ><button
+              class="button is-rounded is-danger is-outlined"
+              (click)="croppedImage=null"
+              aria-label="reset uploaded image">
+              Reset the image
+            </button></ng-template
+          >
         </div>
       </div>
     </div>
   </ng-container>
 
   <div class="control">
-    <div class="pt-6 buttons is-justify-content-end">
-      <button class="button is-rounded is-primary is-outlined" mat-dialog-close>Cancel</button>
-      <button class="button is-rounded is-primary" (click)="next()">Create</button>
+    <div class="buttons is-justify-content-end" [class.pt-6]="!isPostTypeSelected">
+      <button
+        class="button is-rounded is-primary is-outlined"
+        mat-dialog-close
+        aria-label="cancel post creation">
+        Cancel
+      </button>
+      <button
+        class="button is-rounded is-primary"
+        [disabled]="!isPostTypeSelected"
+        (click)="create()"
+        aria-label="submit creation of a post">
+        Create
+      </button>
     </div>
   </div>
 </div>
+
+<ng-template #photoEditor>
+  <div class="">
+    <h4 class="has-text-primary is-size-5 mb-5 mt-1">Edit the picture</h4>
+    <div class="nf-cropper-box">
+      <image-cropper
+        [imageChangedEvent]="imageSelected"
+        [resizeToWidth]="300"
+        [maintainAspectRatio]="true"
+        [roundCropper]="false"
+        [aspectRatio]="1 / 1"
+        (imageCropped)="imageCropped($event)"></image-cropper>
+    </div>
+    <div class="nf-separator"></div>
+    <div class="buttons is-right">
+      <button (click)="goBackFromEditor()" class="button is-rounded is-primary is-outlined">Go back</button>
+      <button (click)="applyCropping()" class="button is-rounded is-primary">Apply</button>
+    </div>
+  </div>
+</ng-template>
