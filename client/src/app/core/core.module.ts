@@ -8,6 +8,8 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { CoreRoutingModule } from './core-routing.module';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
+import { WelcomeComponent } from './pages/landing-page/welcome-component/welcome.component';
+import { IntroductionComponent } from './pages/landing-page/introduction-component/introduction.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,9 @@ import { LandingPageComponent } from './pages/landing-page/landing-page.componen
     SidenavComponent,
     PageHeaderComponent,
     HomePageComponent,
-    LandingPageComponent
+    LandingPageComponent,
+    WelcomeComponent,
+    IntroductionComponent
   ],
   imports: [
     CoreRoutingModule,

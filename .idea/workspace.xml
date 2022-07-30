@@ -2,7 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a3709679-2d1d-4ce5-a6f7-18d51bfa8c34" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/client/src/app/core/pages/landing-page/introduction-component/introduction.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/app/core/pages/landing-page/introduction-component/introduction.component.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/app/core/pages/landing-page/introduction-component/introduction.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/app/core/pages/landing-page/welcome-component/welcome.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/app/core/pages/landing-page/welcome-component/welcome.component.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/app/core/pages/landing-page/welcome-component/welcome.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/core/core.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/app/core/core.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/core/pages/landing-page/landing-page.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/app/core/pages/landing-page/landing-page.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/app/core/pages/landing-page/landing-page.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/app/core/pages/landing-page/landing-page.component.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -21,10 +29,12 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/client/src/app/core/pages" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/client/src/app/core/pages/landing-page/introduction-component" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/client/src/app/core/pages/landing-page/introduction-component" />
+      <recent name="$PROJECT_DIR$/client/src/app/core/pages/landing-page/welcome-component" />
       <recent name="$PROJECT_DIR$/client/src/app/core/pages" />
     </key>
   </component>

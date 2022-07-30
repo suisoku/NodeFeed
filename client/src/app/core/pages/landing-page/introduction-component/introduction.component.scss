@@ -1,0 +1,51 @@
+
+//containers
+#full-page {
+  background-color: white;
+}
+
+#container{
+  display:flex;
+  justify-content:center;
+  width: 100vw;
+  height: 100vh;
+  background-color: #F8F8FF;
+  border-radius : 14vw 14vw 0 0;
+}
+
+#wrapper{
+  width:49vw;
+  min-width: 500px;
+}
+
+#wrapper *{
+  margin: 0 auto;
+}
+
+h3,h4{
+  text-align: center;
+}
+
+h3{
+  margin-top: 7vh !important;
+  font-size: max(1.5em,3vw);
+}
+
+h4{
+  font-weight: 600;
+  margin-top: 0.7vh !important;
+  font-size: max(1.2em,2vw);
+}
+
+img{
+  margin-top: 8vh !important;
+}
+
+button, img{
+  display:block;
+}
+
+button {
+  margin-top:10vh !important;
+}
+

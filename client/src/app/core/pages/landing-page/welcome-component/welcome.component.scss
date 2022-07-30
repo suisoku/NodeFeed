@@ -1,0 +1,70 @@
+
+//containers
+
+#container{
+  display:flex;
+  justify-content:center;
+  width: 100vw;
+  height: 100vh;
+  background: url(../../../../../assets/bg-2.svg);
+  background-color:white;
+  background-size:150vw 102vh;
+  background-position-x: -26vw;
+}
+
+#wrapper{
+  width:70vw;
+  min-width: 800px;
+}
+
+#wrapper *{
+  margin: 0 auto;
+}
+
+// level 1 elements
+$btn-width-max : max(6vw, 150px);
+$btn-height-max : max(calc(6vw / 2.5), 35px);
+#beta-access{
+  border-radius : 0.35rem;
+  width : $btn-width-max;
+  height: $btn-height-max;
+  display: block;
+  margin: 2.5vh 0px 0px auto !important;
+}
+
+#brand{
+  margin-top: 12vh !important;
+  width: max(374px,40vw);
+}
+
+#newsletter{
+  margin-top: 25vh !important;
+}
+
+// level 2 element
+
+// -- brand
+#subtitle{
+  margin-top: 3vh !important;
+  line-height: 1.2;
+  font-size: max(1em,1.6vw);
+
+}
+
+// -- newsletter
+$btn-width-max : max(6vw, 130px);
+$btn-height-max : max(calc(6vw / 2.5), 40px);
+#newsletter p{
+  margin-bottom: 0.5em;
+  text-wrap: none;
+  font-size: max(1em,1.32vw);
+}
+
+#newsletter input{
+  width: 80%;
+  height:$btn-height-max;
+  border-radius: 0.6rem;
+  margin-right: 2%;
+  border: 1.5px solid #A7A7A7;
+}
+
