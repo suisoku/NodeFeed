@@ -46,7 +46,9 @@ fdescribe('AccountMenuComponent', () => {
   // Main feature specifications
   it('should display user menu bar if the user is logged', () => {
     // Arrange (by default spy service returns a user)
-    (authenticationService.currentUser$ as Subject<FirebaseUser>).next(FirebaseMockHelper.userMock());
+    (authenticationService.currentUser$ as Subject<FirebaseUser>).next(
+      FirebaseMockHelper.userMock()
+    );
     // Act
     //subscribe inside service auth constructor returns a value immediatly because the spy returns an synchronous observable
     fixture.detectChanges();
@@ -73,7 +75,13 @@ fdescribe('AccountMenuComponent', () => {
 
   it('should display loading bar while waiting user authentication status', fakeAsync(() => {
     // Arrange
-    setTimeout(() => (authenticationService.currentUser$ as Subject<FirebaseUser>).next(FirebaseMockHelper.userMock()), 300);
+    setTimeout(
+      () =>
+        (authenticationService.currentUser$ as Subject<FirebaseUser>).next(
+          FirebaseMockHelper.userMock()
+        ),
+      300
+    );
 
     // Should display loading
     fixture.detectChanges();

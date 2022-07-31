@@ -16,7 +16,9 @@ describe('Service: Posts', () => {
       providers: [PostsService, { provide: AngularFirestore, useValue: angularFireStoreMock }]
     });
 
-    angularFireStoreInstanceMock = TestBed.inject(AngularFirestore) as jasmine.SpyObj<AngularFirestore>;
+    angularFireStoreInstanceMock = TestBed.inject(
+      AngularFirestore
+    ) as jasmine.SpyObj<AngularFirestore>;
     serviceMock = TestBed.inject(PostsService);
   });
 

@@ -25,12 +25,19 @@ export class SignFollowUpComponent implements OnInit {
   isDOBvalid = false;
   errorMessage = '';
 
-  constructor(private formBuilder: FormBuilder, private auth: AuthenticationService, private router: Router) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private auth: AuthenticationService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.signForm = this.formBuilder.group({
       email: [this.persistedCredentials.email, [Validators.required, Validators.email]],
-      password: [this.persistedCredentials.password, [Validators.required, Validators.pattern('^[A-Za-z\\d@$!%*#?&\\.]{6,}$')]],
+      password: [
+        this.persistedCredentials.password,
+        [Validators.required, Validators.pattern('^[A-Za-z\\d@$!%*#?&\\.]{6,}$')]
+      ],
       hiddenPassword: [this.persistedCredentials.hiddenPassword],
       name: ['', [Validators.required]] //needs improving Validators.pattern('[a-zA-Z][A-Za-z\\d@$!%*#?&_-]{3,}') only allows one word
     });
@@ -48,7 +55,10 @@ export class SignFollowUpComponent implements OnInit {
     // construct final object by merging properties
     FormHelper.markGroupDirty(this.signForm);
     this.dobComponent.markAsDirty();
-    const registration: SignInDetailsModel = { ...(this.signForm.value as SignInDetailsModel), ...this.detailsSign };
+    const registration: SignInDetailsModel = {
+      ...(this.signForm.value as SignInDetailsModel),
+      ...this.detailsSign
+    };
     this.auth
       .registerUser(registration)
       .then(() => this.router.navigate(['sign/signup/verify-email']))

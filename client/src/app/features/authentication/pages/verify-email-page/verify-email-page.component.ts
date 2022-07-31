@@ -18,7 +18,11 @@ export class VerifyEmailPageComponent {
   verifiedEmail = false;
   user: FirebaseUser | null = null;
 
-  constructor(private router: Router, private auth: AuthenticationService, private snackBar: MatSnackBar) {
+  constructor(
+    private router: Router,
+    private auth: AuthenticationService,
+    private snackBar: MatSnackBar
+  ) {
     this.auth.currentUser$.pipe(take(1)).subscribe({
       next: user => {
         if (user) {

@@ -3,8 +3,8 @@
   <div *ngIf="!creationSteps.nameStepCompleted" class="content pt-4">
     <h4 class="has-text-primary has-text-weight-normal mb-5 mt-1">Create a Nodefeed page</h4>
     <p>
-      You haven't found the nodefeed page you are looking for ? Go ahead and be the first to create the nodefeed page about the
-      product that you want !
+      You haven't found the nodefeed page you are looking for ? Go ahead and be the first to create
+      the nodefeed page about the product that you want !
     </p>
     <div class="field mt-5">
       <label class="label">
@@ -18,7 +18,11 @@
         </mat-icon>
       </label>
       <div class="control mt-3">
-        <input class="input" type="text" placeholder="i.e Iphone" [formControl]="nodefeedNameControl" />
+        <input
+          class="input"
+          type="text"
+          placeholder="i.e Iphone"
+          [formControl]="nodefeedNameControl" />
         <p *ngIf="nameExists" class="help is-danger">This nodefeed name is already in use</p>
         <p *ngIf="nodefeedNameControl.invalid && nodefeedNameControl.dirty" class="help is-danger">
           The name requires at least 3 characters in length

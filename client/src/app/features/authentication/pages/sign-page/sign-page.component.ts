@@ -12,7 +12,11 @@ import { CredentialsSettingsModel } from '../../models/credential-settings.model
 export class SignPageComponent implements OnInit {
   signInDisplayMode!: boolean;
   collapsedSignBox = false;
-  persistedCredentials: CredentialsSettingsModel = { email: '', password: '', hiddenPassword: true };
+  persistedCredentials: CredentialsSettingsModel = {
+    email: '',
+    password: '',
+    hiddenPassword: true
+  };
   hiddenPassword = true;
 
   constructor(private route: ActivatedRoute) {}

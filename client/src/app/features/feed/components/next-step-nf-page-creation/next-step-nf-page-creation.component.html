@@ -1,4 +1,6 @@
-<h4 class="has-text-primary has-text-weight-normal mb-5 mt-1">Complete the {{nodefeedModel.title | titlecase}} page</h4>
+<h4 class="has-text-primary has-text-weight-normal mb-5 mt-1">
+  Complete the {{nodefeedModel.title | titlecase}} page
+</h4>
 <p>Just add a few more information describing the product</p>
 <div [formGroup]="detailsPageCreationForm">
   <div class="field mt-3">
@@ -14,7 +16,10 @@
       <span class="tag is-warning is-light">required</span>
     </label>
     <div class="control mt-3">
-      <textarea class="textarea" placeholder="Nodefeed product description" formControlName="description"></textarea>
+      <textarea
+        class="textarea"
+        placeholder="Nodefeed product description"
+        formControlName="description"></textarea>
       <!-- <p *ngIf="nameExists" class="help is-danger">Please describe the product in a few words</p>-->
     </div>
   </div>
@@ -31,7 +36,11 @@
       <span class="tag is-info is-light">optional</span>
     </label>
     <div class="control mt-3">
-      <input class="input" type="text" placeholder="Phone, Electronics ..." formControlName="categories" />
+      <input
+        class="input"
+        type="text"
+        placeholder="Phone, Electronics ..."
+        formControlName="categories" />
       <!-- <p *ngIf="nameExists" class="help is-danger">Please describe the product in a few words</p>-->
     </div>
   </div>
@@ -48,7 +57,11 @@
       <span class="tag is-info is-light">optional</span>
     </label>
     <div class="control mt-3">
-      <input class="input" type="text" placeholder="e.g https:/apple.com/iphone/" formControlName="link" />
+      <input
+        class="input"
+        type="text"
+        placeholder="e.g https:/apple.com/iphone/"
+        formControlName="link" />
       <!-- <p *ngIf="nameExists" class="help is-danger">Please describe the product in a few words</p>-->
     </div>
   </div>

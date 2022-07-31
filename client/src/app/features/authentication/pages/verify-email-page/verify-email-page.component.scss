@@ -1,8 +1,8 @@
-@import "global-styles";
+@import 'global-styles';
 
 .nf-main-section {
   height: 100%;
-  background-image: url("/assets/bg-2.svg");
+  background-image: url('/assets/bg-2.svg');
   background-size: cover;
 }
 
@@ -13,7 +13,7 @@
   justify-content: center;
 
   .nf-logo {
-    background-image: url("/assets/logo-nf-2.svg");
+    background-image: url('/assets/logo-nf-2.svg');
     display: block;
     width: 300px;
     height: 100px;

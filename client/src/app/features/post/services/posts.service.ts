@@ -1,5 +1,9 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection, QuerySnapshot } from '@angular/fire/compat/firestore';
+import {
+  AngularFirestore,
+  AngularFirestoreCollection,
+  QuerySnapshot
+} from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { BarePostModel } from '../models/bare-post.model';
@@ -21,7 +25,11 @@ export class PostsService {
   public getBarePosts$(): Observable<BarePostModel[]> {
     return this.postsRef
       .get()
-      .pipe(map((querySnapshot: QuerySnapshot<BarePostModel>) => querySnapshot.docs.map(docSnapshot => docSnapshot.data())));
+      .pipe(
+        map((querySnapshot: QuerySnapshot<BarePostModel>) =>
+          querySnapshot.docs.map(docSnapshot => docSnapshot.data())
+        )
+      );
   }
 
   public createBarePost(barePost: BarePostModel): void {

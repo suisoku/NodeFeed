@@ -1,4 +1,11 @@
-import { AfterViewInit, ChangeDetectorRef, Component, QueryList, ViewChildren, ViewEncapsulation } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  QueryList,
+  ViewChildren,
+  ViewEncapsulation
+} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTooltip } from '@angular/material/tooltip';
 import { CreateFeedModalComponent } from 'src/app/features/feed/components/create-feed-modal/create-feed-modal.component';
@@ -25,7 +32,11 @@ export class AccountMenuComponent implements AfterViewInit {
 
   @ViewChildren('verifyEmailTooltip') verifyEmailTooltip!: QueryList<MatTooltip>;
 
-  constructor(private auth: AuthenticationService, private cdr: ChangeDetectorRef, private dialog: MatDialog) {
+  constructor(
+    private auth: AuthenticationService,
+    private cdr: ChangeDetectorRef,
+    private dialog: MatDialog
+  ) {
     this.auth.currentUser$.subscribe(user => {
       this.user = user;
       this.isLoadingUser = false;

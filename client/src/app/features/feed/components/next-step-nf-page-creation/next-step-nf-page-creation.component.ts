@@ -1,4 +1,11 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NodefeedModel } from 'src/app/core/models/nodefeed.model';
 import { FormHelper } from 'src/app/core/utilities/form-helper';
@@ -32,7 +39,8 @@ export class NextStepNfPageCreationComponent implements OnInit {
 
   fillingDetailsStep(): void {
     FormHelper.markGroupDirty(this.detailsPageCreationForm);
-    this.nodefeedModel.description = this.detailsPageCreationForm.get('description')?.value as string;
+    this.nodefeedModel.description = this.detailsPageCreationForm.get('description')
+      ?.value as string;
     this.nodefeedModel.tags = this.detailsPageCreationForm.get('categories')?.value as string;
     this.nodefeedModel.officialLink = this.detailsPageCreationForm.get('link')?.value as string;
 

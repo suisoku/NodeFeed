@@ -10,7 +10,10 @@ describe('ForgotPasswordPageComponent', () => {
   let fixture: ComponentFixture<ForgotPasswordPageComponent>;
 
   beforeEach(async () => {
-    const authServiceProvider = jasmine.createSpyObj('AuthenticationService', ['signOut', 'completeGoogleSignup']);
+    const authServiceProvider = jasmine.createSpyObj('AuthenticationService', [
+      'signOut',
+      'completeGoogleSignup'
+    ]);
     const routerProvider = jasmine.createSpyObj('Router', ['navigate']);
     await TestBed.configureTestingModule({
       imports: [ReactiveFormsModule, MatSnackBarModule],

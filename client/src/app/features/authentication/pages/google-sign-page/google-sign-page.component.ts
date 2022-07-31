@@ -19,7 +19,11 @@ export class GoogleSignPageComponent implements AfterViewInit {
 
   progressStep = '0%';
 
-  constructor(private _auth: AuthenticationService, private _route: ActivatedRoute, private _router: Router) {
+  constructor(
+    private _auth: AuthenticationService,
+    private _route: ActivatedRoute,
+    private _router: Router
+  ) {
     this._route.data.subscribe({
       next: (data: Data) => {
         const user = data['user'] as FirebaseUser;
