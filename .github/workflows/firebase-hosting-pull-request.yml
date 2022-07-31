@@ -10,10 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Build Nodefeed
-        run: yarn install --frozen-lockfile && yarn build
-        working-directory: client
-      - name: Run verifications
-        run : yarn lint && yarn style
+        run: npm install && npm run build
         working-directory: client
       - name: Deploy preview
         uses: FirebaseExtended/action-hosting-deploy@v0
@@ -22,3 +19,6 @@ jobs:
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_NODEFEED_CE139 }}'
           projectId: nodefeed-ce139
           entrypoint: client
+      - name: Run verifications
+        run : npm run lint && npm run style
+        working-directory: client
