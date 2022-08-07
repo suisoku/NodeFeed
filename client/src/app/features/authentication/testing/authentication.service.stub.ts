@@ -53,7 +53,10 @@ export class AuthenticationStubService {
     return Promise.resolve(true);
   }
 
-  async completeGoogleSignup(uid: string, additionalInfo: Partial<SignInDetailsModel>): Promise<void> {
+  async completeGoogleSignup(
+    uid: string,
+    additionalInfo: Partial<SignInDetailsModel>
+  ): Promise<void> {
     return Promise.resolve();
   }
 

@@ -19,7 +19,10 @@ describe('GoogleSignPageComponent', () => {
 
     const routerProvider = jasmine.createSpyObj('Router', ['navigate']);
     const routeProvider = jasmine.createSpyObj('ActivatedRoute', [], { data: routeDataMock });
-    const authServiceProvider = jasmine.createSpyObj('AuthenticationService', ['signOut', 'completeGoogleSignup']);
+    const authServiceProvider = jasmine.createSpyObj('AuthenticationService', [
+      'signOut',
+      'completeGoogleSignup'
+    ]);
 
     await TestBed.configureTestingModule({
       declarations: [GoogleSignPageComponent, DetailsSignFormStubComponent],

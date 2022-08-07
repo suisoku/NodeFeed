@@ -16,7 +16,11 @@ export class NodefeedService {
   nodefeeds: NodefeedModel[] = [];
   nodefeedsRef: AngularFirestoreCollection<NodefeedModel>;
 
-  constructor(private db: AngularFirestore, private storage: AngularFireStorage, private http: HttpClient) {
+  constructor(
+    private db: AngularFirestore,
+    private storage: AngularFireStorage,
+    private http: HttpClient
+  ) {
     this.nodefeedsRef = db.collection('nodefeeds');
   }
 

@@ -17,7 +17,11 @@ export class HomePageComponent implements OnInit {
   nodefeed$: Observable<NodefeedModel> = this.nodeFeedService.getNodeFeed$('@instagram');
   bareposts$: Observable<BarePostModel[]> = this.postsService.getBarePosts$();
 
-  constructor(private nodeFeedService: NodefeedService, private postsService: PostsService, private renderer: Renderer2) {
+  constructor(
+    private nodeFeedService: NodefeedService,
+    private postsService: PostsService,
+    private renderer: Renderer2
+  ) {
     this.renderer.removeClass(document.querySelector('html'), 'sign-layout-background');
   }
 

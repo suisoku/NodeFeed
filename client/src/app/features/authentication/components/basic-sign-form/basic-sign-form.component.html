@@ -11,7 +11,9 @@
     <div class="control has-icons-right">
       <input formControlName="password" class="input" [type]="hidePassword? 'password' : 'text'" />
       <span class="icon is-small is-right nf-input-password">
-        <i (click)="hidePassword = !hidePassword" [class]="hidePassword? 'fas fa-eye-slash' : 'fas fa-eye' "></i>
+        <i
+          (click)="hidePassword = !hidePassword"
+          [class]="hidePassword? 'fas fa-eye-slash' : 'fas fa-eye' "></i>
       </span>
     </div>
   </div>

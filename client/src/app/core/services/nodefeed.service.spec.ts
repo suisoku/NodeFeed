@@ -9,7 +9,10 @@ describe('NodefeedService', () => {
   beforeEach(() => {
     const angularFireStoreProvider = jasmine.createSpyObj('AngularFireStore', ['collection']);
     TestBed.configureTestingModule({
-      providers: [NodefeedService, { provide: AngularFirestore, useValue: angularFireStoreProvider }]
+      providers: [
+        NodefeedService,
+        { provide: AngularFirestore, useValue: angularFireStoreProvider }
+      ]
     });
 
     angularFireStore = TestBed.inject(AngularFirestore);

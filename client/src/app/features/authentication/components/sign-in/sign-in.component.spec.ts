@@ -19,7 +19,10 @@ describe('SignInComponent', () => {
     // Mock providers
     const routerProvider = jasmine.createSpyObj('Router', ['navigate', 'navigateByUrl']);
     const changeDetectionRefProvider = jasmine.createSpyObj('ChangeDetectorRef', ['detectChanges']);
-    const authServiceProvider = jasmine.createSpyObj('AuthenticationService', ['signIn', 'googleSignProcess']);
+    const authServiceProvider = jasmine.createSpyObj('AuthenticationService', [
+      'signIn',
+      'googleSignProcess'
+    ]);
 
     await TestBed.configureTestingModule({
       imports: [ReactiveFormsModule],

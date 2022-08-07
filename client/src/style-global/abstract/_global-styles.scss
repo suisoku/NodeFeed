@@ -1,8 +1,8 @@
-@import "variables";
-@import "helpers";
+@import 'variables';
+@import 'helpers';
 
 /* Import only once at the end, to override bulma variables */
-@import "node_modules/bulma/bulma.sass";
+@import 'node_modules/bulma/bulma.sass';
 
 /* global classes appliable everywhere in the project */
 .nf-g-card {
@@ -39,7 +39,7 @@
   overflow: hidden; // to make inner child obey parent borders
 
   &::before {
-    content: "";
+    content: '';
     display: block;
     height: 1rem;
     width: var(--progress-step, 100);

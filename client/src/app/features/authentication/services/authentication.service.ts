@@ -24,7 +24,10 @@ export class AuthenticationService {
     return new firebase.auth.GoogleAuthProvider();
   }
 
-  constructor(private readonly afAuth: AngularFireAuth, private readonly afStore: AngularFirestore) {
+  constructor(
+    private readonly afAuth: AngularFireAuth,
+    private readonly afStore: AngularFirestore
+  ) {
     this.currentUser$ = this.afAuth.user;
     this.isLoggedIn$ = this.currentUser$.pipe(map((user: firebase.User | null): boolean => !!user));
   }
@@ -32,12 +35,14 @@ export class AuthenticationService {
   updateCurrentUser: (user: firebase.User | null) => Promise<void> = this.afAuth.updateCurrentUser;
 
   async registerUser(signInformation: SignInDetailsModel): Promise<void> {
-    return this.afAuth.createUserWithEmailAndPassword(signInformation.email, signInformation.password).then(userCredential => {
-      if (!userCredential.user) {
-        return Promise.reject(new Error("Can't create a profile from a null user object"));
-      }
-      return this._setUserData(userCredential.user, signInformation);
-    });
+    return this.afAuth
+      .createUserWithEmailAndPassword(signInformation.email, signInformation.password)
+      .then(userCredential => {
+        if (!userCredential.user) {
+          return Promise.reject(new Error("Can't create a profile from a null user object"));
+        }
+        return this._setUserData(userCredential.user, signInformation);
+      });
   }
 
   async signIn(credentials: CredentialsModel): Promise<FirebaseCredential> {
@@ -81,8 +86,15 @@ export class AuthenticationService {
     });
   }
 
-  async completeGoogleSignup(uid: string, additionalInfo: Partial<SignInDetailsModel>): Promise<void> {
-    const newDob = new Date(additionalInfo.birthYear ?? 0, (additionalInfo.birthMonth ?? 0) - 1, additionalInfo.birthDay ?? 0);
+  async completeGoogleSignup(
+    uid: string,
+    additionalInfo: Partial<SignInDetailsModel>
+  ): Promise<void> {
+    const newDob = new Date(
+      additionalInfo.birthYear ?? 0,
+      (additionalInfo.birthMonth ?? 0) - 1,
+      additionalInfo.birthDay ?? 0
+    );
     if (!this._verifyDate(newDob)) return Promise.reject(new Error('Date of birth is invalid'));
 
     const userRef = this.afStore.doc(`users/${uid}`);
@@ -128,7 +140,11 @@ export class AuthenticationService {
 
   private _setUserData(user: FirebaseUser, signInformation: SignInDetailsModel): Promise<void> {
     //Mounting and verifying DOB
-    const newDob = new Date(signInformation.birthYear, signInformation.birthMonth - 1, signInformation.birthDay);
+    const newDob = new Date(
+      signInformation.birthYear,
+      signInformation.birthMonth - 1,
+      signInformation.birthDay
+    );
     if (!this._verifyDate(newDob)) return Promise.reject(new Error('Date of birth is invalid'));
 
     void user.updateProfile({ displayName: signInformation.name });

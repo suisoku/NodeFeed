@@ -19,8 +19,14 @@ describe('HomePageComponent', () => {
   let fixture: ComponentFixture<HomePageComponent>;
 
   beforeEach(async () => {
-    const nodeFeedServiceProvider = jasmine.createSpyObj('NodefeedService', ['createNodeFeed', 'getNodeFeed$']);
-    const postsServiceProvider = jasmine.createSpyObj('PostsService', ['createBarePost', 'getBarePosts$']);
+    const nodeFeedServiceProvider = jasmine.createSpyObj('NodefeedService', [
+      'createNodeFeed',
+      'getNodeFeed$'
+    ]);
+    const postsServiceProvider = jasmine.createSpyObj('PostsService', [
+      'createBarePost',
+      'getBarePosts$'
+    ]);
     const rendererProvider = jasmine.createSpyObj('Renderer2', ['removeClass']);
 
     await TestBed.configureTestingModule({

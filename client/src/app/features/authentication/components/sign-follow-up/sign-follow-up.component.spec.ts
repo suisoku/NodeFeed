@@ -1,5 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormBuilder, FormGroup, FormGroupDirective, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  FormGroupDirective,
+  FormsModule,
+  ReactiveFormsModule
+} from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../../services/authentication.service';
 import { BasicSignFormStubComponent } from '../../testing/basic-sign-form.component.stub';
@@ -14,11 +20,18 @@ describe('SignFollowUpComponent', () => {
   beforeEach(async () => {
     const routerProvider = jasmine.createSpyObj('Router', ['navigate', 'navigateByUrl']);
     const formBuilderProvider = jasmine.createSpyObj('FormBuilder', ['group']);
-    const authServiceProvider = jasmine.createSpyObj('AuthenticationService', ['registerUser', 'googleSignProcess']);
+    const authServiceProvider = jasmine.createSpyObj('AuthenticationService', [
+      'registerUser',
+      'googleSignProcess'
+    ]);
 
     await TestBed.configureTestingModule({
       imports: [ReactiveFormsModule],
-      declarations: [SignFollowUpComponent, BasicSignFormStubComponent, DetailsSignFormStubComponent],
+      declarations: [
+        SignFollowUpComponent,
+        BasicSignFormStubComponent,
+        DetailsSignFormStubComponent
+      ],
       providers: [
         FormGroupDirective,
         FormBuilder,

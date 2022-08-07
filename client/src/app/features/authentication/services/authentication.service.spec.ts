@@ -1,6 +1,10 @@
 import { TestBed } from '@angular/core/testing';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { AngularFirestore, AngularFirestoreDocument, DocumentSnapshot } from '@angular/fire/compat/firestore';
+import {
+  AngularFirestore,
+  AngularFirestoreDocument,
+  DocumentSnapshot
+} from '@angular/fire/compat/firestore';
 import firebase from 'firebase/compat/app';
 import { of } from 'rxjs';
 import { FirebaseCredential, FirebaseUser } from 'src/firebase-app';
@@ -30,7 +34,13 @@ describe('AuthenticationService', () => {
     const angularFireStoreProvider = jasmine.createSpyObj('AngularFireStore', ['doc']);
     const angularFireAuthProvider = jasmine.createSpyObj(
       'AngularFireAuth',
-      ['createUserWithEmailAndPassword', 'signInWithEmailAndPassword', 'signOut', 'signInWithPopup', 'sendPasswordResetEmail'],
+      [
+        'createUserWithEmailAndPassword',
+        'signInWithEmailAndPassword',
+        'signOut',
+        'signInWithPopup',
+        'sendPasswordResetEmail'
+      ],
       { user: fakeUser$ }
     ); //provider mock
 
@@ -112,7 +122,9 @@ describe('AuthenticationService', () => {
     /**  RegisterUser tests section */
 
     it('calls registerUser which calls createUserWithEmailAndPassword and throws user null', async () => {
-      angularFireAuth.createUserWithEmailAndPassword.and.returnValue(Promise.resolve({} as FirebaseCredential));
+      angularFireAuth.createUserWithEmailAndPassword.and.returnValue(
+        Promise.resolve({} as FirebaseCredential)
+      );
 
       // Act and evaluate
       await expectAsync(service.registerUser(signInformationMock)).toBeRejectedWith(
@@ -125,7 +137,9 @@ describe('AuthenticationService', () => {
     });
 
     it('calls registerUser with nominal signInDetails object with success', async () => {
-      angularFireAuth.createUserWithEmailAndPassword.and.returnValue(Promise.resolve(userCredentialMock));
+      angularFireAuth.createUserWithEmailAndPassword.and.returnValue(
+        Promise.resolve(userCredentialMock)
+      );
 
       //act
       await service.registerUser(signInformationMock);
@@ -158,17 +172,23 @@ describe('AuthenticationService', () => {
     faultyDOBSubSuite.forEach(params =>
       it(`calls registerUser with a faulty DOB ${params.description} `, async () => {
         signInformationMock.birthYear = params.inputYear;
-        angularFireAuth.createUserWithEmailAndPassword.and.returnValue(Promise.resolve(userCredentialMock));
+        angularFireAuth.createUserWithEmailAndPassword.and.returnValue(
+          Promise.resolve(userCredentialMock)
+        );
 
         // Act and evaluate
-        await expectAsync(service.registerUser(signInformationMock)).toBeRejectedWith(new Error('Date of birth is invalid'));
+        await expectAsync(service.registerUser(signInformationMock)).toBeRejectedWith(
+          new Error('Date of birth is invalid')
+        );
       })
     );
 
     /** GoogleSignProcess tests section */
 
     it('calls googleSignProcess with no user and should return Reject promise', async () => {
-      angularFireAuth.signInWithPopup.and.returnValue(Promise.resolve({ user: null } as FirebaseCredential));
+      angularFireAuth.signInWithPopup.and.returnValue(
+        Promise.resolve({ user: null } as FirebaseCredential)
+      );
 
       //Acting an evaluating
       await expectAsync(service.googleSignProcess()).toBeRejectedWith(
@@ -190,7 +210,10 @@ describe('AuthenticationService', () => {
       await service.googleSignProcess();
 
       expect(angularFireStore.doc).toHaveBeenCalledTimes(1);
-      expect(docSetSpy).toHaveBeenCalledOnceWith(expectedUserData, jasmine.objectContaining({ merge: true }));
+      expect(docSetSpy).toHaveBeenCalledOnceWith(
+        expectedUserData,
+        jasmine.objectContaining({ merge: true })
+      );
     });
     it('calls googleSignProcess with old user and completed registration, should return Resolve(true)', async () => {
       // Arrange
@@ -239,13 +262,15 @@ describe('AuthenticationService', () => {
         signInformationMock.birthYear = params.inputYear;
 
         // Act and evaluate
-        await expectAsync(service.completeGoogleSignup('random', signInformationMock)).toBeRejectedWith(
-          new Error('Date of birth is invalid')
-        );
+        await expectAsync(
+          service.completeGoogleSignup('random', signInformationMock)
+        ).toBeRejectedWith(new Error('Date of birth is invalid'));
       })
     );
     it('calls completeGoogleSignup with nominal signInformation and UID', async () => {
-      angularFireAuth.createUserWithEmailAndPassword.and.returnValue(Promise.resolve(userCredentialMock));
+      angularFireAuth.createUserWithEmailAndPassword.and.returnValue(
+        Promise.resolve(userCredentialMock)
+      );
 
       //act
       await service.completeGoogleSignup('random', signInformationMock);
@@ -317,7 +342,9 @@ describe('AuthenticationService', () => {
     expect(service.errorMessage('auth/wrong-password')).toBe('The email or password is wrong');
     expect(service.errorMessage('auth/user-not-found')).toBe('The email was not found');
     expect(service.errorMessage('auth/email-already-in-use')).toBe('Email already exists');
-    expect(service.errorMessage('auth/weak-password')).toBe('Password should be at least 6 characters');
+    expect(service.errorMessage('auth/weak-password')).toBe(
+      'Password should be at least 6 characters'
+    );
     expect(service.errorMessage('')).toBe('Error');
     expect(service.errorMessage('klkjdsasd78')).toBe('Error');
   });

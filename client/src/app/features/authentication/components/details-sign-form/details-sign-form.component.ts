@@ -22,7 +22,10 @@ export class DetailsSignFormComponent implements OnInit {
     this.dobForm = this.formBuilder.group({
       birthMonth: ['', [Validators.required, Validators.min(1), Validators.max(12)]],
       birthDay: ['', [Validators.required, Validators.min(1), Validators.max(31)]],
-      birthYear: ['', [Validators.required, Validators.min(1900), Validators.max(new Date().getFullYear())]],
+      birthYear: [
+        '',
+        [Validators.required, Validators.min(1900), Validators.max(new Date().getFullYear())]
+      ],
       gender: ['', Validators.required]
     });
 
@@ -32,13 +35,19 @@ export class DetailsSignFormComponent implements OnInit {
       }
     });
 
-    this.dobForm.statusChanges.subscribe((status: string) => this.validDOB.emit(status === 'VALID'));
+    this.dobForm.statusChanges.subscribe((status: string) =>
+      this.validDOB.emit(status === 'VALID')
+    );
   }
 
   invalidDOB(): boolean {
-    const birthKeys = Object.keys(this.dobForm.controls).filter((keyControl: string) => keyControl.includes('birth'));
+    const birthKeys = Object.keys(this.dobForm.controls).filter((keyControl: string) =>
+      keyControl.includes('birth')
+    );
     const hasErrors = birthKeys.some(keyControl => this.dobForm.get(keyControl)?.errors);
-    const isAllTouched = birthKeys.every((keyControl: string) => this.dobForm.get(keyControl)?.touched);
+    const isAllTouched = birthKeys.every(
+      (keyControl: string) => this.dobForm.get(keyControl)?.touched
+    );
 
     return hasErrors && isAllTouched;
   }

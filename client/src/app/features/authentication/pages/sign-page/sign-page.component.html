@@ -1,6 +1,12 @@
-<div class="nf-sign-box" [ngClass]="{'is-collapsed': collapsedSignBox}" (transitionend)="switchSignComponent()">
+<div
+  class="nf-sign-box"
+  [ngClass]="{'is-collapsed': collapsedSignBox}"
+  (transitionend)="switchSignComponent()">
   <ng-template [ngIf]="signInDisplayMode" [ngIfElse]="signFollowUp">
-    <app-sign-in #signin (createAccount)="collapseSignBox($event)" [persistedCredentials]="persistedCredentials"></app-sign-in>
+    <app-sign-in
+      #signin
+      (createAccount)="collapseSignBox($event)"
+      [persistedCredentials]="persistedCredentials"></app-sign-in>
   </ng-template>
   <ng-template #signFollowUp>
     <app-sign-follow-up
