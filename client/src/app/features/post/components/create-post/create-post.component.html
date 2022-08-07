@@ -54,22 +54,20 @@
         formControlName="title"
         [ngClass]="{'is-success': postFrom.controls.title.valid, 'is-danger': !postFrom.controls.title.valid && postFrom.controls.title.dirty}"
         aria-label="Title of a post" />
-      <label for="description" class="label"
-        >Description <span class="tag is-warning is-light">required</span></label
-      >
+      <label for="content" class="label">Content <span class="tag is-warning is-light">required</span></label>
       <textarea
-        name="description"
-        id="description"
+        name="content"
+        id="content"
         rows="4"
-        class="p-2 nf-post-description textarea"
-        formControlName="description"
-        [ngClass]="{'is-success': postFrom.controls.description.valid, 'is-danger': !postFrom.controls.description.valid && postFrom.controls.description.dirty}"
+        class="p-2 nf-post-content textarea"
+        formControlName="content"
+        [ngClass]="{'is-success': postFrom.controls.content.valid, 'is-danger': !postFrom.controls.content.valid && postFrom.controls.content.dirty}"
         aria-label="Description of a post"></textarea>
     </div>
 
     <div class="pt-3 is-flex is-flex-direction-column">
       <label class="label">Picture <span class="tag is-info is-light">optional</span></label>
-      <div class="is-flex is-justify-content-center">
+      <div class="is-flex is-justify-content-center nf-post-picture">
         <figure class="nf-profile is-flex-shrink-0">
           <img
             *ngIf="croppedImage"
@@ -124,7 +122,7 @@
   </ng-container>
 
   <div class="control">
-    <div class="buttons is-justify-content-end" [class.pt-6]="!isPostTypeSelected">
+    <div class="buttons is-justify-content-end actions-buttons" [class.pt-6]="!isPostTypeSelected">
       <button
         class="button is-rounded is-primary is-outlined"
         mat-dialog-close

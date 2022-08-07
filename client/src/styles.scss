@@ -54,3 +54,58 @@ select.ng-dirty.ng-valid {
 .ng-select.ng-invalid.ng-touched .ng-select-container .ng-placeholder {
   color: $nf-danger-color;
 }
+
+.nf-sidenav {
+  top: 57px;
+  align-self: flex-start;
+  position: sticky;
+
+  @media (min-width: 705px) {
+    display: block;
+  }
+}
+
+/* Using plain CSS */
+@media (max-width: 768px) {
+  .nf-sidenav {
+    margin-top: 6px;
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .nf-side-nav {
+    margin: 0;
+    width: 100%;
+  }
+
+  .nf-side-nav-actions {
+    display: none;
+  }
+
+  .nf-side-nav-actions:first-child {
+    width: 100% !important;
+    display: flex;
+  }
+}
+
+.cdk-global-overlay-wrapper {
+  pointer-events: auto;
+  // display: block;
+  position: relative;
+  overflow: auto;
+  text-align: center;
+}
+
+.cdk-global-overlay-wrapper::before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  white-space: nowrap;
+}
+
+.cdk-overlay-pane {
+  display: inline-block;
+  position: relative;
+  text-align: left;
+  white-space: normal;
+}

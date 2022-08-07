@@ -9,6 +9,7 @@ import { NodefeedModel } from 'src/app/core/models/nodefeed.model';
 import { NodefeedService } from 'src/app/core/services/nodefeed.service';
 import { CreationPostState } from '../../enums/creation-post-state';
 import { BarePostModel } from '../../models/bare-post.model';
+import { PostDialogData } from '../../models/post-dialog-data';
 import { PostsService } from '../../services/posts.service';
 
 /**
@@ -36,7 +37,7 @@ export class CreatePostComponent {
 
   constructor(
     private dialogRef: MatDialogRef<CreatePostComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: string,
+    @Inject(MAT_DIALOG_DATA) public data: PostDialogData,
     private nodeFeedService: NodefeedService,
     private postsService: PostsService
   ) {
@@ -45,9 +46,9 @@ export class CreatePostComponent {
     this.typePostLabel = '';
     this.postFrom = new FormGroup({
       title: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(150)]),
-      description: new FormControl('', [Validators.required, Validators.minLength(3)]),
+      content: new FormControl('', [Validators.required, Validators.minLength(3)]),
       picture: new FormControl(this.croppedImage),
-      nodefeed: new FormControl(this.data, [Validators.required])
+      nodefeed: new FormControl(this.data.page, [Validators.required])
     });
   }
 
@@ -73,8 +74,8 @@ export class CreatePostComponent {
       return;
     }
     const post: BarePostModel = {
-      author: 'Toudom',
-      content: this.postFrom.value.description,
+      author: this.data.user.displayName as string,
+      content: this.postFrom.value.content,
       title: this.postFrom.value.title,
       nodefeed: this.postFrom.value.nodefeed,
       date: new Date(),

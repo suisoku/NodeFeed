@@ -1,4 +1,4 @@
-<div class="nf-side-nav-actions nf-g-card">
+<div class="nf-side-nav-actions nf-g-card" *ngIf="isLoggedIn$ | async">
   <button class="button is-primary is-outlined nf-side-nav-actions" (click)="openCreationPostDialog()">
     Create Post
   </button>

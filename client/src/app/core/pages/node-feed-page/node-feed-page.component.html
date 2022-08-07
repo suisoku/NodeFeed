@@ -4,7 +4,7 @@
     class="nf-container"
     [nodefeed]="nodefeed$ | async"
     [profilePicture]="profilePicUrl$ | async"></app-page-header>
-  <section class="nf-container nf-layout is-flex is-justify-content-space-between">
+  <section class="nf-container nf-layout is-flex nf-container-page">
     <div class="is-flex-grow-1">
       <mat-expansion-panel class="mt-5 nf-g-card nf-content-box">
         <mat-expansion-panel-header>
@@ -24,6 +24,9 @@
       </mat-expansion-panel>
       <app-post-bare *ngFor="let post of bareposts$ | async" [barePost]="post"></app-post-bare>
     </div>
-    <app-sidenav class="ml-5 mt-5 nf-sidenav" [pageName]="(nodefeed$ | async)?.name"></app-sidenav>
+    <app-sidenav
+      class="nf-sidenav"
+      [pageName]="(nodefeed$ | async)?.name"
+      [ngClass]="{'ml-5': !isMobile, 'mt-5': !isMobile}"></app-sidenav>
   </section>
 </div>

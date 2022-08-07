@@ -20,9 +20,17 @@ export class NodeFeedPageComponent {
   profilePicUrl$: Observable<string | null>;
   bareposts$: Observable<BarePostModel[]> = of([{} as BarePostModel]);
 
-  constructor(private route: ActivatedRoute, private nodeFeedService: NodefeedService, private postsService: PostsService) {
+  isMobile = window.innerWidth < 769;
+
+  constructor(
+    private route: ActivatedRoute,
+    private nodeFeedService: NodefeedService,
+    private postsService: PostsService
+  ) {
     this.title = 'lol';
-    this.nodefeed$ = this.route.paramMap.pipe(concatMap(params => this.nodeFeedService.getNodeFeed$(params.get('id') ?? '')));
+    this.nodefeed$ = this.route.paramMap.pipe(
+      concatMap(params => this.nodeFeedService.getNodeFeed$(params.get('id') ?? ''))
+    );
 
     this.profilePicUrl$ = this.nodefeed$.pipe(
       switchMap(nf => this.nodeFeedService.getNodefeedPicture$(nf.name).pipe(catchError(() => of(null))))

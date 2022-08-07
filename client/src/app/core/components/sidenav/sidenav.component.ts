@@ -1,6 +1,9 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Observable, Subject } from 'rxjs';
+import { AuthenticationService } from 'src/app/features/authentication/services/authentication.service';
 import { CreatePostComponent } from 'src/app/features/post/components/create-post/create-post.component';
+import { FirebaseUser } from 'src/firebase-app';
 
 /**
  * Side menu in home feed
@@ -10,17 +13,32 @@ import { CreatePostComponent } from 'src/app/features/post/components/create-pos
   templateUrl: './sidenav.component.html',
   styleUrls: ['./sidenav.component.scss']
 })
-export class SidenavComponent {
+export class SidenavComponent implements OnDestroy {
+  private unsubscribe$ = new Subject();
+  user?: FirebaseUser | null;
+  isLoggedIn$: Observable<boolean> = this.auth.isLoggedIn$;
+
   @Input() pageName?: string;
 
-  constructor(public dialog: MatDialog) {}
+  constructor(private auth: AuthenticationService, public dialog: MatDialog) {
+    this.auth.currentUser$.subscribe(user => {
+      this.user = user;
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribe$.next(null);
+    this.unsubscribe$.complete();
+  }
 
   public openCreationPostDialog(): void {
     this.dialog.open(CreatePostComponent, {
-      width: '600px',
+      width: window.innerWidth > 768 ? '600px' : '100%',
+      maxWidth: window.innerWidth > 768 ? '600px' : '98%',
       enterAnimationDuration: '300ms',
       disableClose: true,
-      data: this.pageName
+      autoFocus: false,
+      data: { page: this.pageName, user: this.user }
     });
   }
 }

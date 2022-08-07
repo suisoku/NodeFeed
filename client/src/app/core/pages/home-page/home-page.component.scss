@@ -1,4 +1,4 @@
-@import "global-styles";
+@import 'global-styles';
 
 .nf-layout-container {
   padding: 20px 10px;
@@ -12,17 +12,6 @@
   max-width: 980px;
   min-width: 380px;
   width: 100%;
-}
-
-.nf-sidenav {
-  top: 57px;
-  align-self: flex-start;
-  position: sticky;
-  display: none;
-
-  @media (min-width: 705px) {
-    display: block;
-  }
 }
 
 .nf-content-box {

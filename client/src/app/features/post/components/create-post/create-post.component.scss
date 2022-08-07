@@ -1,4 +1,4 @@
-.nf-post-description {
+.nf-post-content {
   resize: none;
 }
 
@@ -30,4 +30,42 @@
 .nf-post-upload-photo {
   align-items: center;
   text-align: center;
+}
+
+/* Using plain CSS */
+@media (max-width: 768px) {
+  .actions-buttons {
+    flex-direction: column-reverse;
+    margin: 10px 0;
+
+    button {
+      width: 100%;
+    }
+  }
+
+  .nf-profile {
+    width: 116px;
+    height: 116px;
+  }
+
+  .nf-post-picture {
+    flex-direction: column-reverse;
+    align-items: center;
+
+    .figure {
+      margin-bottom: 0%;
+    }
+
+    .file,
+    button {
+      width: 100%;
+      margin-bottom: 12px;
+    }
+
+    .nf-uploader-button {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+  }
 }
