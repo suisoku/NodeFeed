@@ -2,7 +2,7 @@
   height: 165px;
 
   @media (min-width: 705px) and (max-width: 860px) {
-    min-width: 805px; //stop shrinking
+    min-width: 805px; // stop shrinking
   }
 
   @media (max-width: 480px) {
@@ -16,7 +16,7 @@
   height: 116px;
   width: 116px;
   margin-right: 2rem;
-  box-shadow: 0 16px 30px -15px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 16px 30px -15px rgb(0 0 0 / 50%);
   background-color: #44bd94e0;
   text-align: center;
 
@@ -39,6 +39,7 @@
 .nf-description-banner {
   height: 46px;
   overflow: hidden;
+
   @media (max-width: 480px) {
     display: none;
   }
