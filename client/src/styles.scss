@@ -1,4 +1,4 @@
-@import '_global-styles';
+@import "_global-styles";
 
 /* You can add global styles to this file, and also import other style files */
 html {
@@ -6,7 +6,7 @@ html {
   background-color: $nf-background-color;
 
   &.sign-layout-background {
-    background: url('/assets/bg-2.svg') no-repeat fixed;
+    background: url("/assets/bg-2.svg") no-repeat fixed;
     background-size: cover;
   }
 }
@@ -14,7 +14,8 @@ html {
 body {
   height: 100%;
 }
-//body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; } added by material angular
+
+// body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; } added by material angular
 // mat-typography class was also added to body but I removed it
 
 input:invalid {

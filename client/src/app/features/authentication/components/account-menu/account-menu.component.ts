@@ -56,7 +56,7 @@ export class AccountMenuComponent implements AfterViewInit {
 
   openCreateNodefeedModal(): void {
     this.dialog.open(CreateFeedModalComponent, {
-      panelClass: 'createNfModal'
+      panelClass: 'create-nf-modal'
     });
   }
 

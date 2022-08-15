@@ -6,7 +6,7 @@
 
     &:hover {
       color: #00d1b2;
-      background-color: hsl(0, 0%, 96%);
+      background-color: hsl(0deg 0% 96%);
     }
 
     &:focus {
@@ -34,7 +34,7 @@
   }
 
   .nf-menu-divider {
-    background-color: hsl(0, 0%, 86%);
+    background-color: hsl(0deg 0% 86%);
     margin: 0.3rem 1rem;
   }
 
@@ -43,6 +43,6 @@
   }
 }
 
-.createNfModal .mat-dialog-container {
+.create-nf-modal .mat-dialog-container {
   padding: 0;
 }
